@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>402118571010-ne6v94sgo91124o5ksp9pfktn6a35li0.apps.googleusercontent.com</string>
+	<string>68873009942-3bev004378o92op1mqstjqaan5lolh3u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.402118571010-ne6v94sgo91124o5ksp9pfktn6a35li0</string>
+	<string>com.googleusercontent.apps.68873009942-3bev004378o92op1mqstjqaan5lolh3u</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCTjwkUqvSJw3Xg34TbQ8-Xh3JpuUCWdL8</string>
+	<string>AIzaSyABakJCYE8bdARk_XA1h-2PeJS-av1OJiI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>402118571010</string>
+	<string>68873009942</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.isyet.iw2Pack</string>
+	<string>com.isyet.HelloFirebase</string>
 	<key>PROJECT_ID</key>
-	<string>isyet-iw2</string>
+	<string>isyettodolistios</string>
 	<key>STORAGE_BUCKET</key>
-	<string>isyet-iw2.appspot.com</string>
+	<string>isyettodolistios.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:402118571010:ios:68b11b843fe7d5d2aae31b</string>
-	<key>DATABASE_URL</key>
-	<string>https://isyet-iw2.firebaseio.com</string>
+	<string>1:68873009942:ios:0e8c666ff43710b2ac6e37</string>
 </dict>
 </plist>
