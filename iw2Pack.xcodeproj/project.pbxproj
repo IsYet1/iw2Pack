@@ -17,6 +17,10 @@
 		A53B3F0E27933E5300799BBE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A53B3F0D27933E5300799BBE /* FirebaseDatabase */; };
 		A53B3F1027933E5300799BBE /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A53B3F0F27933E5300799BBE /* FirebaseDatabaseSwift-Beta */; };
 		A53B3F1227933E5300799BBE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A53B3F1127933E5300799BBE /* FirebaseFirestoreSwift-Beta */; };
+		A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F1427933FBD00799BBE /* TasksContentView.swift */; };
+		A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F1527933FBD00799BBE /* TaskDetailView.swift */; };
+		A53B3F1927933FBD00799BBE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F1627933FBD00799BBE /* Task.swift */; };
+		A53B3F1D2793420A00799BBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A53B3F1C2793420A00799BBE /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		A53B3EFA2793394E00799BBE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A53B3EFC2793394F00799BBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A53B3EFF2793394F00799BBE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A53B3F1427933FBD00799BBE /* TasksContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksContentView.swift; sourceTree = "<group>"; };
+		A53B3F1527933FBD00799BBE /* TaskDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
+		A53B3F1627933FBD00799BBE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A53B3F1C2793420A00799BBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,8 @@
 		A53B3EF72793394E00799BBE /* iw2Pack */ = {
 			isa = PBXGroup;
 			children = (
+				A53B3F1C2793420A00799BBE /* GoogleService-Info.plist */,
+				A53B3F1327933FBD00799BBE /* TaskFBTest */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A53B3EFC2793394F00799BBE /* Assets.xcassets */,
@@ -77,6 +87,16 @@
 				A53B3EFF2793394F00799BBE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A53B3F1327933FBD00799BBE /* TaskFBTest */ = {
+			isa = PBXGroup;
+			children = (
+				A53B3F1427933FBD00799BBE /* TasksContentView.swift */,
+				A53B3F1527933FBD00799BBE /* TaskDetailView.swift */,
+				A53B3F1627933FBD00799BBE /* Task.swift */,
+			);
+			path = TaskFBTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B3F002793394F00799BBE /* Preview Assets.xcassets in Resources */,
+				A53B3F1D2793420A00799BBE /* GoogleService-Info.plist in Resources */,
 				A53B3EFD2793394F00799BBE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,7 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,
+				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
+				A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

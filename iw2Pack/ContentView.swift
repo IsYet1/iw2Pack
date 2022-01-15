@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Hello, There world! From the iw2 Pack App")
+            TaskContentView()
             .padding()
     }
 }
