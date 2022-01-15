@@ -22,6 +22,10 @@
 		A53B3F1927933FBD00799BBE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F1627933FBD00799BBE /* Task.swift */; };
 		A53B3F1D2793420A00799BBE /* GoogleService-Info-groc.plist in Resources */ = {isa = PBXBuildFile; fileRef = A53B3F1C2793420A00799BBE /* GoogleService-Info-groc.plist */; };
 		A53B3F1F27934AEA00799BBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A53B3F1E27934AEA00799BBE /* GoogleService-Info.plist */; };
+		A53B3F222793696700799BBE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F212793696700799BBE /* LoginViewModel.swift */; };
+		A53B3F24279369E400799BBE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F23279369E400799BBE /* LoginView.swift */; };
+		A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F2527936AAA00799BBE /* RegisterView.swift */; };
+		A53B3F2827936B2D00799BBE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		A53B3F1627933FBD00799BBE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A53B3F1C2793420A00799BBE /* GoogleService-Info-groc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-groc.plist"; sourceTree = "<group>"; };
 		A53B3F1E27934AEA00799BBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A53B3F212793696700799BBE /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A53B3F23279369E400799BBE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A53B3F2527936AAA00799BBE /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 				A53B3F1E27934AEA00799BBE /* GoogleService-Info.plist */,
 				A53B3F1C2793420A00799BBE /* GoogleService-Info-groc.plist */,
 				A53B3F1327933FBD00799BBE /* TaskFBTest */,
+				A53B3F202793693600799BBE /* Security */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A53B3EFC2793394F00799BBE /* Assets.xcassets */,
@@ -100,6 +109,17 @@
 				A53B3F1627933FBD00799BBE /* Task.swift */,
 			);
 			path = TaskFBTest;
+			sourceTree = "<group>";
+		};
+		A53B3F202793693600799BBE /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */,
+				A53B3F2527936AAA00799BBE /* RegisterView.swift */,
+				A53B3F23279369E400799BBE /* LoginView.swift */,
+				A53B3F212793696700799BBE /* LoginViewModel.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,9 +206,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */,
+				A53B3F24279369E400799BBE /* LoginView.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,
+				A53B3F222793696700799BBE /* LoginViewModel.swift in Sources */,
 				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
+				A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */,
 				A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */,
+				A53B3F2827936B2D00799BBE /* RegisterViewModel.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
