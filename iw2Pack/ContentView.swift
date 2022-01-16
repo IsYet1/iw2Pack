@@ -11,8 +11,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Hello, There world! From the iw2 Pack App")
-//            TaskContentView()
             LoginView()
+            TaskContentView()
         }
         .padding()
     }

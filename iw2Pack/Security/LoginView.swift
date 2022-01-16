@@ -34,13 +34,13 @@ struct LoginView: View {
                     isActive = true
                 }
             }
-//            .buttonStyle(PrimaryButtonStyle())
+            .buttonStyle(.bordered)
             .padding(.bottom, 10)
             
             Button("Create account") {
                 isPresented = true
             }
-//            .buttonStyle(SecondaryButtonStyle())
+            .buttonStyle((.automatic))
            
             Spacer()
            

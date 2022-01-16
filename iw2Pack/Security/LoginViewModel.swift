@@ -9,8 +9,8 @@ import Foundation
 import Firebase
 
 class LoginViewModel: ObservableObject {
-    var email: String = ""
-    var password: String = ""
+    var email: String = "don@isyet.com"
+    var password: String = "remot5control"
     
     func login(completion: @escaping () -> Void) {
         Auth.auth().signIn(withEmail: email.lowercased(), password: password) { (result, error) in
