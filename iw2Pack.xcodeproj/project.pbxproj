@@ -97,7 +97,7 @@
 			children = (
 				A5F2226C2793A0510098D460 /* GoogleService-Info.plist */,
 				A53B3F1327933FBD00799BBE /* TaskFBTest */,
-				A53B3F202793693600799BBE /* Security */,
+				A53B3F202793693600799BBE /* Login */,
 				A509B0702794EB4700823FF3 /* FungiList */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
@@ -125,7 +125,7 @@
 			path = TaskFBTest;
 			sourceTree = "<group>";
 		};
-		A53B3F202793693600799BBE /* Security */ = {
+		A53B3F202793693600799BBE /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */,
@@ -133,7 +133,7 @@
 				A53B3F23279369E400799BBE /* LoginView.swift */,
 				A53B3F212793696700799BBE /* LoginViewModel.swift */,
 			);
-			path = Security;
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
