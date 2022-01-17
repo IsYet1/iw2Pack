@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A509B0722794EB6800823FF3 /* FungiListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A509B0712794EB6800823FF3 /* FungiListViewModel.swift */; };
+		A509B0742794EB7E00823FF3 /* FungiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A509B0732794EB7E00823FF3 /* FungiViewModel.swift */; };
+		A509B0762794EB8B00823FF3 /* FungiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A509B0752794EB8B00823FF3 /* FungiListView.swift */; };
 		A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EF82793394E00799BBE /* iw2PackApp.swift */; };
 		A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EFA2793394E00799BBE /* ContentView.swift */; };
 		A53B3EFD2793394F00799BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53B3EFC2793394F00799BBE /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A509B0712794EB6800823FF3 /* FungiListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FungiListViewModel.swift; sourceTree = "<group>"; };
+		A509B0732794EB7E00823FF3 /* FungiViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FungiViewModel.swift; sourceTree = "<group>"; };
+		A509B0752794EB8B00823FF3 /* FungiListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FungiListView.swift; sourceTree = "<group>"; };
 		A53B3EF52793394E00799BBE /* iw2Pack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iw2Pack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B3EF82793394E00799BBE /* iw2PackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iw2PackApp.swift; sourceTree = "<group>"; };
 		A53B3EFA2793394E00799BBE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +66,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A509B0702794EB4700823FF3 /* FungiList */ = {
+			isa = PBXGroup;
+			children = (
+				A509B0712794EB6800823FF3 /* FungiListViewModel.swift */,
+				A509B0732794EB7E00823FF3 /* FungiViewModel.swift */,
+				A509B0752794EB8B00823FF3 /* FungiListView.swift */,
+			);
+			path = FungiList;
+			sourceTree = "<group>";
+		};
 		A53B3EEC2793394E00799BBE = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +98,7 @@
 				A5F2226C2793A0510098D460 /* GoogleService-Info.plist */,
 				A53B3F1327933FBD00799BBE /* TaskFBTest */,
 				A53B3F202793693600799BBE /* Security */,
+				A509B0702794EB4700823FF3 /* FungiList */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A53B3EFC2793394F00799BBE /* Assets.xcassets */,
@@ -203,9 +220,12 @@
 			files = (
 				A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */,
 				A53B3F24279369E400799BBE /* LoginView.swift in Sources */,
+				A509B0762794EB8B00823FF3 /* FungiListView.swift in Sources */,
+				A509B0722794EB6800823FF3 /* FungiListViewModel.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,
 				A53B3F222793696700799BBE /* LoginViewModel.swift in Sources */,
 				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
+				A509B0742794EB7E00823FF3 /* FungiViewModel.swift in Sources */,
 				A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */,
 				A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */,
 				A53B3F2827936B2D00799BBE /* RegisterViewModel.swift in Sources */,
