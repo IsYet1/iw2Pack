@@ -17,6 +17,7 @@ struct TaskContentView: View {
     
     init() {
         db = Firestore.firestore()
+        print("In TasksContentView")
     }
     
     private func saveTask(task: Task) {

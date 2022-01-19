@@ -16,37 +16,37 @@ struct LoginView: View {
            
     var body: some View {
         VStack {
-            Image("mushroom")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
-                .padding(.bottom, 20)
+//            Image("mushroom")
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//                .clipShape(Circle())
+//                .padding(.bottom, 20)
+//
             
+            Spacer()
             TextField("Username", text: $loginVM.email)
                 .padding(.bottom, 20)
             
             SecureField("Password", text: $loginVM.password)
                
-            Spacer()
-            
             Button("Login") {
                 loginVM.login {
                     isActive = true
+                    print("Login succeeded back to LoginView")
                 }
             }
             .buttonStyle(.bordered)
             .padding(.bottom, 10)
             
-            Button("Create account") {
-                isPresented = true
-            }
-            .buttonStyle((.automatic))
-           
+//            Button("Create account") {
+//                isPresented = true
+//            }
+//            .buttonStyle((.automatic))
+//           
             Spacer()
            
-            
             NavigationLink(
-                destination: FungiListView(),
+                destination: TaskContentView(),
                 isActive: $isActive,
                 label: {
                     EmptyView()
@@ -55,12 +55,12 @@ struct LoginView: View {
             
         }
         .padding()
-//        .defaultBackgroundView()
+        .defaultBackgroundView()
         .sheet(isPresented: $isPresented, content: {
             RegisterView() 
         })
-        .navigationTitle("Fungi Finder")
-//        .embedInNavigationView()
+        .navigationTitle("Login")
+        .embedInNavigationView()
     }
 }
 
