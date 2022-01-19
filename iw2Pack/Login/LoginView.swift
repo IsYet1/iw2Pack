@@ -46,7 +46,7 @@ struct LoginView: View {
             Spacer()
            
             NavigationLink(
-                destination: TaskContentView(),
+                destination: ItemListView(),
                 isActive: $isActive,
                 label: {
                     EmptyView()
