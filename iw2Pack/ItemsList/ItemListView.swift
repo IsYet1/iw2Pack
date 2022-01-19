@@ -15,6 +15,9 @@ struct ItemListView: View {
             Text("Hello from ItemListView")
             if (itemListVM.items.count > 0) {
                 Text("There are \(itemListVM.items.count) items")
+                List (itemListVM.items, id: \.itemId) {item in
+                    ItemCell(item: item)
+                }
             } else if itemListVM.loadingState == .success && itemListVM.items.count == 0 {
                 Text("There are NO items YET")
             }
