@@ -23,7 +23,7 @@ class ItemListViewModel: ObservableObject {
 //            return
 //        }
 //
-        db.collection("items")
+        db.collection("pack").document("data").collection("items")
 //            .whereField("userId", isEqualTo: currentUser.uid)
             .getDocuments { [weak self] snapshot, error in
                 if let error = error {
