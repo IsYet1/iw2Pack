@@ -12,7 +12,7 @@ struct ItemCell: View {
     
     var body: some View {
         HStack {
-            Text(item.name)
+            Text(item.itemId)
         }
     }
 }

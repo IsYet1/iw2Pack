@@ -15,7 +15,19 @@ struct ItemViewModel {
     }
     
     var name: String {
-        item.name
+        item.name ?? ""
+    }
+     
+    var itemIdId: String {
+        item.itemId ?? ""
+    }
+
+    var packed: Bool {
+        item.packed ?? false
+    }
+    
+    var staged: Bool {
+        item.staged ?? false
     }
 }
 

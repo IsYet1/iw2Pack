@@ -9,5 +9,8 @@ import Foundation
 
 struct Item: Codable {
     var id: String?
-    var name: String = ""
+    var name: String?
+    var itemId: String?
+    var packed: Bool?
+    var staged: Bool?
 }

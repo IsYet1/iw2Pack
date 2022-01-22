@@ -23,8 +23,12 @@ class ItemListViewModel: ObservableObject {
 //            return
 //        }
 //
-        db.collection("pack").document("data").collection("items")
-//            .whereField("userId", isEqualTo: currentUser.uid)
+//        db.collection("pack").document("data").collection("items")
+//        db.collection("pack").document("data").collection("lists")
+        db.collection("pack").document("data").collection("lists").document("ohio").collection("items")
+        
+        //            .whereField("userId", isEqualTo: currentUser.uid)
+        
             .getDocuments { [weak self] snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -36,6 +40,7 @@ class ItemListViewModel: ObservableObject {
                         let items: [ItemViewModel] = snapshot.documents.compactMap {doc in
                             var item = try? doc.data(as: Item.self)
                             item?.id = doc.documentID
+                            print("Line 41 \(doc.documentID) \(doc.data())")
                             if let item = item {
                                 print("Item found in the loop: \(item)")
                                 return ItemViewModel(item: item)
