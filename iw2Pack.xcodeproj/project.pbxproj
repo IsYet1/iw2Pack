@@ -29,6 +29,11 @@
 		A53B3F24279369E400799BBE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F23279369E400799BBE /* LoginView.swift */; };
 		A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F2527936AAA00799BBE /* RegisterView.swift */; };
 		A53B3F2827936B2D00799BBE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */; };
+		A577FC55279F665D00F721BD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC54279F665D00F721BD /* Event.swift */; };
+		A577FC57279F66B900F721BD /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC56279F66B900F721BD /* EventViewModel.swift */; };
+		A577FC59279F679500F721BD /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC58279F679500F721BD /* EventListViewModel.swift */; };
+		A577FC5B279F6B6B00F721BD /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC5A279F6B6B00F721BD /* EventListView.swift */; };
+		A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC5C279F6E8100F721BD /* EventCell.swift */; };
 		A5A73CEA2798AA70004AE953 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A73CE92798AA70004AE953 /* ItemListView.swift */; };
 		A5A73CEC2798BB52004AE953 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A73CEB2798BB52004AE953 /* ItemCell.swift */; };
 		A5AEC8DB2797BCF40072E649 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEC8DA2797BCF40072E649 /* View+Extensions.swift */; };
@@ -58,6 +63,11 @@
 		A53B3F23279369E400799BBE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A53B3F2527936AAA00799BBE /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A53B3F2727936B2D00799BBE /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		A577FC54279F665D00F721BD /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A577FC56279F66B900F721BD /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		A577FC58279F679500F721BD /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
+		A577FC5A279F6B6B00F721BD /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		A577FC5C279F6E8100F721BD /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		A5A73CE92798AA70004AE953 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		A5A73CEB2798BB52004AE953 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		A5AEC8DA2797BCF40072E649 /* View+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
@@ -123,6 +133,7 @@
 				A53B3F1327933FBD00799BBE /* TaskFBTest */,
 				A5AEC8DC2797C5C40072E649 /* ItemLists */,
 				A5301CC9279B85550049D9A9 /* PackLists */,
+				A577FC53279F65E200F721BD /* EventsLists */,
 				A53B3F202793693600799BBE /* Login */,
 				A53B3EFC2793394F00799BBE /* Assets.xcassets */,
 				A5AEC8D92797BCD70072E649 /* Extensions */,
@@ -160,6 +171,18 @@
 				A5D61EFB279629D500B0F0DB /* LoginConstants.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		A577FC53279F65E200F721BD /* EventsLists */ = {
+			isa = PBXGroup;
+			children = (
+				A577FC54279F665D00F721BD /* Event.swift */,
+				A577FC56279F66B900F721BD /* EventViewModel.swift */,
+				A577FC58279F679500F721BD /* EventListViewModel.swift */,
+				A577FC5A279F6B6B00F721BD /* EventListView.swift */,
+				A577FC5C279F6E8100F721BD /* EventCell.swift */,
+			);
+			path = EventsLists;
 			sourceTree = "<group>";
 		};
 		A5AEC8D92797BCD70072E649 /* Extensions */ = {
@@ -266,22 +289,27 @@
 			files = (
 				A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */,
 				A53B3F24279369E400799BBE /* LoginView.swift in Sources */,
+				A577FC59279F679500F721BD /* EventListViewModel.swift in Sources */,
 				A5301CCB279B860E0049D9A9 /* PackList.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,
 				A5AEC8E12797C91A0072E649 /* ItemViewModel.swift in Sources */,
 				A53B3F222793696700799BBE /* LoginViewModel.swift in Sources */,
 				A5A73CEC2798BB52004AE953 /* ItemCell.swift in Sources */,
 				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
+				A577FC55279F665D00F721BD /* Event.swift in Sources */,
+				A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */,
 				A5301CD3279B8AB20049D9A9 /* PackListModel.swift in Sources */,
 				A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */,
 				A5A73CEA2798AA70004AE953 /* ItemListView.swift in Sources */,
 				A5BB8711279869870082F903 /* ItemListViewModel.swift in Sources */,
+				A577FC57279F66B900F721BD /* EventViewModel.swift in Sources */,
 				A5301CCF279B877C0049D9A9 /* PackListView.swift in Sources */,
 				A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */,
 				A5AEC8DF2797C7FD0072E649 /* Item.swift in Sources */,
 				A53B3F2827936B2D00799BBE /* RegisterViewModel.swift in Sources */,
 				A5D61EFC279629D500B0F0DB /* LoginConstants.swift in Sources */,
 				A5D61EF82796278100B0F0DB /* LoadingView.swift in Sources */,
+				A577FC5B279F6B6B00F721BD /* EventListView.swift in Sources */,
 				A5AEC8DB2797BCF40072E649 /* View+Extensions.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
 				A5301CCD279B86EA0049D9A9 /* PackListViewModel.swift in Sources */,
