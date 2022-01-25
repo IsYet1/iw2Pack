@@ -12,7 +12,12 @@ struct EventCell: View {
     
     var body: some View {
         HStack {
-            Text(event.eventId)
+            NavigationLink(
+                destination: ItemListView(eventId: event.eventId),
+                label: {
+                    Text(event.eventId)
+                }
+            )
         }
     }
 }

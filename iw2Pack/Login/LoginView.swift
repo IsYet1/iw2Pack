@@ -46,6 +46,7 @@ struct LoginView: View {
             Spacer()
            
             NavigationLink(
+//                destination: ItemListView(),
                 destination: EventListView(),
                 isActive: $isActive,
                 label: {

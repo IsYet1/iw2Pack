@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
+    var eventId: String
     @StateObject private var itemListVM = ItemListViewModel()
     
     var body: some View {
@@ -24,13 +25,13 @@ struct ItemListView: View {
         }
         .onAppear(perform: {
             print("Getting all items")
-            itemListVM.getAllItems()
+            itemListVM.getAllItems(eventId: eventId)
         })
     }
 }
 
 struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListView()
+        ItemListView(eventId: "amz")
     }
 }

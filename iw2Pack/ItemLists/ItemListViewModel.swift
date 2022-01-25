@@ -15,7 +15,7 @@ class ItemListViewModel: ObservableObject {
     @Published var items: [ItemViewModel] = []
     @Published var loadingState: LoadingState = .idle
     
-    func getAllItems() {
+    func getAllItems(eventId: String) {
         DispatchQueue.main.async {
             self.loadingState = .loading
         }
@@ -25,7 +25,7 @@ class ItemListViewModel: ObservableObject {
 //
 //        db.collection("pack").document("data").collection("items")
 //        db.collection("pack").document("data").collection("lists")
-        db.collection("pack").document("data").collection("lists").document("ohio").collection("items")
+        db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
         
         //            .whereField("userId", isEqualTo: currentUser.uid)
         
