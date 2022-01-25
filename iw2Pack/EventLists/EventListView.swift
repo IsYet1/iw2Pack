@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventListView: View {
     @StateObject private var eventListVM = EventListViewModel()
+    @StateObject private var allItemsListVM = AllItemsListViewModel()
     var body: some View {
         VStack {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -26,6 +27,7 @@ struct EventListView: View {
         .onAppear(perform: {
             print("Getting all items")
             eventListVM.getAllEvents()
+            allItemsListVM.getAllItems()
         })
     }
 }
