@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 class AllItemsListViewModel: ObservableObject {
     
     let db = Firestore.firestore()
+    @Published var allItemsDict: [String: Item] = [:]
     @Published var allItems: [ItemViewModel] = []
     @Published var loadingState: LoadingState = .idle
     
@@ -34,6 +35,7 @@ class AllItemsListViewModel: ObservableObject {
                             print("Line 41 \(doc.documentID) \(doc.data())")
                             if let item = item {
                                 print("Item found in the All Items loop: \(item)")
+                                self?.allItemsDict[doc.documentID] = try? doc.data(as: Item.self)
                                 return ItemViewModel(item: item)
                             }
                             return nil
@@ -48,7 +50,6 @@ class AllItemsListViewModel: ObservableObject {
                 }
             }
     }
- 
 }
 
 
