@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct EventListView: View {
+    @EnvironmentObject var store: Store
+   struct Props {
+        let counter: Int
+        let onIncrement: () -> Void
+        let onDecrement: () -> Void
+        let onAdd: (Int) -> Void
+    }
+  
     @StateObject private var eventListVM = EventListViewModel()
     @StateObject private var allItemsListVM = AllItemsListViewModel()
+    
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("\(store.state.counter)")
             if (eventListVM.events.count > 0) {
                 Text("There are \(eventListVM.events.count) events")
                 
