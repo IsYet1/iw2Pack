@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventListView: View {
-    @EnvironmentObject var store: Store
+    @EnvironmentObject var store: Store<AppState>
    struct Props {
         let counter: Int
         let onIncrement: () -> Void
@@ -21,7 +21,7 @@ struct EventListView: View {
     
     var body: some View {
         VStack {
-            Text("\(store.state.counter)")
+            Text("\(store.state.counterState.counter)")
             if (eventListVM.events.count > 0) {
                 Text("There are \(eventListVM.events.count) events")
                 

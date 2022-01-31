@@ -32,13 +32,13 @@ class EventListViewModel: ObservableObject {
                             var event = try? doc.data(as: Event.self)
                             event?.id = doc.documentID
                             if let event = event {
-                                print("Event found in the loop: \(event)")
+//                                print("Event found in the loop: \(event)")
                                 return EventViewModel(event: event)
                             }
                             return nil
                         }
                         DispatchQueue.main.async {
-                            print("Events loaded. Starting the Event List")
+//                            print("Events loaded. Starting the Event List")
                             self?.events = events
                             self?.loadingState = .success
                         }

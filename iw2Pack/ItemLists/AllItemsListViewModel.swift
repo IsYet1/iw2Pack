@@ -32,9 +32,9 @@ class AllItemsListViewModel: ObservableObject {
                         let items: [ItemViewModel] = snapshot.documents.compactMap {doc in
                             var item = try? doc.data(as: Item.self)
                             item?.id = doc.documentID
-                            print("Line 41 \(doc.documentID) \(doc.data())")
+//                            print("Line 41 \(doc.documentID) \(doc.data())")
                             if let item = item {
-                                print("Item found in the All Items loop: \(item)")
+//                                print("Item found in the All Items loop: \(item)")
                                 self?.allItemsDict[doc.documentID] = try? doc.data(as: Item.self)
                                 return ItemViewModel(item: item)
                             }
@@ -42,7 +42,7 @@ class AllItemsListViewModel: ObservableObject {
                         }
                         // self must be ? here because it might be nil
                         DispatchQueue.main.async {
-                            print("All Items loaded. Starting the list \(items).")
+//                            print("All Items loaded. Starting the list \(items).")
                             self?.allItems = items
                             self?.loadingState = .success
                         }
