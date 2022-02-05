@@ -30,6 +30,8 @@ protocol Action { }
 
 struct IncrementAction: Action { }
 struct DecrementAction: Action { }
+struct IncrementActionAsync: Action { }
+
 struct AddTaskAction: Action {
     let task: Task
 }

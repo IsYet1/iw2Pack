@@ -20,7 +20,7 @@ func counterReducer(_ state: CounterState, _ action: Action) -> CounterState {
             state.counter += action.value
         default:
             break
-    }
-    
-    return state
+   }
+   print(state)
+   return state
 }

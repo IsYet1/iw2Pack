@@ -14,13 +14,17 @@ struct ReduxSample: View {
     struct Props {
         let counter: Int
         let onIncrement: () -> Void
+        let onIncrementAsync: () -> Void
         let onDecrement: () -> Void
         let onAdd: (Int) -> Void
     }
     
     private func map(state: CounterState) -> Props {
-        Props(counter: state.counter, onIncrement: {
+        Props(counter: state.counter
+          , onIncrement: {
             store.dispatch(action: IncrementAction())
+        }, onIncrementAsync: {
+            store.dispatch(action: IncrementActionAsync())
         }, onDecrement: {
             store.dispatch(action: DecrementAction())
         }, onAdd: {
@@ -37,6 +41,9 @@ struct ReduxSample: View {
                 .padding()
             Button("Increment") {
                 props.onIncrement()
+            }
+            Button("Increment Async") {
+                props.onIncrementAsync()
             }
             Button("Decrement") {
                 props.onDecrement()

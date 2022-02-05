@@ -45,6 +45,7 @@
 		A5DA221B27A89B770036A96E /* TaskReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA221A27A89B770036A96E /* TaskReducer.swift */; };
 		A5F2226D2793A0510098D460 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F2226C2793A0510098D460 /* GoogleService-Info.plist */; };
 		A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFC27AF195D00491466 /* LogMiddleware.swift */; };
+		A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		A5DA221A27A89B770036A96E /* TaskReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskReducer.swift; sourceTree = "<group>"; };
 		A5F2226C2793A0510098D460 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F66DFC27AF195D00491466 /* LogMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMiddleware.swift; sourceTree = "<group>"; };
+		A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementMiddleware.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F66DFC27AF195D00491466 /* LogMiddleware.swift */,
+				A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */,
 			);
 			path = Middlewares;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				A5DA221B27A89B770036A96E /* TaskReducer.swift in Sources */,
 				A5AEC8DB2797BCF40072E649 /* View+Extensions.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
+				A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
