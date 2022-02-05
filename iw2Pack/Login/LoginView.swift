@@ -13,8 +13,22 @@ struct LoginView: View {
     @State var isActive: Bool = false
     
     @StateObject private var loginVM = LoginViewModel()
-           
+    
+   @EnvironmentObject var store: Store<AppState>
+   struct Props {
+        // props
+        let authStatus: Bool
+        // dispatch
+        let onLoginAttempt: (Bool) -> ()
+   }
+    private func map(state: PackAuthState) -> Props {
+        return Props(authStatus: state.loggedIn, onLoginAttempt: { authStatus in
+            store.dispatch(action: SetAuthState(authStatus: authStatus))
+        })
+    }
+    
     var body: some View {
+        let props = map(state: store.state.packAuthState)
         VStack {
 //            Image("mushroom")
 //                .resizable()
@@ -33,6 +47,7 @@ struct LoginView: View {
                 loginVM.login {
                     isActive = true
                     print("Login succeeded back to LoginView")
+                    props.onLoginAttempt(true)
                 }
             }
             .buttonStyle(.bordered)
