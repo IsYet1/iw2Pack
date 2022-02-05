@@ -15,28 +15,8 @@ class ItemListViewModel: ObservableObject {
     let db = Firestore.firestore()
     @Published var items: [ItemViewModel] = []
     @Published var loadingState: LoadingState = .idle
-    @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
-    struct Props {
-        let counter: Int
-        let onIncrement: () -> Void
-        let onDecrement: () -> Void
-        let onAdd: (Int) -> Void
-    }
-     private func map(state: CounterState) -> Props {
-        Props(counter: state.counter, onIncrement: {
-            self.store.dispatch(action: IncrementAction())
-        }, onDecrement: {
-            self.store.dispatch(action: DecrementAction())
-        }, onAdd: {
-            self.store.dispatch(action: AddAction(value: $0))
-        })
-    }
-     
+    
     func getAllItems(eventId: String) {
-        // TODO: Fix this
-//        let props = map(state: store.state.counterState)
-//        props.onIncrement()
-        
         DispatchQueue.main.async {
             self.loadingState = .loading
         }

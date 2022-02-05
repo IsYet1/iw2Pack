@@ -11,6 +11,24 @@ struct ItemListView: View {
     var eventId: String
     @StateObject private var itemListVM = ItemListViewModel()
     
+    @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
+    struct Props {
+        let counter: Int
+        let onIncrement: () -> Void
+        let onDecrement: () -> Void
+        let onAdd: (Int) -> Void
+    }
+     private func map(state: CounterState) -> Props {
+        Props(counter: state.counter, onIncrement: {
+            self.store.dispatch(action: IncrementAction())
+        }, onDecrement: {
+            self.store.dispatch(action: DecrementAction())
+        }, onAdd: {
+            self.store.dispatch(action: AddAction(value: $0))
+        })
+    }
+ 
+    
     var body: some View {
         VStack {
             Text("Hello from ItemListView")
@@ -26,6 +44,8 @@ struct ItemListView: View {
         .onAppear(perform: {
             print("Getting all items")
             itemListVM.getAllItems(eventId: eventId)
+            let props = map(state: store.state.counterState)
+            props.onIncrement()
         })
     }
 }

@@ -44,6 +44,7 @@
 		A5DA221927A89B6C0036A96E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA221827A89B6C0036A96E /* AppReducer.swift */; };
 		A5DA221B27A89B770036A96E /* TaskReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA221A27A89B770036A96E /* TaskReducer.swift */; };
 		A5F2226D2793A0510098D460 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F2226C2793A0510098D460 /* GoogleService-Info.plist */; };
+		A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFC27AF195D00491466 /* LogMiddleware.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		A5DA221827A89B6C0036A96E /* AppReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		A5DA221A27A89B770036A96E /* TaskReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskReducer.swift; sourceTree = "<group>"; };
 		A5F2226C2793A0510098D460 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5F66DFC27AF195D00491466 /* LogMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMiddleware.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 		A595AADC27A0D1370008B372 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				A5F66DFB27AF193D00491466 /* Middlewares */,
 				A5DA221627A89B5F0036A96E /* CounterReducer.swift */,
 				A5DA221827A89B6C0036A96E /* AppReducer.swift */,
 				A595AADF27A0D1BC0008B372 /* ReduxSample.swift */,
@@ -206,6 +209,14 @@
 				A56E282827A0782F00530BFC /* AllItemsListViewModel.swift */,
 			);
 			path = ItemLists;
+			sourceTree = "<group>";
+		};
+		A5F66DFB27AF193D00491466 /* Middlewares */ = {
+			isa = PBXGroup;
+			children = (
+				A5F66DFC27AF195D00491466 /* LogMiddleware.swift */,
+			);
+			path = Middlewares;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 				A53B3F24279369E400799BBE /* LoginView.swift in Sources */,
 				A5DA221927A89B6C0036A96E /* AppReducer.swift in Sources */,
 				A577FC59279F679500F721BD /* EventListViewModel.swift in Sources */,
+				A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */,
 				A595AADE27A0D1370008B372 /* Store.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,
 				A5AEC8E12797C91A0072E649 /* ItemViewModel.swift in Sources */,
