@@ -8,13 +8,12 @@
 import Foundation
 import Firebase
 
-func login(email: String, password: String, completion: @escaping () -> Void) {
+func login(email: String, password: String) -> Void {
     Auth.auth().signIn(withEmail: email.lowercased(), password: password) { (result, error) in
         if let error = error {
-            print("LOGIN FAILED!! : \(error.localizedDescription)")
+            print("EFFECT LOGIN FAILED!! : \(error.localizedDescription)")
         } else {
-            print("LOGIN SUCCESS :-) :")
-            completion()
+            print("EFFECT LOGIN SUCCESS :-) :")
         }
     }
 }
@@ -22,13 +21,22 @@ func login(email: String, password: String, completion: @escaping () -> Void) {
 func packMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
         switch action {
-            case _ as PackAttemptLogin:
-                print("Login attempt \(action)")
-                DispatchQueue.main.asyncAfter (deadline: .now() + 2.0) {
-                    dispatch(PackSetAuthStatus(authStatus: true))
+        case let action as PackAttemptLogin:
+            print("Login attempt \(action)")
+            DispatchQueue.main.asyncAfter (deadline: .now() + 2.0) {
+                Auth.auth().signIn(withEmail: action.email.lowercased(), password: action.password) { (result, error) in
+                    if let error = error {
+                        print("EFFECT LOGIN FAILED!! : \(error.localizedDescription)")
+                        dispatch(PackSetAuthStatus(authStatus: false))
+                    } else {
+                        print("EFFECT LOGIN SUCCESS :-) :")
+                        dispatch(PackSetAuthStatus(authStatus: true))
+                    }
+                }
+                
             }
-            default:
-                break
+        default:
+            break
         }
     }
 }
