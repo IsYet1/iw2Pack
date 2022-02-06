@@ -18,9 +18,24 @@ func packMiddleware() -> Middleware<AppState> {
                 switch result {
                     case .success(let loggedin):
                         dispatch(PackSetAuthStatus(authStatus: loggedin))
+                        dispatch(PackAllItems_Get())
                     case .failure(let error):
                         print("Login Error: \(error.localizedDescription)")
                         dispatch(PackSetAuthStatus(authStatus: false))
+                }
+                
+            }
+            
+        case let action as PackAllItems_Get:
+            print("Get All Items \(action)")
+            
+            FBService().getAllItems() {result in
+                switch result {
+                    case .success(let allItems):
+                        dispatch(PackAllItems_Store(allItems: allItems))
+                    case .failure(let error):
+                        print("Get all items Error: \(error.localizedDescription)")
+                        dispatch(PackAllItems_Store(allItems: []))
                 }
                 
             }

@@ -29,9 +29,15 @@ struct CounterState: ReduxState {
 
 struct PackState: ReduxState {
     var loggedIn = false
+    var allItems: [ ItemViewModel ] = []
 }
 
 protocol Action { }
+
+struct PackAllItems_Get: Action { }
+struct PackAllItems_Store: Action {
+    let allItems: [ItemViewModel]
+}
 
 struct PackAttemptLogin: Action {
     var email: String

@@ -49,6 +49,7 @@ class AllItemsListViewModel: ObservableObject {
                     }
                 }
             }
+        
     }
 }
 
