@@ -22,6 +22,7 @@ struct EventListView: View {
     var body: some View {
         VStack {
             Text("\(store.state.counterState.counter)")
+            Text("\(String(store.state.packAuthState.loggedIn))")
             if (eventListVM.events.count > 0) {
                 Text("There are \(eventListVM.events.count) events")
                 

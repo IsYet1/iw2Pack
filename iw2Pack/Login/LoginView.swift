@@ -46,13 +46,13 @@ struct LoginView: View {
             
             SecureField("Password", text: $loginVM.password)
                
-            Button("Login") {
+            Button("Login \(String(props.authStatus))") {
                 props.attemptLogin(loginVM.email, loginVM.password)
-                loginVM.login {
-                    isActive = true
-                    print("Login succeeded back to LoginView")
-//                    props.setAuthStatus(true)
-                }
+//                loginVM.login {
+//                    isActive = true
+//                    print("Login succeeded back to LoginView")
+////                    props.setAuthStatus(true)
+//                }
             }
             .buttonStyle(.bordered)
             .padding(.bottom, 10)
@@ -67,7 +67,7 @@ struct LoginView: View {
             NavigationLink(
 //                destination: ItemListView(),
                 destination: EventListView(),
-                isActive: $isActive,
+                isActive: $store.state.packAuthState.loggedIn, // $isActive,
                 label: {
                     EmptyView()
                 }
