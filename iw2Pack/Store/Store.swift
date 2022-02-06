@@ -30,6 +30,7 @@ struct CounterState: ReduxState {
 struct PackState: ReduxState {
     var loggedIn = false
     var allItems: [ Item ] = []
+    var allItemsDict: [String: Item] = [ : ]
 }
 
 protocol Action { }
@@ -37,6 +38,11 @@ protocol Action { }
 struct PackAllItems_Get: Action { }
 struct PackAllItems_Store: Action {
     let allItems: [Item]
+}
+
+struct PackAllItemsDict_Get: Action { }
+struct PackAllItemsDict_Store: Action {
+    let allItems: [String: Item]
 }
 
 struct PackAttemptLogin: Action {

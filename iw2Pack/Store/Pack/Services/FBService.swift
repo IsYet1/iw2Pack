@@ -22,6 +22,7 @@ class FBService {
         }
     }
     
+    // Deprecated. Using dictionary instead as of 6-Feb. Leaving in in case it's useful logic.
     func getAllItems(completion: @escaping (Result<[Item], Error>) -> Void) {
         db.collection("pack").document("data").collection("items")
             .getDocuments { snapshot, error in
@@ -34,19 +35,46 @@ class FBService {
                             var item = try? doc.data(as: Item.self)
                             item?.id = doc.documentID
                             if let item = item {
-//                                self?.allItemsDict[doc.documentID] = try? doc.data(as: Item.self)
                                 return  item
-//                                return ItemViewModel(item: item)
                             }
                             return nil
                         }
-                        // self must be ? here because it might be nil
-                        completion(.success(items))
+                       completion(.success(items))
                     }
                 }
             }
  
     }
+    
+    func getAllItemsDict(completion: @escaping (Result<[String: Item], Error>) -> Void) {
+        db.collection("pack").document("data").collection("items")
+            .getDocuments { snapshot, error in
+                if let error = error {
+//                    print(error.localizedDescription)
+                    completion(.failure(error))
+                } else {
+                    if let snapshot = snapshot {
+                        let items: [Item] = snapshot.documents.compactMap {doc in
+                            var item = try? doc.data(as: Item.self)
+                            item?.id = doc.documentID
+                            if let item = item {
+                                return  item
+                            }
+                            return nil
+                        }
+                        var itemsDict: [String: Item] = [ : ]
+                        items.forEach {item in itemsDict[item.id!] = item }
+//                        let itemsDict = items.map { item in
+//                          return item.id: item
+//                        }
+//                        print("Items Dictionary: \(itemsDict)")
+                        completion(.success(itemsDict))
+                    }
+                }
+            }
+ 
+    }
+ 
     
 
 }

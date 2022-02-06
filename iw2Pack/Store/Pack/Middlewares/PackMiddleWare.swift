@@ -18,10 +18,24 @@ func packMiddleware() -> Middleware<AppState> {
                 switch result {
                     case .success(let loggedin):
                         dispatch(PackSetAuthStatus(authStatus: loggedin))
-                        dispatch(PackAllItems_Get())
+                        dispatch(PackAllItemsDict_Get())
                     case .failure(let error):
                         print("Login Error: \(error.localizedDescription)")
                         dispatch(PackSetAuthStatus(authStatus: false))
+                }
+                
+            }
+            
+        case let action as PackAllItemsDict_Get:
+            print("Get All Items \(action)")
+            
+            FBService().getAllItemsDict() {result in
+                switch result {
+                    case .success(let allItems):
+                        dispatch(PackAllItemsDict_Store(allItems: allItems))
+                    case .failure(let error):
+                        print("Get all items Error: \(error.localizedDescription)")
+                        dispatch(PackAllItemsDict_Store(allItems: [ : ]))
                 }
                 
             }
@@ -35,7 +49,7 @@ func packMiddleware() -> Middleware<AppState> {
                         dispatch(PackAllItems_Store(allItems: allItems))
                     case .failure(let error):
                         print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackAllItems_Store(allItems: []))
+                        dispatch(PackAllItems_Store(allItems: [ ]))
                 }
                 
             }
