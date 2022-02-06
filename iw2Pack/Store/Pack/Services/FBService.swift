@@ -22,7 +22,7 @@ class FBService {
         }
     }
     
-    func getAllItems(completion: @escaping (Result<[ItemViewModel], Error>) -> Void) {
+    func getAllItems(completion: @escaping (Result<[Item], Error>) -> Void) {
         db.collection("pack").document("data").collection("items")
             .getDocuments { snapshot, error in
                 if let error = error {
@@ -30,12 +30,13 @@ class FBService {
                     completion(.failure(error))
                 } else {
                     if let snapshot = snapshot {
-                        let items: [ItemViewModel] = snapshot.documents.compactMap {doc in
+                        let items: [Item] = snapshot.documents.compactMap {doc in
                             var item = try? doc.data(as: Item.self)
                             item?.id = doc.documentID
                             if let item = item {
 //                                self?.allItemsDict[doc.documentID] = try? doc.data(as: Item.self)
-                                return ItemViewModel(item: item)
+                                return  item
+//                                return ItemViewModel(item: item)
                             }
                             return nil
                         }

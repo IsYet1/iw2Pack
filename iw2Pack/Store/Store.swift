@@ -29,14 +29,14 @@ struct CounterState: ReduxState {
 
 struct PackState: ReduxState {
     var loggedIn = false
-    var allItems: [ ItemViewModel ] = []
+    var allItems: [ Item ] = []
 }
 
 protocol Action { }
 
 struct PackAllItems_Get: Action { }
 struct PackAllItems_Store: Action {
-    let allItems: [ItemViewModel]
+    let allItems: [Item]
 }
 
 struct PackAttemptLogin: Action {
