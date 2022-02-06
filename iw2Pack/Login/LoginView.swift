@@ -15,16 +15,19 @@ struct LoginView: View {
     @StateObject private var loginVM = LoginViewModel()
     
    @EnvironmentObject var store: Store<AppState>
-   struct Props {
+   struct StateActions {
         // props
         let authStatus: Bool
         // dispatch
-        let onLoginAttempt: (Bool) -> ()
+        let setAuthStatus: (Bool) -> ()
+        let attemptLogin: (String, String) -> Void
    }
-    private func map(state: PackAuthState) -> Props {
-        return Props(authStatus: state.loggedIn, onLoginAttempt: { authStatus in
-            store.dispatch(action: SetAuthState(authStatus: authStatus))
-        })
+    private func map(state: PackState) -> StateActions {
+        return StateActions(authStatus: state.loggedIn,
+            setAuthStatus: { authStatus in store.dispatch(action: PackSetAuthStatus(authStatus: authStatus))},
+             attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
+                     
+        )
     }
     
     var body: some View {
@@ -44,10 +47,11 @@ struct LoginView: View {
             SecureField("Password", text: $loginVM.password)
                
             Button("Login") {
+                props.attemptLogin(loginVM.email, loginVM.password)
                 loginVM.login {
                     isActive = true
                     print("Login succeeded back to LoginView")
-                    props.onLoginAttempt(true)
+//                    props.setAuthStatus(true)
                 }
             }
             .buttonStyle(.bordered)

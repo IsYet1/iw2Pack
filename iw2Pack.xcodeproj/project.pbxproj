@@ -47,6 +47,7 @@
 		A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFC27AF195D00491466 /* LogMiddleware.swift */; };
 		A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */; };
 		A5F66E0227AF25B200491466 /* PackReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66E0127AF25B200491466 /* PackReducer.swift */; };
+		A5F66E0527AF3B6200491466 /* PackMiddleWare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66E0427AF3B6200491466 /* PackMiddleWare.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		A5F66DFC27AF195D00491466 /* LogMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMiddleware.swift; sourceTree = "<group>"; };
 		A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementMiddleware.swift; sourceTree = "<group>"; };
 		A5F66E0127AF25B200491466 /* PackReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackReducer.swift; sourceTree = "<group>"; };
+		A5F66E0427AF3B6200491466 /* PackMiddleWare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackMiddleWare.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,9 +230,18 @@
 		A5F66E0027AF258900491466 /* Pack */ = {
 			isa = PBXGroup;
 			children = (
+				A5F66E0327AF3B3E00491466 /* Middlewares */,
 				A5F66E0127AF25B200491466 /* PackReducer.swift */,
+				A5F66E0427AF3B6200491466 /* PackMiddleWare.swift */,
 			);
 			path = Pack;
+			sourceTree = "<group>";
+		};
+		A5F66E0327AF3B3E00491466 /* Middlewares */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Middlewares;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F66E0527AF3B6200491466 /* PackMiddleWare.swift in Sources */,
 				A53B3F1827933FBD00799BBE /* TaskDetailView.swift in Sources */,
 				A595AAE027A0D1BC0008B372 /* ReduxSample.swift in Sources */,
 				A53B3F24279369E400799BBE /* LoginView.swift in Sources */,

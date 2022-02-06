@@ -7,12 +7,12 @@
 
 import Foundation
 
-func packReducer(_ state: PackAuthState, _ action: Action) -> PackAuthState {
+func packReducer(_ state: PackState, _ action: Action) -> PackState {
     
     var state = state
     
     switch action {
-        case let action as SetAuthState:
+        case let action as PackSetAuthStatus:
             state.loggedIn = action.authStatus
         default:
             break

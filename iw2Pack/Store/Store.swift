@@ -14,7 +14,7 @@ typealias Middleware<StoreState: ReduxState> = (StoreState, Action, @escaping Di
 protocol ReduxState { }
 
 struct AppState: ReduxState {
-    var packAuthState = PackAuthState()
+    var packAuthState = PackState()
     var counterState = CounterState()
     var taskState = TaskState()
 }
@@ -27,13 +27,18 @@ struct CounterState: ReduxState {
     var counter = 0
 }
 
-struct PackAuthState: ReduxState {
+struct PackState: ReduxState {
     var loggedIn = false
 }
 
 protocol Action { }
 
-struct SetAuthState: Action {
+struct PackAttemptLogin: Action {
+    var email: String
+    var password: String
+}
+
+struct PackSetAuthStatus: Action {
     let authStatus: Bool
 }
 
