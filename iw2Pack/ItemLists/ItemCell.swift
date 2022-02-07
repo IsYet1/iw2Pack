@@ -26,8 +26,12 @@ struct ItemCell: View {
     
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         let item = allItemsListVM.allItemsDict[itemId, default: Item(name: "Not Found HERE", itemId: "0000")]
-        let dictName = allItemsDict[itemId]?.name
-        return dictName!
+        if let dictItem = allItemsDict[itemId] {
+            return dictItem.name!
+        } else {
+            return itemId
+        }
+//        return dictName!
         if let name = item.name {
             return name
         } else {
@@ -39,7 +43,7 @@ struct ItemCell: View {
         let props = map(state: store.state.packAuthState)
         HStack {
 //            Text(item.itemId)
-            Text(getItemName(itemId:item.itemId, allItemsDict: props.allItemsDict))
+            Text(getItemName(itemId:item.itemIdId, allItemsDict: props.allItemsDict))
         }
     }
 }

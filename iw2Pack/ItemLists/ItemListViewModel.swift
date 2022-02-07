@@ -50,7 +50,7 @@ class ItemListViewModel: ObservableObject {
                         }
                         // self must be ? here because it might be nil
                         DispatchQueue.main.async {
-//                            plrint("Items loaded. Starting the list.")
+                            print("Items loaded. Starting the list. \(items)")
                             self?.items = items
                             self?.loadingState = .success
                         }
