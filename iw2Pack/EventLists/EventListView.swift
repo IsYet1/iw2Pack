@@ -17,7 +17,6 @@ struct EventListView: View {
     }
   
     @StateObject private var eventListVM = EventListViewModel()
-    @StateObject private var allItemsListVM = AllItemsListViewModel()
     
     var body: some View {
         VStack {
@@ -37,7 +36,6 @@ struct EventListView: View {
         .onAppear(perform: {
             print("Getting all items")
             eventListVM.getAllEvents()
-//            allItemsListVM.getAllItems()
         })
     }
 }
