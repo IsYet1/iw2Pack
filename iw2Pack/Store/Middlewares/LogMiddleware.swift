@@ -9,7 +9,7 @@ import Foundation
 
 func logMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
-        print("Log Middleware STATE :: \(state)")
+//        print("Log Middleware STATE :: \(state)")
 //        print("Log Middleware ACTION :: \(action)")
     }
 }

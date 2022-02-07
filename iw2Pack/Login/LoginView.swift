@@ -19,12 +19,10 @@ struct LoginView: View {
         // props
         let authStatus: Bool
         // dispatch
-        let setAuthStatus: (Bool) -> ()
         let attemptLogin: (String, String) -> Void
    }
     private func map(state: PackState) -> StateActions {
         return StateActions(authStatus: state.loggedIn,
-            setAuthStatus: { authStatus in store.dispatch(action: PackSetAuthStatus(authStatus: authStatus))},
              attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
                      
         )
@@ -51,7 +49,6 @@ struct LoginView: View {
 //                loginVM.login {
 //                    isActive = true
 //                    print("Login succeeded back to LoginView")
-////                    props.setAuthStatus(true)
 //                }
             }
             .buttonStyle(.bordered)

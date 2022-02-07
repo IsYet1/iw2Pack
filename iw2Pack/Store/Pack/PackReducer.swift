@@ -21,6 +21,6 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         default:
             break
    }
-   print(state)
+//   print(state)
    return state
 }

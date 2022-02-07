@@ -42,10 +42,10 @@ struct ItemListView: View {
             }
         }
         .onAppear(perform: {
-            print("Getting all items")
+            print("Getting EVENT items")
             itemListVM.getAllItems(eventId: eventId)
             let props = map(state: store.state.counterState)
-            props.onIncrement()
+//            props.onIncrement()
         })
     }
 }

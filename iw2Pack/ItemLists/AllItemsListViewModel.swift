@@ -16,6 +16,7 @@ class AllItemsListViewModel: ObservableObject {
     @Published var allItems: [ItemViewModel] = []
     @Published var loadingState: LoadingState = .idle
     
+    // Commented out the only call to this func 06-Feb
     func getAllItems() {
         DispatchQueue.main.async {
             self.loadingState = .loading

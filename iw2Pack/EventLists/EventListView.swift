@@ -37,7 +37,7 @@ struct EventListView: View {
         .onAppear(perform: {
             print("Getting all items")
             eventListVM.getAllEvents()
-            allItemsListVM.getAllItems()
+//            allItemsListVM.getAllItems()
         })
     }
 }

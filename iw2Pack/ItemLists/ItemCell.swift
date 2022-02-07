@@ -11,8 +11,23 @@ struct ItemCell: View {
     @StateObject private var allItemsListVM = AllItemsListViewModel()
     let item: ItemViewModel
     
-    private func getItemName(itemId: String) -> String {
+    @EnvironmentObject var store: Store<AppState>
+    struct Props {
+        let allItemsDict: [String: Item]
+        let attemptLogin: (String, String) -> Void
+    }
+    private func map(state: PackState) -> Props {
+        return Props(allItemsDict: state.allItemsDict,
+             attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
+                     
+        )
+    }
+ 
+    
+    private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         let item = allItemsListVM.allItemsDict[itemId, default: Item(name: "Not Found HERE", itemId: "0000")]
+        let dictName = allItemsDict[itemId]?.name
+        return dictName!
         if let name = item.name {
             return name
         } else {
@@ -21,8 +36,10 @@ struct ItemCell: View {
     }
     
     var body: some View {
+        let props = map(state: store.state.packAuthState)
         HStack {
-            Text(getItemName(itemId:item.itemId))
+//            Text(item.itemId)
+            Text(getItemName(itemId:item.itemId, allItemsDict: props.allItemsDict))
         }
     }
 }
