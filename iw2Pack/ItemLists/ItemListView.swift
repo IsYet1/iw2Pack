@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemListView: View {
     var eventId: String
+    var eventName: String
     @StateObject private var itemListVM = ItemListViewModel()
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
@@ -30,28 +31,27 @@ struct ItemListView: View {
  
     
     var body: some View {
+        let props = map(state: store.state.counterState)
+        let itemsCount = itemListVM.items.count
         VStack {
-            Text("Hello from ItemListView")
-            if (itemListVM.items.count > 0) {
-                Text("There are \(itemListVM.items.count) items")
+            if (itemsCount > 0) {
+                Text("There are \(itemsCount) items for Event: \(eventName)")
                 List (itemListVM.items, id: \.itemId) {item in
                     ItemCell(item: item)
                 }
-            } else if itemListVM.loadingState == .success && itemListVM.items.count == 0 {
+            } else if itemListVM.loadingState == .success && itemsCount == 0 {
                 Text("There are NO items YET")
             }
         }
         .onAppear(perform: {
             print("Getting EVENT items")
             itemListVM.getAllItems(eventId: eventId)
-            let props = map(state: store.state.counterState)
-//            props.onIncrement()
         })
     }
 }
 
 struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListView(eventId: "amz")
+        ItemListView(eventId: "amz", eventName: "Amazon")
     }
 }

@@ -23,10 +23,8 @@ struct EventListView: View {
     var body: some View {
         let props = map(state: store.state.packAuthState)
         VStack {
-            Text("\(store.state.counterState.counter)")
-            Text("Logged in? \(String(props.loggedIn))")
             if (props.allEvents.count > 0) {
-                Text("Events count: \(String(props.allEvents.count))")
+                Text("There are \(String(props.allEvents.count)) events")
                 
                 List (props.allEvents, id: \.id) {event in
                     EventCell(event: event)

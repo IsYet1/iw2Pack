@@ -11,7 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var store: Store<AppState>
     
     var body: some View {
-        ReduxSample()
+//        ReduxSample()
         LoginView()
     }
 }
