@@ -103,7 +103,13 @@ class FBService {
                 } else {
                     if let snapshot = snapshot {
                         let items: [Item] = snapshot.documents.compactMap {doc in
+                            print("Document \(doc.data())")
+//                            print("MetaDocument \(doc.metadata)")
+//                            print("MetaDocument \(doc.reference)")
                             var item = try? doc.data(as: Item.self)
+                            var metadata = try? doc.metadata
+                            print("MetaDocument \(metadata!)")
+//                            var item = try? doc.data(as: Item.self)
                             item?.id = doc.documentID
                             if let item = item {
                                 return  item

@@ -13,12 +13,13 @@ struct ItemListView: View {
     @StateObject private var itemListVM = ItemListViewModel()
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
-    struct Props {
+
+    struct PackStateElements {
         let eventItems: [ Item ]
         let getItemsForEvent: (String) -> Void
     }
-    private func map(state: PackState) -> Props {
-        return Props(
+    private func packStateMap(state: PackState) -> PackStateElements {
+        return PackStateElements(
             eventItems: state.eventItems,
             getItemsForEvent: { store.dispatch(action: PackEventItems_Get(eventId: $0))}
         )
@@ -26,8 +27,9 @@ struct ItemListView: View {
  
     
     var body: some View {
-        let props = map(state: store.state.packAuthState)
-        let itemsForList = props.eventItems
+        let packStateStore = packStateMap(state: store.state.packAuthState)
+        
+        let itemsForList = packStateStore.eventItems
         let itemsCount = itemsForList.count
         VStack {
             if (itemsCount > 0) {
@@ -35,14 +37,14 @@ struct ItemListView: View {
                 List (itemsForList, id: \.itemId) {item in
                     ItemCell(item: item)
                 }
-            } else if itemListVM.loadingState == .success && itemsCount == 0 {
+            } else if itemsCount == 0 {
                 Text("There are NO items YET")
             }
         }
         .onAppear(perform: {
             print("Getting EVENT items")
-            itemListVM.getAllItems(eventId: eventId)
-            props.getItemsForEvent(eventId)
+            packStateStore.getItemsForEvent(eventId)
+//            itemListVM.getAllItems(eventId: eventId)
         })
     }
 }

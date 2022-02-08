@@ -11,12 +11,10 @@ struct EventListView: View {
     @EnvironmentObject var store: Store<AppState>
     struct Props {
         var allEvents: [ Event ]
-        var loggedIn: Bool
     }
     private func map(state: PackState) -> Props {
         return Props(
-            allEvents: state.allEvents,
-            loggedIn: state.loggedIn
+            allEvents: state.allEvents
         )
     }
   

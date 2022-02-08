@@ -7,10 +7,17 @@
 
 import Foundation
 
+struct Metadata: Codable {
+    var category: String?
+    var location: String?
+}
+
 struct Item: Codable {
     var id: String?
     var name: String?
     var itemId: String?
     var packed: Bool?
     var staged: Bool?
+    var category: String?
+    var metadata: String?
 }
