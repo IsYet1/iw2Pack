@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct EventCell: View {
-    let event: EventViewModel
+    let event: Event
     
     var body: some View {
         HStack {
             NavigationLink(
-                destination: ItemListView(eventId: event.eventId),
+                destination: ItemListView(eventId: event.id!),
                 label: {
-                    Text(event.eventId)
+                    Text(event.name!)
                 }
             )
         }
@@ -24,6 +24,7 @@ struct EventCell: View {
 
 struct EventCell_Previews: PreviewProvider {
     static var previews: some View {
-        EventCell(event: EventViewModel(event: Event(id: "Id", name: "Preview Item")))
+        EventCell(event: Event(id: "Id", name: "Preview Item"))
+//        EventCell(event: EventViewModel(event: Event(id: "Id", name: "Preview Item")))
     }
 }

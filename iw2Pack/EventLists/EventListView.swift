@@ -9,33 +9,35 @@ import SwiftUI
 
 struct EventListView: View {
     @EnvironmentObject var store: Store<AppState>
-   struct Props {
-        let counter: Int
-        let onIncrement: () -> Void
-        let onDecrement: () -> Void
-        let onAdd: (Int) -> Void
+    struct Props {
+        var allEvents: [ Event ]
+        var loggedIn: Bool
+    }
+    private func map(state: PackState) -> Props {
+        return Props(
+            allEvents: state.allEvents,
+            loggedIn: state.loggedIn
+        )
     }
   
-    @StateObject private var eventListVM = EventListViewModel()
-    
     var body: some View {
+        let props = map(state: store.state.packAuthState)
         VStack {
             Text("\(store.state.counterState.counter)")
-            Text("\(String(store.state.packAuthState.loggedIn))")
-            if (eventListVM.events.count > 0) {
-                Text("There are \(eventListVM.events.count) events")
+            Text("Logged in? \(String(props.loggedIn))")
+            if (props.allEvents.count > 0) {
+                Text("Events count: \(String(props.allEvents.count))")
                 
-                List (eventListVM.events, id: \.eventId) {event in
+                List (props.allEvents, id: \.id) {event in
                     EventCell(event: event)
                 }
-            } else if eventListVM.loadingState == .success && eventListVM.events.count == 0 {
+            } else if props.allEvents.count == 0 {
                 Text("There are NO items YET")
             }
 
         }
         .onAppear(perform: {
             print("Getting all items")
-            eventListVM.getAllEvents()
         })
     }
 }

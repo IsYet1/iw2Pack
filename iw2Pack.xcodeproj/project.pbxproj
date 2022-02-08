@@ -106,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A51A739227B2BA1A00700BF1 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				A577FC56279F66B900F721BD /* EventViewModel.swift */,
+				A577FC58279F679500F721BD /* EventListViewModel.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		A53B3EEC2793394E00799BBE = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +134,7 @@
 		A53B3EF72793394E00799BBE /* iw2Pack */ = {
 			isa = PBXGroup;
 			children = (
+				A51A739227B2BA1A00700BF1 /* Deprecated */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A595AADC27A0D1370008B372 /* Store */,
@@ -175,8 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				A577FC54279F665D00F721BD /* Event.swift */,
-				A577FC56279F66B900F721BD /* EventViewModel.swift */,
-				A577FC58279F679500F721BD /* EventListViewModel.swift */,
 				A577FC5A279F6B6B00F721BD /* EventListView.swift */,
 				A577FC5C279F6E8100F721BD /* EventCell.swift */,
 			);
