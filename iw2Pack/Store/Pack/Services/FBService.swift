@@ -46,6 +46,30 @@ class FBService {
  
     }
     
+    func getEventItems(eventId: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+        db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                } else {
+                    if let snapshot = snapshot {
+                        let items: [Item] = snapshot.documents.compactMap {doc in
+                            var item = try? doc.data(as: Item.self)
+                            item?.id = doc.documentID
+                            if let item = item {
+                                return  item
+                            }
+                            return nil
+                        }
+                       completion(.success(items))
+                    }
+                }
+            }
+ 
+    }
+ 
+    
     func getAllEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
         db.collection("pack").document("data").collection("lists")
             .getDocuments { snapshot, error in

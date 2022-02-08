@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemCell: View {
-    let item: ItemViewModel
+    let item: Item
     
     @EnvironmentObject var store: Store<AppState>
     struct Props {
@@ -35,13 +35,14 @@ struct ItemCell: View {
         let props = map(state: store.state.packAuthState)
         HStack {
 //            Text(item.itemId)
-            Text(getItemName(itemId:item.itemIdId, allItemsDict: props.allItemsDict))
+            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
         }
     }
 }
 
 struct ItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
+        ItemCell(item: Item(id: "Id", name: "Preview Item"))
+//        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

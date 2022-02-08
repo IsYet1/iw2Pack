@@ -20,6 +20,8 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         state.allItemsDict = action.allItems
     case let action as PackAllEvents_Store:
         state.allEvents = action.allEvents
+    case let action as PackEventItems_Store:
+        state.eventItems = action.eventItems
     default:
         break
    }

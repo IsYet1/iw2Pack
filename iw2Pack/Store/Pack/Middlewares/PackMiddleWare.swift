@@ -69,7 +69,21 @@ func packMiddleware() -> Middleware<AppState> {
                 
             }
  
-           
+        case let action as PackEventItems_Get:
+            print("Get Event Items \(action)")
+            
+            FBService().getEventItems(eventId: action.eventId) {result in
+                switch result {
+                    case .success(let eventItems):
+                        dispatch(PackEventItems_Store(eventItems: eventItems))
+                    case .failure(let error):
+                        print("Get all items Error: \(error.localizedDescription)")
+                        dispatch(PackEventItems_Store(eventItems: []))
+                }
+                
+            }
+        
+ 
         default:
             break
         }

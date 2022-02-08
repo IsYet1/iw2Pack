@@ -14,29 +14,25 @@ struct ItemListView: View {
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     struct Props {
-        let counter: Int
-        let onIncrement: () -> Void
-        let onDecrement: () -> Void
-        let onAdd: (Int) -> Void
+        let eventItems: [ Item ]
+        let getItemsForEvent: (String) -> Void
     }
-     private func map(state: CounterState) -> Props {
-        Props(counter: state.counter, onIncrement: {
-            self.store.dispatch(action: IncrementAction())
-        }, onDecrement: {
-            self.store.dispatch(action: DecrementAction())
-        }, onAdd: {
-            self.store.dispatch(action: AddAction(value: $0))
-        })
+    private func map(state: PackState) -> Props {
+        return Props(
+            eventItems: state.eventItems,
+            getItemsForEvent: { store.dispatch(action: PackEventItems_Get(eventId: $0))}
+        )
     }
  
     
     var body: some View {
-        let props = map(state: store.state.counterState)
-        let itemsCount = itemListVM.items.count
+        let props = map(state: store.state.packAuthState)
+        let itemsForList = props.eventItems
+        let itemsCount = itemsForList.count
         VStack {
             if (itemsCount > 0) {
                 Text("There are \(itemsCount) items for Event: \(eventName)")
-                List (itemListVM.items, id: \.itemId) {item in
+                List (itemsForList, id: \.itemId) {item in
                     ItemCell(item: item)
                 }
             } else if itemListVM.loadingState == .success && itemsCount == 0 {
@@ -46,6 +42,7 @@ struct ItemListView: View {
         .onAppear(perform: {
             print("Getting EVENT items")
             itemListVM.getAllItems(eventId: eventId)
+            props.getItemsForEvent(eventId)
         })
     }
 }

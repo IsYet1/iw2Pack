@@ -24,7 +24,6 @@ struct LoginView: View {
     private func map(state: PackState) -> StateActions {
         return StateActions(authStatus: state.loggedIn,
              attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
-                     
         )
     }
     
