@@ -31,9 +31,15 @@ struct PackState: ReduxState {
     var loggedIn = false
     var allItems: [ Item ] = []
     var allItemsDict: [String: Item] = [ : ]
+    var allEvents: [ Event ] = []
 }
 
 protocol Action { }
+
+struct PackAllEvents_Get: Action { }
+struct PackAllEvents_Store: Action {
+    let allEvents: [Event]
+}
 
 struct PackAllItems_Get: Action { }
 struct PackAllItems_Store: Action {
