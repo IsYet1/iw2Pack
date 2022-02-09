@@ -45,6 +45,7 @@ struct LoginView: View {
                
             Button("Login \(String(props.authStatus))") {
                 props.attemptLogin(loginVM.email, loginVM.password)
+                isActive = true
 //                loginVM.login {
 //                    isActive = true
 //                    print("Login succeeded back to LoginView")
@@ -63,7 +64,8 @@ struct LoginView: View {
             NavigationLink(
 //                destination: ItemListView(),
                 destination: EventListView(),
-                isActive: $store.state.packAuthState.loggedIn, // $isActive,
+                isActive: $isActive,
+//                isActive: $store.state.packAuthState.loggedIn, // $isActive,
                 label: {
                     EmptyView()
                 }
