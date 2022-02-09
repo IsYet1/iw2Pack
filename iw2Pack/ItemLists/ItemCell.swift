@@ -22,6 +22,7 @@ struct ItemCell: View {
         )
     }
  
+    @State private var isOn = true
     
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         if let dictItem = allItemsDict[itemId] {
@@ -35,7 +36,14 @@ struct ItemCell: View {
         let props = map(state: store.state.packAuthState)
         HStack {
 //            Text(item.itemId)
-            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
+            Toggle(
+                getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict),
+//                "Checkbox 1",
+                isOn: $isOn
+            )
+              .toggleStyle(CheckboxToggleStyle(style: .circle))
+              .foregroundColor(.blue)
+//            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
         }
     }
 }
