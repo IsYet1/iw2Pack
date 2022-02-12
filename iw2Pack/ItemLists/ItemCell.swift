@@ -10,25 +10,32 @@ import SwiftUI
 struct ItemCell: View {
     let item: Item
     @State private var isOn = true
+    @State private var itemPacked = true
     @EnvironmentObject var store: Store<AppState>
     
     struct Props {
         let allItemsDict: [String: Item]
-        let attemptLogin: (String, String) -> Void
     }
     private func map(state: PackState) -> Props {
         return Props(
-            allItemsDict: state.allItemsDict,
-            attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
-                     
+            allItemsDict: state.allItemsDict
         )
     }
  
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         if let dictItem = allItemsDict[itemId] {
+//            isOn = false
             return dictItem.name!
         } else {
             return itemId
+        }
+    }
+     private func getItemPacked(item: Item) -> Bool {
+         if let packed = item.packed {
+            isOn = packed
+            return packed
+        } else {
+            return false
         }
     }
     
@@ -38,6 +45,7 @@ struct ItemCell: View {
             Toggle(
                 getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict),
                 isOn: $isOn
+//                isOn: getItemPacked(item: item) // $isOn
             )
               .toggleStyle(CheckboxToggleStyle(style: .circle))
               .foregroundColor(.blue)
