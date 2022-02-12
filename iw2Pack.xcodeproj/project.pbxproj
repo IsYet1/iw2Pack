@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A53B3EF72793394E00799BBE /* iw2Pack */,
+				A5F2226C2793A0510098D460 /* GoogleService-Info.plist */,
 				A53B3EF62793394E00799BBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,7 +139,6 @@
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A595AADC27A0D1370008B372 /* Store */,
-				A5F2226C2793A0510098D460 /* GoogleService-Info.plist */,
 				A53B3F1327933FBD00799BBE /* TaskFBTest */,
 				A5AEC8DC2797C5C40072E649 /* ItemLists */,
 				A577FC53279F65E200F721BD /* EventLists */,
