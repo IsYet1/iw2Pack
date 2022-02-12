@@ -15,8 +15,14 @@ struct iw2PackApp: App {
     }
 
     var body: some Scene {
+        let store = Store(reducer: appReducer,
+                          state: AppState(),
+                          middlewares: [logMiddleware(), incrementMiddleware(), packMiddleware()]
+        )
+        
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(store)
         }
     }
 }
+        

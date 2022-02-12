@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var store: Store<AppState>
+    
     var body: some View {
-        Text("Hello, There world! From the iw2 Pack App")
-            TaskContentView()
-            .padding()
+//        ReduxSample()
+        LoginView()
     }
 }
 
