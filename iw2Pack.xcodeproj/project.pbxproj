@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A51144BA27B85C28006980F1 /* Item1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51144B927B85C28006980F1 /* Item1.swift */; };
 		A51144BD27B863B9006980F1 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51144BC27B863B9006980F1 /* CheckboxToggleStyle.swift */; };
 		A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EF82793394E00799BBE /* iw2PackApp.swift */; };
 		A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EFA2793394E00799BBE /* ContentView.swift */; };
@@ -53,7 +52,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A51144B927B85C28006980F1 /* Item1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item1.swift; sourceTree = "<group>"; };
 		A51144BC27B863B9006980F1 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		A53B3EF52793394E00799BBE /* iw2Pack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iw2Pack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B3EF82793394E00799BBE /* iw2PackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iw2PackApp.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				A5AEC8DE2797C7FD0072E649 /* Item.swift */,
-				A51144B927B85C28006980F1 /* Item1.swift */,
 				A5AEC8E02797C91A0072E649 /* ItemViewModel.swift */,
 				A5BB8710279869870082F903 /* ItemListViewModel.swift */,
 				A5A73CE92798AA70004AE953 /* ItemListView.swift */,
@@ -379,7 +376,6 @@
 				A5A73CEC2798BB52004AE953 /* ItemCell.swift in Sources */,
 				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
 				A577FC55279F665D00F721BD /* Event.swift in Sources */,
-				A51144BA27B85C28006980F1 /* Item1.swift in Sources */,
 				A51144BD27B863B9006980F1 /* CheckboxToggleStyle.swift in Sources */,
 				A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */,
 				A53B3F2627936AAA00799BBE /* RegisterView.swift in Sources */,

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct ItemCell: View {
-//    let item: Item
     
     @EnvironmentObject var store: Store<AppState>
-    @State private var isOn = true
     @State private var curItem: Item
     
     struct Props {
@@ -28,6 +26,7 @@ struct ItemCell: View {
     init(item: Item) {
         curItem = item
     }
+    
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         if let dictItem = allItemsDict[itemId] {
             return dictItem.name!
@@ -39,22 +38,18 @@ struct ItemCell: View {
     var body: some View {
         let props = map(state: store.state.packAuthState)
         HStack {
-            Toggle(getItemName(itemId:curItem.itemId!, allItemsDict: props.allItemsDict)
-               ,isOn: Binding<Bool>(
-                    get: { curItem.packed! },
+            Toggle(
+                getItemName(itemId:curItem.itemId!, allItemsDict: props.allItemsDict),
+                isOn: Binding<Bool>(
+                    get: { if let itemPacked = curItem.packed {return itemPacked} else {return false} },
                     set: {
                         print("Value \($0)")
                         curItem.packed = $0
                     }
-                ))
-              .toggleStyle(CheckboxToggleStyle(style: .circle))
-//            Toggle(
-//                getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict),
-//                isOn: item.packed // $isOn
-//            )
-//              .toggleStyle(CheckboxToggleStyle(style: .circle))
-              .foregroundColor(.blue)
-//            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
+                )
+            )
+                .toggleStyle(CheckboxToggleStyle(style: .circle))
+                .foregroundColor(.blue)
         }
    }
 }

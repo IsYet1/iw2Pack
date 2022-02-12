@@ -24,13 +24,6 @@ struct ItemListView: View {
         )
     }
     
-    private func createItem1s() -> [Item1] {
-        return [
-            Item1(id: "01", name: "Item 01", packed: true, itemId: "zUgqtWUphDqP46Jfx6eh" ),
-            Item1(id: "02", name: "Item 02", packed: false, itemId: "uiXp5m4fZDfQOYuksZOc" )
-        ]
-    }
-    
     var body: some View {
         let props = map(state: store.state.packAuthState)
         let itemsForList = props.eventItems
