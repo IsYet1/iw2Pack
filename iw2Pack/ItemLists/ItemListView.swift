@@ -23,16 +23,22 @@ struct ItemListView: View {
             getItemsForEvent: { store.dispatch(action: PackEventItems_Get(eventId: $0))}
         )
     }
- 
+    
+    private func createItem1s() -> [Item1] {
+        return [
+            Item1(id: "01", name: "Item 01", packed: true, itemId: "zUgqtWUphDqP46Jfx6eh" ),
+            Item1(id: "02", name: "Item 02", packed: true, itemId: "uiXp5m4fZDfQOYuksZOc" )
+        ]
+    }
     
     var body: some View {
         let props = map(state: store.state.packAuthState)
-        let itemsForList = props.eventItems
+        let itemsForList = createItem1s() // props.eventItems
         let itemsCount = itemsForList.count
         VStack {
             if (itemsCount > 0) {
                 Text("There are \(itemsCount) items for Event: \(eventName)")
-                List (itemsForList, id: \.itemId) {item in
+                List (itemsForList, id: \.id) {item in
                     ItemCell(item: item)
                 }
             } else if itemListVM.loadingState == .success && itemsCount == 0 {
@@ -41,7 +47,7 @@ struct ItemListView: View {
         }
         .onAppear(perform: {
             print("Getting EVENT items")
-            itemListVM.getAllItems(eventId: eventId)
+//            itemListVM.getAllItems(eventId: eventId)
             props.getItemsForEvent(eventId)
         })
     }

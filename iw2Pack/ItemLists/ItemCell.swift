@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemCell: View {
-    let item: Item
+    let item: Item1
     
     @EnvironmentObject var store: Store<AppState>
     struct Props {
@@ -42,7 +42,7 @@ struct ItemCell: View {
 
 struct ItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCell(item: Item(id: "Id", name: "Preview Item"))
+        ItemCell(item: Item1(id: "Id", name: "Preview Item", packed: true, itemId: "item id here"))
 //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }
