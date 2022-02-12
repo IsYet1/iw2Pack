@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A51144BD27B863B9006980F1 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51144BC27B863B9006980F1 /* CheckboxToggleStyle.swift */; };
+		A51144BF27B87E12006980F1 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51144BE27B87E12006980F1 /* EventItem.swift */; };
 		A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EF82793394E00799BBE /* iw2PackApp.swift */; };
 		A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B3EFA2793394E00799BBE /* ContentView.swift */; };
 		A53B3EFD2793394F00799BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53B3EFC2793394F00799BBE /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		A51144BC27B863B9006980F1 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
+		A51144BE27B87E12006980F1 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
 		A53B3EF52793394E00799BBE /* iw2Pack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iw2Pack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B3EF82793394E00799BBE /* iw2PackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iw2PackApp.swift; sourceTree = "<group>"; };
 		A53B3EFA2793394E00799BBE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A5AEC8DE2797C7FD0072E649 /* Item.swift */,
+				A51144BE27B87E12006980F1 /* EventItem.swift */,
 				A5AEC8E02797C91A0072E649 /* ItemViewModel.swift */,
 				A5BB8710279869870082F903 /* ItemListViewModel.swift */,
 				A5A73CE92798AA70004AE953 /* ItemListView.swift */,
@@ -394,6 +397,7 @@
 				A5AEC8DB2797BCF40072E649 /* View+Extensions.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
 				A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */,
+				A51144BF27B87E12006980F1 /* EventItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
