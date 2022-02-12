@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ItemCell: View {
-    let item: Item1
+//    let item: Item
     
     @EnvironmentObject var store: Store<AppState>
+    @State private var isOn = true
+    @State private var curItem: Item
+    
     struct Props {
         let allItemsDict: [String: Item]
         let attemptLogin: (String, String) -> Void
@@ -22,7 +25,9 @@ struct ItemCell: View {
         )
     }
  
-    
+    init(item: Item) {
+        curItem = item
+    }
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         if let dictItem = allItemsDict[itemId] {
             return dictItem.name!
@@ -34,15 +39,29 @@ struct ItemCell: View {
     var body: some View {
         let props = map(state: store.state.packAuthState)
         HStack {
-//            Text(item.itemId)
-            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
+            Toggle(getItemName(itemId:curItem.itemId!, allItemsDict: props.allItemsDict)
+               ,isOn: Binding<Bool>(
+                    get: { curItem.packed! },
+                    set: {
+                        print("Value \($0)")
+                        curItem.packed = $0
+                    }
+                ))
+              .toggleStyle(CheckboxToggleStyle(style: .circle))
+//            Toggle(
+//                getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict),
+//                isOn: item.packed // $isOn
+//            )
+//              .toggleStyle(CheckboxToggleStyle(style: .circle))
+              .foregroundColor(.blue)
+//            Text(getItemName(itemId:item.itemId!, allItemsDict: props.allItemsDict))
         }
-    }
+   }
 }
 
 struct ItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCell(item: Item1(id: "Id", name: "Preview Item", packed: true, itemId: "item id here"))
+        ItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
 //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

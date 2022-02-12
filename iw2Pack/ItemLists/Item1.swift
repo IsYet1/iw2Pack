@@ -11,8 +11,8 @@ struct Item1: Hashable {
     init(id: String, name: String, packed: Bool, itemId: String) {
         self.id = id
         self.name = name
-        self.packed = packed
         self.itemId = itemId
+        self.packed = packed
     }
     
     var id: String?
