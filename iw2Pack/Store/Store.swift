@@ -40,6 +40,7 @@ protocol Action { }
 struct PackToggglePacked: Action {
     let eventItem: EventItem
 }
+
 struct PackAllEvents_Get: Action { }
 struct PackAllEvents_Store: Action {
     let allEvents: [Event]
