@@ -12,14 +12,16 @@ struct ItemCell: View {
     @EnvironmentObject var store: Store<AppState>
     @State private var curItem: Item
     
-    struct Props {
+    struct PackAppState {
         let allItemsDict: [String: Item]
         let attemptLogin: (String, String) -> Void
+        let setPackedState: () -> Void
     }
-    private func map(state: PackState) -> Props {
-        return Props(allItemsDict: state.allItemsDict,
-             attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))}
-                     
+    private func map(state: PackState) -> PackAppState {
+        return PackAppState(
+            allItemsDict: state.allItemsDict,
+            attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))},
+            setPackedState: { store.dispatch(action: PackSetPackedState())}
         )
     }
  
@@ -36,15 +38,16 @@ struct ItemCell: View {
     }
     
     var body: some View {
-        let props = map(state: store.state.packAuthState)
+        let packAppState = map(state: store.state.packAuthState)
         HStack {
             Toggle(
-                getItemName(itemId:curItem.itemId!, allItemsDict: props.allItemsDict),
+                getItemName(itemId:curItem.itemId!, allItemsDict: packAppState.allItemsDict),
                 isOn: Binding<Bool>(
                     get: { if let itemPacked = curItem.packed {return itemPacked} else {return false} },
                     set: {
-                        print("Value \($0)")
+                        print("Value \($0) \(curItem)")
                         curItem.packed = $0
+                        packAppState.setPackedState()
                     }
                 )
             )

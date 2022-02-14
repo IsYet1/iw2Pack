@@ -46,28 +46,16 @@ class FBService {
             }
  
     }
-    /*
-    func addItemToStore(storeId: String, eventItem: EventItem, completion: @escaping (Result<Bool?, Error>) -> Void) {
-        do {
-            let _ = try db.collection("pack").document("data").collection("lists").document("ohio").collection("items")
-                .document("0DvXrq5LXfi08PW0D0ol").setData(["packed": true])
-                // TODO: Try using the storeItem object instead of parsing it out.
-            
-            self.getStoreById(storeId: storeId) { result in
-                switch result{
-                case .success(let store):
-                    completion(.success(store))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        } catch let error {
-            completion(.failure(error))
-        }
-    }
-    */
- 
     
+    /* */
+    func updateEventItemPackedState() -> Void {
+        let ref = db.collection("pack").document("data").collection("lists").document("ohio").collection("items")
+                .document("0DvXrq5LXfi08PW0D0ol")
+
+        ref.updateData(["packed": true as Bool])
+
+    }
+
     func getEventItems(eventId: String, completion: @escaping (Result<[Item], Error>) -> Void) {
         db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
             .getDocuments { snapshot, error in

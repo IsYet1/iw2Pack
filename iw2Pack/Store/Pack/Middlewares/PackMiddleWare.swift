@@ -11,6 +11,24 @@ import Firebase
 func packMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
         switch action {
+        case let action as PackSetPackedState:
+            print("Set Pack state \(action)")
+            
+            FBService().updateEventItemPackedState()
+            
+//            FBService().login(email: action.email, password: action.password) {result in
+//                switch result {
+//                    case .success(let loggedin):
+//                        dispatch(PackSetAuthStatus(authStatus: loggedin))
+//                        dispatch(PackAllItemsDict_Get())
+//                        dispatch(PackAllEvents_Get())
+//                    case .failure(let error):
+//                        print("Login Error: \(error.localizedDescription)")
+//                        dispatch(PackSetAuthStatus(authStatus: false))
+//                }
+//
+//            }
+            
         case let action as PackAttemptLogin:
             print("Login attempt \(action)")
             

@@ -37,8 +37,8 @@ struct PackState: ReduxState {
 
 protocol Action { }
 
-struct PackToggglePacked: Action {
-    let eventItem: EventItem
+struct PackSetPackedState: Action {
+//    let eventItem: EventItem
 }
 
 struct PackAllEvents_Get: Action { }
