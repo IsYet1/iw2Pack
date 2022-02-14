@@ -46,8 +46,8 @@
             filePath = "iw2Pack/ItemLists/ItemCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getItemName(itemId:allItemsDict:)"
             landmarkType = "7">
          </BreakpointContent>

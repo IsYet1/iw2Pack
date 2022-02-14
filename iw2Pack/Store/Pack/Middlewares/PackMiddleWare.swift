@@ -14,7 +14,7 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             
-            FBService().updateEventItemPackedState(packed: action.packedBool!)
+            FBService().updateEventItemPackedState( eventItem: action.eventItem, packed: action.packedBool!)
             
 //            FBService().login(email: action.email, password: action.password) {result in
 //                switch result {

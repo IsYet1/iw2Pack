@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemCell: View {
     
+    var curEventId: String
     @EnvironmentObject var store: Store<AppState>
     @State private var curItem: Item
     
@@ -22,14 +23,15 @@ struct ItemCell: View {
             allItemsDict: state.allItemsDict,
             attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))},
             setPackedState: {
-                let eventItemForPackAction1 = EventItem(eventId: "ohio", itemId: $1.id!)
+                let eventItemForPackAction1 = EventItem(eventId: curEventId, itemId: $1.id!)
                 store.dispatch(action: PackSetPackedState(eventItem: eventItemForPackAction1, packedBool: $0)
             )}
         )
     }
  
-    init(item: Item) {
+    init(item: Item, eventId: String) {
         curItem = item
+        curEventId = eventId
     }
     
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
@@ -62,7 +64,7 @@ struct ItemCell: View {
 
 struct ItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
+        ItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true), eventId: "Event Id")
 //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

@@ -33,7 +33,7 @@ struct ItemListView: View {
             if (itemsCount > 0) {
                 Text("There are \(itemsCount) items for Event: \(eventName)")
                 List (itemsForList, id: \.id) {item in
-                    ItemCell(item: item)
+                    ItemCell(item: item, eventId: eventId)
                 }
             } else if itemListVM.loadingState == .success && itemsCount == 0 {
                 Text("There are NO items YET")
