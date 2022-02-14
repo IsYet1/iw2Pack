@@ -15,13 +15,16 @@ struct ItemCell: View {
     struct PackAppState {
         let allItemsDict: [String: Item]
         let attemptLogin: (String, String) -> Void
-        let setPackedState: () -> Void
+        let setPackedState: (Bool, Item) -> Void
     }
     private func map(state: PackState) -> PackAppState {
         return PackAppState(
             allItemsDict: state.allItemsDict,
             attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))},
-            setPackedState: { store.dispatch(action: PackSetPackedState())}
+            setPackedState: {
+                let eventItemForPackAction1 = EventItem(eventId: "ohio", itemId: $1.id!)
+                store.dispatch(action: PackSetPackedState(eventItem: eventItemForPackAction1, packedBool: $0)
+            )}
         )
     }
  
@@ -47,7 +50,7 @@ struct ItemCell: View {
                     set: {
                         print("Value \($0) \(curItem)")
                         curItem.packed = $0
-                        packAppState.setPackedState()
+                        packAppState.setPackedState($0, curItem)
                     }
                 )
             )

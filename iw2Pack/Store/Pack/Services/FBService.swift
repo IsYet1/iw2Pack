@@ -48,11 +48,11 @@ class FBService {
     }
     
     /* */
-    func updateEventItemPackedState() -> Void {
+    func updateEventItemPackedState(packed: Bool) -> Void {
         let ref = db.collection("pack").document("data").collection("lists").document("ohio").collection("items")
                 .document("0DvXrq5LXfi08PW0D0ol")
 
-        ref.updateData(["packed": true as Bool])
+        ref.updateData(["packed": packed as Bool])
 
     }
 

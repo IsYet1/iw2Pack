@@ -10,6 +10,6 @@ import Foundation
 struct EventItem: Codable {
     var eventId: String
     var itemId: String
-    var packed: Bool
+//    var packed?: Bool
 //    var staged: Bool?
 }
