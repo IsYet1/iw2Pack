@@ -52,7 +52,8 @@ struct ItemCell: View {
         let packAppState = map(state: store.state.packAuthState)
         HStack {
             Toggle(
-                getItemName(itemId:curItem.itemId!, allItemsDict: packAppState.allItemsDict),
+                curItem.name!,
+//                getItemName(itemId:curItem.itemId!, allItemsDict: packAppState.allItemsDict),
                 isOn: Binding<Bool>(
                     get: { if let itemPacked = curItem.packed {return itemPacked} else {return false} },
                     set: {

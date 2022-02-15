@@ -91,15 +91,27 @@ func packMiddleware() -> Middleware<AppState> {
             
             FBService().getEventItems(eventId: action.eventId) {result in
                 switch result {
-                    case .success(let eventItems):
-                        dispatch(PackEventItems_Store(eventItems: eventItems))
-                    case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackEventItems_Store(eventItems: []))
+                case .success(let eventItems):
+                    let allItemsHash = state.packAuthState.allItemsDict
+//                    print(allItemsHash)
+                    var rtnItems: [Item] = eventItems.map{eventItem in
+                        var item = eventItem
+                        if let allItemData = allItemsHash[item.itemId!] {
+                            item.name = allItemData.name
+                            item.category = allItemData.category
+                        }
+                        return item
+                    }
+                    print(rtnItems)
+                    dispatch(PackEventItems_Store(eventItems: rtnItems))
+                    
+                case .failure(let error):
+                    print("Get all items Error: \(error.localizedDescription)")
+                    dispatch(PackEventItems_Store(eventItems: []))
                 }
                 
             }
-        
+            
  
         default:
             break
