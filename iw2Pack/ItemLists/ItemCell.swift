@@ -38,7 +38,11 @@ struct ItemCell: View {
     
     private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
         if let dictItem = allItemsDict[itemId] {
-            return dictItem.name!
+            if let itemName = dictItem.name {
+                return itemName
+            } else {
+                return itemId
+            }
         } else {
             return itemId
         }
