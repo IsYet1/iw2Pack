@@ -15,17 +15,19 @@ struct ItemCell: View {
     
     struct PackAppState {
         let allItemsDict: [String: Item]
-        let attemptLogin: (String, String) -> Void
         let setPackedState: (Bool, Item) -> Void
     }
     private func map(state: PackState) -> PackAppState {
         return PackAppState(
             allItemsDict: state.allItemsDict,
-            attemptLogin: { store.dispatch(action: PackAttemptLogin(email: $0, password: $1))},
             setPackedState: {
-                let eventItemForPackAction1 = EventItem(eventId: curEventId, itemId: $1.id!)
-                store.dispatch(action: PackSetPackedState(eventItem: eventItemForPackAction1, packedBool: $0)
-            )}
+                if let itemId = $1.id {
+                    let eventItemForPackAction1 = EventItem(eventId: curEventId, itemId: itemId)
+                    store.dispatch(action: PackSetPackedState(eventItem: eventItemForPackAction1, packedBool: $0) )
+                } else {
+                    print ("Is itemId nil?")
+                }
+            }
         )
     }
  

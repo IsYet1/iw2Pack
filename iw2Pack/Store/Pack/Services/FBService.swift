@@ -48,11 +48,17 @@ class FBService {
     }
     
     /* */
-    func updateEventItemPackedState(eventItem: EventItem, packed: Bool) -> Void {
+    func updateEventItemPackedState(eventItem: EventItem, packed: Bool, completion: @escaping (Result<Bool?, Error>) -> Void) {
         let ref = db.collection("pack").document("data").collection("lists").document(eventItem.eventId).collection("items")
             .document(eventItem.itemId)
 
-        ref.updateData(["packed": packed as Bool])
+        ref.updateData(["packed": packed as Bool]) {error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
 
     }
 

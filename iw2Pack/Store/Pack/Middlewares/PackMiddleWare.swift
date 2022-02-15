@@ -14,21 +14,17 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             
-            FBService().updateEventItemPackedState( eventItem: action.eventItem, packed: action.packedBool!)
-            
-//            FBService().login(email: action.email, password: action.password) {result in
-//                switch result {
-//                    case .success(let loggedin):
-//                        dispatch(PackSetAuthStatus(authStatus: loggedin))
-//                        dispatch(PackAllItemsDict_Get())
-//                        dispatch(PackAllEvents_Get())
-//                    case .failure(let error):
-//                        print("Login Error: \(error.localizedDescription)")
-//                        dispatch(PackSetAuthStatus(authStatus: false))
-//                }
-//
-//            }
-            
+            FBService().updateEventItemPackedState( eventItem: action.eventItem, packed: action.packedBool!) {result in
+                switch result {
+                    case .success(_):
+                    dispatch(PackEventItems_Get(eventId: action.eventItem.eventId))
+                    case .failure(let error):
+                        print("Get all items Error: \(error.localizedDescription)")
+                        dispatch(PackEventItems_Store(eventItems: []))
+                }
+                
+            }
+
         case let action as PackAttemptLogin:
             print("Login attempt \(action)")
             
