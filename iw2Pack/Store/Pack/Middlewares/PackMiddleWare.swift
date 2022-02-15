@@ -14,17 +14,21 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             
-            FBService().updateEventItemPackedState( eventItem: action.eventItem, packed: action.packedBool!) {result in
-                switch result {
+            if let packedBool = action.packedBool {
+                FBService().updateEventItemPackedState( eventItem: action.eventItem, packed: packedBool) {result in
+                    switch result {
                     case .success(_):
-                    dispatch(PackEventItems_Get(eventId: action.eventItem.eventId))
+                        dispatch(PackEventItems_Get(eventId: action.eventItem.eventId))
                     case .failure(let error):
                         print("Get all items Error: \(error.localizedDescription)")
                         dispatch(PackEventItems_Store(eventItems: []))
+                    }
                 }
                 
+            } else {
+                print("Packed boolean not provided in the action")
             }
-
+            
         case let action as PackAttemptLogin:
             print("Login attempt \(action)")
             
