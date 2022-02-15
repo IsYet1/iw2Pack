@@ -20,8 +20,7 @@ func packMiddleware() -> Middleware<AppState> {
                     case .success(_):
                         dispatch(PackEventItems_Get(eventId: action.eventItem.eventId))
                     case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackEventItems_Store(eventItems: []))
+                        print("Set packed status failed: \(error.localizedDescription)")
                     }
                 }
                 
