@@ -94,11 +94,14 @@ func packMiddleware() -> Middleware<AppState> {
                 case .success(let eventItems):
                     let allItemsHash = state.packAuthState.allItemsDict
 //                    print(allItemsHash)
-                    var rtnItems: [Item] = eventItems.map{eventItem in
+                    let rtnItems: [Item] = eventItems.map{eventItem in
                         var item = eventItem
-                        if let allItemData = allItemsHash[item.itemId!] {
+                        if let itemId = item.itemId, let allItemData = allItemsHash[itemId] {
                             item.name = allItemData.name
                             item.category = allItemData.category
+                        } else {
+                            item.name = "No Item: \(item.itemId!)"
+                            item.category = "Item Not Found"
                         }
                         return item
                     }

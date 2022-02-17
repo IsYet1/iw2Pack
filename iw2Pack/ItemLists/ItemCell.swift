@@ -36,24 +36,11 @@ struct ItemCell: View {
         curEventId = eventId
     }
     
-    private func getItemName(itemId: String, allItemsDict: [String: Item]) -> String {
-        if let dictItem = allItemsDict[itemId] {
-            if let itemName = dictItem.name {
-                return itemName
-            } else {
-                return itemId
-            }
-        } else {
-            return itemId
-        }
-    }
-    
     var body: some View {
         let packAppState = map(state: store.state.packAuthState)
         HStack {
             Toggle(
                 curItem.name!,
-//                getItemName(itemId:curItem.itemId!, allItemsDict: packAppState.allItemsDict),
                 isOn: Binding<Bool>(
                     get: { if let itemPacked = curItem.packed {return itemPacked} else {return false} },
                     set: {
