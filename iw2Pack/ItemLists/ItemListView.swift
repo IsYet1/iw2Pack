@@ -26,7 +26,8 @@ struct ItemListView: View {
     
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
-            let listGroup: [String: [Item]] = Dictionary(grouping: items, by: { book in
+            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { book in
                 return book.category!
             })
             return listGroup.sorted(by: {$0.key < $1.key})
