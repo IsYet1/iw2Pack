@@ -12,6 +12,7 @@ struct ItemListView: View {
     var eventName: String
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
+    @State private var showAddItemsToEventSheet: Bool = false
     struct Props {
         let eventItems: [ Item ]
         let getItemsForEvent: (String) -> Void
@@ -22,7 +23,6 @@ struct ItemListView: View {
             getItemsForEvent: { store.dispatch(action: PackEventItems_Get(eventId: $0))}
         )
     }
-    
     
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
@@ -63,6 +63,13 @@ struct ItemListView: View {
             print("Getting EVENT items")
             props.getItemsForEvent(eventId)
         })
+        .toolbar {
+           ToolbarItem(placement: .primaryAction) {
+               Button("Add Items") {self.showAddItemsToEventSheet = true }
+            }
+           
+        }
+        .sheet(isPresented: $showAddItemsToEventSheet, content: {AddItemsToEventList()})
     }
 }
 

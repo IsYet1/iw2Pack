@@ -100,7 +100,7 @@ func packMiddleware() -> Middleware<AppState> {
                             item.name = allItemData.name
                             item.category = allItemData.category
                         } else {
-                            item.name = "No Item: \(item.itemId!)"
+                            item.name = "No Item: \(item.id!)" //"itemId!)"
                             item.category = "Item Not Found"
                         }
                         return item
