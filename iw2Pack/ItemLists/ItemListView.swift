@@ -69,7 +69,11 @@ struct ItemListView: View {
             }
            
         }
-        .sheet(isPresented: $showAddItemsToEventSheet, content: {AddItemsToEventList()})
+        .sheet(isPresented: $showAddItemsToEventSheet, content: {
+            AddItemsToEventList(
+                eventId: eventId, eventName: eventName, itemsForList: itemsForList
+            )
+        })
     }
 }
 
