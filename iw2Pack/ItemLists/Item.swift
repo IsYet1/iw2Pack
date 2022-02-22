@@ -19,5 +19,6 @@ struct Item: Codable {
     var itemId: String?
     var packed: Bool?
     var staged: Bool?
+    var selected: Bool?
 //    var metadata: ItemMetadata?
 }

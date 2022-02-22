@@ -30,10 +30,10 @@ struct AllItemCell: View {
             Toggle(
                 curItem.name!,
                 isOn: Binding<Bool>(
-                    get: { false },
+                    get: { if let itemSelected = curItem.selected {return itemSelected} else {return false} },
                     set: {
                         print("Value \($0) \(curItem)")
-//                        curItem.packed = $0
+                        curItem.selected = $0
 //                        packAppState.setPackedState($0, curItem)
                     }
                 )
