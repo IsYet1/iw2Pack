@@ -42,6 +42,11 @@ struct PackSetItemSelected: Action {
     let selected: Bool
 }
 
+struct PackAddItemsToEvent: Action {
+    let eventId: String
+    let itemIds: [String]
+}
+
 struct PackSetPackedState: Action {
     let eventItem: EventItem
     var packedBool: Bool?

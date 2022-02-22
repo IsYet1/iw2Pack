@@ -11,6 +11,16 @@ import Firebase
 func packMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
         switch action {
+        case let action as PackAddItemsToEvent:
+            FBService().addItemsToEvent(eventId: action.eventId, itemIds: action.itemIds) {result in
+                switch result {
+                case .success(_):
+                    print ("Added items to the event")
+                case .failure(let error):
+                    print ("Added NOT items to the event \(error.localizedDescription)")
+                }
+                
+            }
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             

@@ -53,9 +53,14 @@ struct AddItemsToEventList: View {
             }
             Divider()
             Button("Add These") {
-                let itemsToAdd = filteredItems.filter() {$0.selected != nil && $0.selected! }
+                let itemsToAdd = filteredItems
+                    .filter() {$0.selected != nil && $0.selected! }
+                    .map() { $0.id! }
                 print("*** Selected Items")
                 print(itemsToAdd )
+                if itemsToAdd.count > 0 {
+                    props.addItemsToEvent(store, eventId, itemsToAdd)
+                }
                 self.presentation.wrappedValue.dismiss()
             }
             .buttonStyle(.bordered)

@@ -12,6 +12,7 @@ class PackStateManager {
         let allItemsDict: [String: Item]
         let setPackedState: (Bool, Item, String, Store<AppState>) -> Void
         let setSelected: ( Bool, String, Store<AppState> ) -> Void
+        let addItemsToEvent: (Store<AppState>, String, [String]) -> Void
     }
     func map(state: PackState) -> Props {
         return Props(
@@ -33,6 +34,12 @@ class PackStateManager {
                 let itemId = $1
                 let store = $2
                 store.dispatch(action: PackSetItemSelected(itemId: itemId, selected: selected))
+            },
+            addItemsToEvent: {
+                let store = $0
+                let eventId = $1
+                let itemIds = $2
+                store.dispatch(action: PackAddItemsToEvent(eventId: eventId, itemIds: itemIds))
             }
         )
     }

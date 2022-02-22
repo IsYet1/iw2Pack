@@ -22,3 +22,9 @@ struct Item: Codable {
     var selected: Bool?
 //    var metadata: ItemMetadata?
 }
+
+struct ItemToAddToEventList: Codable {
+    var itemId: String
+    var packed: Bool
+    var staged: Bool
+}
