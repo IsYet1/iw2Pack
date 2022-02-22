@@ -9,23 +9,17 @@ import SwiftUI
 
 struct AllItemCell: View {
     
-    @EnvironmentObject var store: Store<AppState>
     @State private var curItem: Item
     
-    struct PackAppState {
-    }
-    private func map(state: PackState) -> PackAppState {
-        return PackAppState(
-
-        )
-    }
+    @EnvironmentObject var store: Store<AppState>
+    var packStateManager = PackStateManager()
  
     init(item: Item) {
         curItem = item
     }
     
     var body: some View {
-        let packAppState = map(state: store.state.packAuthState)
+        let packAppState = packStateManager.map(state: store.state.packAuthState)
         HStack {
             Toggle(
                 curItem.name!,
@@ -34,7 +28,8 @@ struct AllItemCell: View {
                     set: {
                         curItem.selected = $0
                         print("Value \($0) \(curItem)")
-//                        packAppState.setPackedState($0, curItem)
+//                        store.dispatch(action: PackSetItemSelected(itemId: curItem.id!, selected: $0))
+                        packAppState.setSelected($0, curItem.id!, store)
                     }
                 )
             )
