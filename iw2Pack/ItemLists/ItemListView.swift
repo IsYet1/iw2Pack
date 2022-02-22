@@ -14,16 +14,7 @@ struct ItemListView: View {
     @State private var showAddItemsToEventSheet: Bool = false
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
-    struct Props {
-        let eventItems: [ Item ]
-        let getItemsForEvent: (String) -> Void
-    }
-    private func map(state: PackState) -> Props {
-        return Props(
-            eventItems: state.eventItems,
-            getItemsForEvent: { store.dispatch(action: PackEventItems_Get(eventId: $0))}
-        )
-    }
+    var packStateManager = PackStateManager()
     
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
@@ -37,7 +28,7 @@ struct ItemListView: View {
     }
     
     var body: some View {
-        let props = map(state: store.state.packAuthState)
+        let props = packStateManager.map(state: store.state.packAuthState)
         let itemsForList = props.eventItems
         let itemsCount = itemsForList.count
         let itemsByCategory = sortedByCategory(items: itemsForList)
@@ -59,7 +50,7 @@ struct ItemListView: View {
         }
         .onAppear(perform: {
             print("Getting EVENT items")
-            props.getItemsForEvent(eventId)
+            props.getItemsForEvent(store, eventId)
         })
         .toolbar {
            ToolbarItem(placement: .primaryAction) {
