@@ -10,7 +10,8 @@ import SwiftUI
 struct ItemListView: View {
     var eventId: String
     var eventName: String
-    @StateObject private var itemListVM = ItemListViewModel()
+    
+    @State private var showAddItemsToEventSheet: Bool = false
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     struct Props {
@@ -24,25 +25,52 @@ struct ItemListView: View {
         )
     }
     
+    private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
+        var orderList: [(key: String, value: [Item] ) ] {
+            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { book in
+                return book.category!
+            })
+            return listGroup.sorted(by: {$0.key < $1.key})
+        }
+        return orderList
+    }
+    
     var body: some View {
         let props = map(state: store.state.packAuthState)
         let itemsForList = props.eventItems
-//        let itemsForList = createItem1s() // props.eventItems
         let itemsCount = itemsForList.count
+        let itemsByCategory = sortedByCategory(items: itemsForList)
         VStack {
             if (itemsCount > 0) {
                 Text("There are \(itemsCount) items for Event: \(eventName)")
-                List (itemsForList, id: \.id) {item in
-                    ItemCell(item: item, eventId: eventId)
+                List {
+                    ForEach(itemsByCategory, id:\.key) {sections in
+                        Section(header: Text(sections.key)) {
+                            ForEach(sections.value, id: \.id) {item in
+                                ItemCell(item: item, eventId: eventId)
+                            }
+                        }
+                    }
                 }
-            } else if itemListVM.loadingState == .success && itemsCount == 0 {
+            } else if itemsCount == 0 {
                 Text("There are NO items YET")
             }
         }
         .onAppear(perform: {
             print("Getting EVENT items")
-//            itemListVM.getAllItems(eventId: eventId)
             props.getItemsForEvent(eventId)
+        })
+        .toolbar {
+           ToolbarItem(placement: .primaryAction) {
+               Button("Add Items") {self.showAddItemsToEventSheet = true }
+            }
+           
+        }
+        .sheet(isPresented: $showAddItemsToEventSheet, content: {
+            AddItemsToEventList(
+                eventId: eventId, eventName: eventName, itemsForEvent: itemsForList
+            )
         })
     }
 }

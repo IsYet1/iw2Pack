@@ -7,17 +7,15 @@
 
 import SwiftUI
 
-struct ItemCell: View {
+struct AllItemCell: View {
     
-    var curEventId: String
     @State private var curItem: Item
     
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
-    
-    init(item: Item, eventId: String) {
+ 
+    init(item: Item) {
         curItem = item
-        curEventId = eventId
     }
     
     var body: some View {
@@ -26,11 +24,12 @@ struct ItemCell: View {
             Toggle(
                 curItem.name!,
                 isOn: Binding<Bool>(
-                    get: { if let itemPacked = curItem.packed {return itemPacked} else {return false} },
+                    get: { if let itemSelected = curItem.selected {return itemSelected} else {return false} },
                     set: {
-//                        print("Value \($0) \(curItem)")
-                        curItem.packed = $0
-                        packAppState.setPackedState($0, curItem, curEventId, store)
+                        curItem.selected = $0
+                        print("Value \($0) \(curItem)")
+//                        store.dispatch(action: PackSetItemSelected(itemId: curItem.id!, selected: $0))
+                        packAppState.setSelected($0, curItem.id!, store)
                     }
                 )
             )
@@ -40,9 +39,9 @@ struct ItemCell: View {
    }
 }
 
-struct ItemCell_Previews: PreviewProvider {
+struct AllItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true), eventId: "Event Id")
+        AllItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
 //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

@@ -11,6 +11,16 @@ import Firebase
 func packMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
         switch action {
+        case let action as PackAddItemsToEvent:
+            FBService().addItemsToEvent(eventId: action.eventId, itemIds: action.itemIds) {result in
+                switch result {
+                case .success(_):
+                    print ("Added items to the event")
+                case .failure(let error):
+                    print ("Added NOT items to the event \(error.localizedDescription)")
+                }
+                
+            }
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             
@@ -87,19 +97,34 @@ func packMiddleware() -> Middleware<AppState> {
             }
  
         case let action as PackEventItems_Get:
-            print("Get Event Items \(action)")
+//            print("Get Event Items \(action)")
             
             FBService().getEventItems(eventId: action.eventId) {result in
                 switch result {
-                    case .success(let eventItems):
-                        dispatch(PackEventItems_Store(eventItems: eventItems))
-                    case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackEventItems_Store(eventItems: []))
+                case .success(let eventItems):
+                    let allItemsHash = state.packAuthState.allItemsDict
+//                    print(allItemsHash)
+                    let rtnItems: [Item] = eventItems.map{eventItem in
+                        var item = eventItem
+                        if let itemId = item.itemId, let allItemData = allItemsHash[itemId] {
+                            item.name = allItemData.name
+                            item.category = allItemData.category
+                        } else {
+                            item.name = "No Item: \(item.id!)" //"itemId!)"
+                            item.category = "Item Not Found"
+                        }
+                        return item
+                    }
+//                    print(rtnItems)
+                    dispatch(PackEventItems_Store(eventItems: rtnItems))
+                    
+                case .failure(let error):
+                    print("Get all items Error: \(error.localizedDescription)")
+                    dispatch(PackEventItems_Store(eventItems: []))
                 }
                 
             }
-        
+            
  
         default:
             break

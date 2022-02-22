@@ -138,7 +138,27 @@ class FBService {
  
     }
  
-    
+    func addItemsToEvent(eventId: String, itemIds: [String], completion: @escaping (Result<Bool, Error>) -> Void) {
+        let itemsToAdd = itemIds.map({ ItemToAddToEventList(itemId: $0, packed: false, staged: false) })
+        let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
+        var ref: DocumentReference? = nil
+        itemsToAdd.forEach() {
+            let curItemToAdd = $0
+                do {
+                    ref = try eventItemListRef.addDocument(from: curItemToAdd) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                            completion(.failure(err))
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                            completion(.success(true))
+                        }
+                    }
+                } catch let error {
+                    completion(.failure(error))
+                }
+            }
+        }
 
 }
 

@@ -12,6 +12,8 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
     var state = state
     
     switch action {
+    case let action as PackSetItemSelected:
+        state.allItemsDict[action.itemId]?.selected = action.selected
     case let action as PackSetAuthStatus:
         state.loggedIn = action.authStatus
     case let action as PackAllItems_Store:
