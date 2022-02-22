@@ -87,7 +87,7 @@ func packMiddleware() -> Middleware<AppState> {
             }
  
         case let action as PackEventItems_Get:
-            print("Get Event Items \(action)")
+//            print("Get Event Items \(action)")
             
             FBService().getEventItems(eventId: action.eventId) {result in
                 switch result {
@@ -105,7 +105,7 @@ func packMiddleware() -> Middleware<AppState> {
                         }
                         return item
                     }
-                    print(rtnItems)
+//                    print(rtnItems)
                     dispatch(PackEventItems_Store(eventItems: rtnItems))
                     
                 case .failure(let error):

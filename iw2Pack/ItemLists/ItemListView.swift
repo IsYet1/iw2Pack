@@ -11,8 +11,9 @@ struct ItemListView: View {
     var eventId: String
     var eventName: String
     
-    @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     @State private var showAddItemsToEventSheet: Bool = false
+    
+    @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     struct Props {
         let eventItems: [ Item ]
         let getItemsForEvent: (String) -> Void
@@ -52,9 +53,6 @@ struct ItemListView: View {
                         }
                     }
                 }
-//                List (itemsForList, id: \.id) {item in
-//                    ItemCell(item: item, eventId: eventId)
-//                }
             } else if itemsCount == 0 {
                 Text("There are NO items YET")
             }
@@ -71,7 +69,7 @@ struct ItemListView: View {
         }
         .sheet(isPresented: $showAddItemsToEventSheet, content: {
             AddItemsToEventList(
-                eventId: eventId, eventName: eventName, itemsForList: itemsForList
+                eventId: eventId, eventName: eventName, itemsForEvent: itemsForList
             )
         })
     }
