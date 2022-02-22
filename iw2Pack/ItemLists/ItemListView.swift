@@ -12,6 +12,7 @@ struct ItemListView: View {
     var eventName: String
     
     @State private var showAddItemsToEventSheet: Bool = false
+//    @State private var itemsByCategory1: [(key: String, value: [Item] ) ] = nil
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     var packStateManager = PackStateManager()
@@ -25,6 +26,16 @@ struct ItemListView: View {
             return listGroup.sorted(by: {$0.key < $1.key})
         }
         return orderList
+    }
+    
+    private func removeItemFromEvent(at indexSet: IndexSet, category: String, itemsByCategory: [(key: String, value: [Item] ) ] ){
+        print("*** Removing an item")
+        print(category)
+        indexSet.forEach { index in
+            print(index)
+            print(itemsByCategory.filter{$0.key == category})
+//            print(itemsByCategory[category][index])
+        }
     }
     
     var body: some View {
@@ -41,6 +52,8 @@ struct ItemListView: View {
                             ForEach(sections.value, id: \.id) {item in
                                 ItemCell(item: item, eventId: eventId)
                             }
+//                            .onDelete(perform: {offsets in self.removeItemFromEvent(at: offsets) })
+                            .onDelete {self.removeItemFromEvent(at: $0, category: sections.key, itemsByCategory: itemsByCategory )}
                         }
                     }
                 }
