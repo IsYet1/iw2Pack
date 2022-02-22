@@ -10,34 +10,18 @@ import SwiftUI
 struct ItemCell: View {
     
     var curEventId: String
-    @EnvironmentObject var store: Store<AppState>
     @State private var curItem: Item
     
-    struct PackAppState {
-        let allItemsDict: [String: Item]
-        let setPackedState: (Bool, Item) -> Void
-    }
-    private func map(state: PackState) -> PackAppState {
-        return PackAppState(
-            allItemsDict: state.allItemsDict,
-            setPackedState: {
-                if let itemId = $1.id {
-                    let eventItemForPackAction1 = EventItem(eventId: curEventId, itemId: itemId)
-                    store.dispatch(action: PackSetPackedState(eventItem: eventItemForPackAction1, packedBool: $0) )
-                } else {
-                    print ("Is itemId nil?")
-                }
-            }
-        )
-    }
- 
+    @EnvironmentObject var store: Store<AppState>
+    var packStateManager = PackStateManager()
+    
     init(item: Item, eventId: String) {
         curItem = item
         curEventId = eventId
     }
     
     var body: some View {
-        let packAppState = map(state: store.state.packAuthState)
+        let packAppState = packStateManager.map(state: store.state.packAuthState)
         HStack {
             Toggle(
                 curItem.name!,
@@ -46,7 +30,7 @@ struct ItemCell: View {
                     set: {
 //                        print("Value \($0) \(curItem)")
                         curItem.packed = $0
-                        packAppState.setPackedState($0, curItem)
+                        packAppState.setPackedState($0, curItem, curEventId, store)
                     }
                 )
             )

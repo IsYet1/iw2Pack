@@ -33,6 +33,7 @@
 		A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC5C279F6E8100F721BD /* EventCell.swift */; };
 		A58D9DA727C4357200E74401 /* AddItemsToEventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DA627C4357200E74401 /* AddItemsToEventList.swift */; };
 		A58D9DA927C444D700E74401 /* AllItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DA827C444D700E74401 /* AllItemCell.swift */; };
+		A58D9DAB27C54C4700E74401 /* PackStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DAA27C54C4700E74401 /* PackStateManager.swift */; };
 		A595AADE27A0D1370008B372 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595AADD27A0D1370008B372 /* Store.swift */; };
 		A595AAE027A0D1BC0008B372 /* ReduxSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A595AADF27A0D1BC0008B372 /* ReduxSample.swift */; };
 		A5A73CEA2798AA70004AE953 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A73CE92798AA70004AE953 /* ItemListView.swift */; };
@@ -76,6 +77,7 @@
 		A577FC5C279F6E8100F721BD /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		A58D9DA627C4357200E74401 /* AddItemsToEventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToEventList.swift; sourceTree = "<group>"; };
 		A58D9DA827C444D700E74401 /* AllItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllItemCell.swift; path = iw2Pack/AllPackItems/AllItemCell.swift; sourceTree = SOURCE_ROOT; };
+		A58D9DAA27C54C4700E74401 /* PackStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStateManager.swift; sourceTree = "<group>"; };
 		A595AADD27A0D1370008B372 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		A595AADF27A0D1BC0008B372 /* ReduxSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReduxSample.swift; sourceTree = "<group>"; };
 		A5A73CE92798AA70004AE953 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				A5D9A46F27B01E8F00E62772 /* Services */,
 				A5F66E0327AF3B3E00491466 /* Middlewares */,
 				A5F66E0127AF25B200491466 /* PackReducer.swift */,
+				A58D9DAA27C54C4700E74401 /* PackStateManager.swift */,
 			);
 			path = Pack;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				A53B3F222793696700799BBE /* LoginViewModel.swift in Sources */,
 				A5A73CEC2798BB52004AE953 /* ItemCell.swift in Sources */,
 				A53B3F1927933FBD00799BBE /* Task.swift in Sources */,
+				A58D9DAB27C54C4700E74401 /* PackStateManager.swift in Sources */,
 				A577FC55279F665D00F721BD /* Event.swift in Sources */,
 				A51144BD27B863B9006980F1 /* CheckboxToggleStyle.swift in Sources */,
 				A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */,

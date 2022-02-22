@@ -37,6 +37,11 @@ struct PackState: ReduxState {
 
 protocol Action { }
 
+struct PackSetItemSelected: Action {
+    let itemId: String
+    let selected: Bool
+}
+
 struct PackSetPackedState: Action {
     let eventItem: EventItem
     var packedBool: Bool?

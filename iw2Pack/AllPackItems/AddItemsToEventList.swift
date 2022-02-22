@@ -11,17 +11,11 @@ struct AddItemsToEventList: View {
     var eventId: String
     var eventName: String
     var itemsForEvent: [ Item ]
+    @Environment(\.presentationMode) var presentation
     
-    @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
-    struct Props {
-        let allItemsDict: [String: Item]
-    }
-    private func map(state: PackState) -> Props {
-        return Props(
-            allItemsDict: state.allItemsDict
-        )
-    }
-    
+    @EnvironmentObject var store: Store<AppState>
+    var packStateManager = PackStateManager()
+   
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
             let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
@@ -42,26 +36,30 @@ struct AddItemsToEventList: View {
     }
  
     var body: some View {
-        let props = map(state: store.state.packAuthState)
+        let props = packStateManager.map(state: store.state.packAuthState)
         let filteredItems = getItemsNotInEvent(allItemsDict: props.allItemsDict)
         let itemsByCategory = sortedByCategory(items: filteredItems)
         VStack {
             Text("Add items to \(eventName)")
             Divider()
-//            List (filteredItems, id: \.id) {item in
-//                AllItemCell(item: item)
-//            }
             List {
                 ForEach(itemsByCategory, id:\.key) {sections in
                     Section(header: Text(sections.key)) {
                         ForEach(sections.value, id: \.id) {item in
                             AllItemCell(item: item)
-//                            ItemCell(item: item, eventId: eventId)
                         }
                     }
                 }
             }
-            
+            Divider()
+            Button("Add These") {
+                let itemsToAdd = filteredItems.filter() {$0.selected != nil && $0.selected! }
+                print("*** Selected Items")
+                print(itemsToAdd )
+                self.presentation.wrappedValue.dismiss()
+            }
+            .buttonStyle(.bordered)
+ 
             Spacer()
         }
     }

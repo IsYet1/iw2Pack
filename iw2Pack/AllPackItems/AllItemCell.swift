@@ -32,8 +32,8 @@ struct AllItemCell: View {
                 isOn: Binding<Bool>(
                     get: { if let itemSelected = curItem.selected {return itemSelected} else {return false} },
                     set: {
-                        print("Value \($0) \(curItem)")
                         curItem.selected = $0
+                        print("Value \($0) \(curItem)")
 //                        packAppState.setPackedState($0, curItem)
                     }
                 )
