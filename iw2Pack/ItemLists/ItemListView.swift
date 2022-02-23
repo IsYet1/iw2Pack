@@ -17,6 +17,7 @@ struct ItemListView: View {
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     var packStateManager = PackStateManager()
     
+    // TODO: Normalize this. It's returning a 2 dimensional array. Would prefer a dictionary.
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
             let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
@@ -28,13 +29,12 @@ struct ItemListView: View {
         return orderList
     }
     
-    private func removeItemFromEvent(at indexSet: IndexSet, category: String, itemsByCategory: [(key: String, value: [Item] ) ] ){
+    private func removeItemFromEvent(at indexSet: IndexSet, items: [Item] ){
         print("*** Removing an item")
-        print(category)
         indexSet.forEach { index in
             print(index)
-            print(itemsByCategory.filter{$0.key == category})
-//            print(itemsByCategory[category][index])
+            print(items[index].id!)
+            print(items[index].name!)
         }
     }
     
@@ -53,7 +53,7 @@ struct ItemListView: View {
                                 ItemCell(item: item, eventId: eventId)
                             }
 //                            .onDelete(perform: {offsets in self.removeItemFromEvent(at: offsets) })
-                            .onDelete {self.removeItemFromEvent(at: $0, category: sections.key, itemsByCategory: itemsByCategory )}
+                            .onDelete {self.removeItemFromEvent(at: $0, items: sections.value )}
                         }
                     }
                 }
