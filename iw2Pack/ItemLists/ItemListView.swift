@@ -29,12 +29,16 @@ struct ItemListView: View {
         return orderList
     }
     
-    private func removeItemFromEvent(at indexSet: IndexSet, items: [Item] ){
+    private func removeItemFromEvent( at indexSet: IndexSet, items: [Item] ){
         print("*** Removing an item")
-        indexSet.forEach { index in
-            print(index)
-            print(items[index].id!)
-            print(items[index].name!)
+        if let itemIndex: Int = indexSet.first {
+            print(itemIndex)
+            if let eventItemId = items[itemIndex].id {
+                print(eventId)
+                print(eventItemId)
+                print(items[itemIndex].name!)
+                store.dispatch(action: PackDeleteItemsFromEvent(eventId: eventId, itemIds: [eventItemId]))
+            }
         }
     }
     

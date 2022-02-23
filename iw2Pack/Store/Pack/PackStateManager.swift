@@ -13,6 +13,7 @@ class PackStateManager {
         let setPackedState: (Bool, Item, String, Store<AppState>) -> Void
         let setSelected: ( Bool, String, Store<AppState> ) -> Void
         let addItemsToEvent: (Store<AppState>, String, [String]) -> Void
+        let deleteItemsFromEvent: (Store<AppState>, String, [String]) -> Void
         let eventItems: [ Item ]
         let getItemsForEvent: (Store<AppState>, String) -> Void
     }
@@ -43,6 +44,12 @@ class PackStateManager {
                 let itemIds = $2
                 store.dispatch(action: PackAddItemsToEvent(eventId: eventId, itemIds: itemIds))
             },
+            deleteItemsFromEvent: {
+                let store = $0
+                let eventId = $1
+                let itemIds = $2
+                store.dispatch(action: PackDeleteItemsFromEvent(eventId: eventId, itemIds: itemIds))
+            },
             eventItems: state.eventItems,
             getItemsForEvent: {
                 let store = $0
@@ -51,5 +58,5 @@ class PackStateManager {
             }
         )
     }
- 
+    
 }
