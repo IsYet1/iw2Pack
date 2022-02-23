@@ -138,16 +138,16 @@ class FBService {
  
     }
  
-    func deleteItemsFromEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<Bool, Error>) -> Void) {
+    func deleteItemsFromEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<String, Error>) -> Void) {
         let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
         eventItemIds.forEach() {
-            let curItemToDelete = $0
-            eventItemListRef.document(curItemToDelete).delete() { err in
+            let curEventItemIdToDelete = $0
+            eventItemListRef.document(curEventItemIdToDelete).delete() { err in
                 if let err = err {
-                    print("Error adding document: \(err)")
+                    print("Error deleting the item from the event: \(err)")
                     completion(.failure(err))
                 } else {
-                    completion(.success(true))
+                    completion(.success(curEventItemIdToDelete))
                 }
             }
         }

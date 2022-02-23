@@ -15,10 +15,11 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackDeleteItemsFromEvent:
             FBService().deleteItemsFromEvent(eventId: action.eventId, eventItemIds: action.itemIds) {result in
                 switch result {
-                case .success(_):
-                    print ("Added items to the event")
+                case .success(let removedEventItemId):
+                    print ("Removed items to the event")
+                    dispatch(PackRemoveItemFromLocalEventList(eventItemId: removedEventItemId ))
                 case .failure(let error):
-                    print ("Added NOT items to the event \(error.localizedDescription)")
+                    print ("DID NOT REMOVE items from the event \(error.localizedDescription)")
                 }
                 
             }

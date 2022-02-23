@@ -42,11 +42,16 @@ struct PackSetItemSelected: Action {
     let selected: Bool
 }
 
+struct PackRemoveItemFromLocalEventList: Action {
+    let eventItemId: String
+}
+
 struct PackDeleteItemsFromEvent: Action {
     let eventId: String
     // NOTE: Leaving this as an array to support multiple deletes in the future. Initial will be 1 at a time
     let itemIds: [String]
 }
+
 struct PackAddItemsToEvent: Action {
     let eventId: String
     let itemIds: [String]
