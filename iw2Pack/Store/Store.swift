@@ -46,6 +46,10 @@ struct PackRemoveItemFromLocalEventList: Action {
     let eventItemId: String
 }
 
+struct PackAddEventItemToLocalEventList: Action {
+    let eventItem: Item
+}
+
 struct PackDeleteItemsFromEvent: Action {
     let eventId: String
     // NOTE: Leaving this as an array to support multiple deletes in the future. Initial will be 1 at a time

@@ -27,13 +27,18 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackAddItemsToEvent:
             FBService().addItemsToEvent(eventId: action.eventId, eventItemIds: action.itemIds) {result in
                 switch result {
-                case .success(_):
+                case .success(let itemsAddedToEvent):
                     print ("Added items to the event")
+                    print (itemsAddedToEvent)
+                    let allItemsHash = state.packAuthState.allItemsDict
+                    let eventItemForDispatch = getItemDetailsForEventItem(eventItem: itemsAddedToEvent, allItemsHash: allItemsHash)
+                    dispatch(PackAddEventItemToLocalEventList(eventItem: eventItemForDispatch ))
                 case .failure(let error):
                     print ("Added NOT items to the event \(error.localizedDescription)")
                 }
                 
             }
+            
         case let action as PackSetPackedState:
             print("Set Pack state \(action)")
             
@@ -116,19 +121,9 @@ func packMiddleware() -> Middleware<AppState> {
                 switch result {
                 case .success(let eventItems):
                     let allItemsHash = state.packAuthState.allItemsDict
-//                    print(allItemsHash)
                     let rtnItems: [Item] = eventItems.map{eventItem in
-                        var item = eventItem
-                        if let itemId = item.itemId, let allItemData = allItemsHash[itemId] {
-                            item.name = allItemData.name
-                            item.category = allItemData.category
-                        } else {
-                            item.name = "No Item: \(item.id!)" //"itemId!)"
-                            item.category = "Item Not Found"
-                        }
-                        return item
+                        return getItemDetailsForEventItem(eventItem: eventItem, allItemsHash: allItemsHash)
                     }
-//                    print(rtnItems)
                     dispatch(PackEventItems_Store(eventItems: rtnItems))
                     
                 case .failure(let error):
@@ -143,5 +138,17 @@ func packMiddleware() -> Middleware<AppState> {
             break
         }
     }
+}
+
+func getItemDetailsForEventItem(eventItem: Item, allItemsHash: [String: Item]) -> Item {
+    var item = eventItem
+    if let itemId = item.itemId, let allItemData = allItemsHash[itemId] {
+        item.name = allItemData.name
+        item.category = allItemData.category
+    } else {
+        item.name = "No Item: \(item.id!)" //"itemId!)"
+        item.category = "Item Not Found"
+    }
+    return item
 }
 

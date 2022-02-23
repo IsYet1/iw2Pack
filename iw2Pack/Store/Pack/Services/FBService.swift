@@ -84,7 +84,6 @@ class FBService {
             }
     }
  
-    
     func getAllEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
         db.collection("pack").document("data").collection("lists")
             .getDocuments { snapshot, error in
@@ -108,7 +107,6 @@ class FBService {
  
     }
  
-    
     func getAllItemsDict(completion: @escaping (Result<[String: Item], Error>) -> Void) {
         db.collection("pack").document("data").collection("items")
             .getDocuments { snapshot, error in
@@ -153,20 +151,21 @@ class FBService {
         }
     }
     
-    func addItemsToEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<Bool, Error>) -> Void) {
+    func addItemsToEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<Item, Error>) -> Void) {
         let itemsToAdd = eventItemIds.map({ ItemToAddToEventList(itemId: $0, packed: false, staged: false) })
         let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
-        var ref: DocumentReference? = nil
         itemsToAdd.forEach() {
-            let curItemToAdd = $0
+            var curItemToAdd = $0
             do {
+                var ref: DocumentReference? = nil
                 ref = try eventItemListRef.addDocument(from: curItemToAdd) { err in
                     if let err = err {
                         print("Error adding document: \(err)")
                         completion(.failure(err))
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-                        completion(.success(true))
+//                        curItemToAdd.id = ref!.documentID
+                        completion(.success(Item(id: ref!.documentID, itemId: curItemToAdd.itemId, packed: false, staged: false)))
                     }
                 }
             } catch let error {

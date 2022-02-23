@@ -26,6 +26,8 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         state.eventItems = action.eventItems
     case let action as PackRemoveItemFromLocalEventList:
         state.eventItems = state.eventItems.filter() {$0.id != action.eventItemId}
+    case let action as PackAddEventItemToLocalEventList:
+        state.eventItems = state.eventItems + [action.eventItem]
     default:
         break
    }
