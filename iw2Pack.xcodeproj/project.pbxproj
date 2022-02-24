@@ -50,6 +50,7 @@
 		A5DA221B27A89B770036A96E /* TaskReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA221A27A89B770036A96E /* TaskReducer.swift */; };
 		A5E102B727C7DA7F001EB433 /* AllItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102B627C7DA7F001EB433 /* AllItemsView.swift */; };
 		A5E102B927C7E0CE001EB433 /* AllItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */; };
+		A5E102BC27C7E5A5001EB433 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102BB27C7E5A5001EB433 /* MainView.swift */; };
 		A5F2226D2793A0510098D460 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F2226C2793A0510098D460 /* GoogleService-Info.plist */; };
 		A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFC27AF195D00491466 /* LogMiddleware.swift */; };
 		A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */; };
@@ -96,6 +97,7 @@
 		A5DA221A27A89B770036A96E /* TaskReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskReducer.swift; sourceTree = "<group>"; };
 		A5E102B627C7DA7F001EB433 /* AllItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsView.swift; sourceTree = "<group>"; };
 		A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsCell.swift; sourceTree = "<group>"; };
+		A5E102BB27C7E5A5001EB433 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A5F2226C2793A0510098D460 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F66DFC27AF195D00491466 /* LogMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMiddleware.swift; sourceTree = "<group>"; };
 		A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementMiddleware.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		A53B3EF72793394E00799BBE /* iw2Pack */ = {
 			isa = PBXGroup;
 			children = (
+				A5E102BA27C7E583001EB433 /* AppViews */,
 				A51A739227B2BA1A00700BF1 /* Deprecated */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
@@ -275,6 +278,14 @@
 				A5D9A47027B01F1A00E62772 /* FBService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A5E102BA27C7E583001EB433 /* AppViews */ = {
+			isa = PBXGroup;
+			children = (
+				A5E102BB27C7E5A5001EB433 /* MainView.swift */,
+			);
+			path = AppViews;
 			sourceTree = "<group>";
 		};
 		A5F66DFB27AF193D00491466 /* Middlewares */ = {
@@ -420,6 +431,7 @@
 				A5D61EF82796278100B0F0DB /* LoadingView.swift in Sources */,
 				A577FC5B279F6B6B00F721BD /* EventListView.swift in Sources */,
 				A5DA221B27A89B770036A96E /* TaskReducer.swift in Sources */,
+				A5E102BC27C7E5A5001EB433 /* MainView.swift in Sources */,
 				A5AEC8DB2797BCF40072E649 /* View+Extensions.swift in Sources */,
 				A53B3EF92793394E00799BBE /* iw2PackApp.swift in Sources */,
 				A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */,
