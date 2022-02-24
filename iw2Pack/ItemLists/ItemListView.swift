@@ -49,7 +49,8 @@ struct ItemListView: View {
         let itemsByCategory = sortedByCategory(items: itemsForList)
         VStack {
             if (itemsCount > 0) {
-                Text("There are \(itemsCount) items for Event: \(eventName)")
+                Text(eventName).font(.title)
+                Text("\(itemsCount) items").font(.footnote)
                 List {
                     ForEach(itemsByCategory, id:\.key) {sections in
                         Section(header: Text(sections.key)) {
