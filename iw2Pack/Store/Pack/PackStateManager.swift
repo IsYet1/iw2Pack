@@ -9,17 +9,43 @@ import Foundation
 
 class PackStateManager {
     struct Props {
+        let allEvents: [ Event ]
         let allItemsDict: [String: Item]
+        let eventItems: [ Item ]
+        let loggedIn: Bool
+        
+        let addItemsToEvent: (Store<AppState>, String, [String]) -> Void
+        let attemptLogin: (Store<AppState>, String, String) -> Void
+        let deleteItemsFromEvent: (Store<AppState>, String, [String]) -> Void
+        let getItemsForEvent: (Store<AppState>, String) -> Void
         let setPackedState: (Bool, Item, String, Store<AppState>) -> Void
         let setSelected: ( Bool, String, Store<AppState> ) -> Void
-        let addItemsToEvent: (Store<AppState>, String, [String]) -> Void
-        let deleteItemsFromEvent: (Store<AppState>, String, [String]) -> Void
-        let eventItems: [ Item ]
-        let getItemsForEvent: (Store<AppState>, String) -> Void
     }
     func map(state: PackState) -> Props {
         return Props(
+            allEvents: state.allEvents,
             allItemsDict: state.allItemsDict,
+            eventItems: state.eventItems,
+            loggedIn: state.loggedIn,
+            
+            addItemsToEvent: {
+                let store = $0
+                let eventId = $1
+                let itemIds = $2
+                store.dispatch(action: PackAddItemsToEvent(eventId: eventId, itemIds: itemIds))
+            },
+            attemptLogin: { $0.dispatch(action: PackAttemptLogin(email: $1, password: $2))},
+            deleteItemsFromEvent: {
+                let store = $0
+                let eventId = $1
+                let itemIds = $2
+                store.dispatch(action: PackDeleteItemsFromEvent(eventId: eventId, itemIds: itemIds))
+            },
+            getItemsForEvent: {
+                let store = $0
+                let eventId = $1
+                store.dispatch(action: PackEventItems_Get(eventId: eventId))
+            },
             setPackedState: {
                 let packed = $0
                 let item = $1
@@ -37,24 +63,6 @@ class PackStateManager {
                 let itemId = $1
                 let store = $2
                 store.dispatch(action: PackSetItemSelected(itemId: itemId, selected: selected))
-            },
-            addItemsToEvent: {
-                let store = $0
-                let eventId = $1
-                let itemIds = $2
-                store.dispatch(action: PackAddItemsToEvent(eventId: eventId, itemIds: itemIds))
-            },
-            deleteItemsFromEvent: {
-                let store = $0
-                let eventId = $1
-                let itemIds = $2
-                store.dispatch(action: PackDeleteItemsFromEvent(eventId: eventId, itemIds: itemIds))
-            },
-            eventItems: state.eventItems,
-            getItemsForEvent: {
-                let store = $0
-                let eventId = $1
-                store.dispatch(action: PackEventItems_Get(eventId: eventId))
             }
         )
     }

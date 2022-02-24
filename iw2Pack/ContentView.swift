@@ -9,10 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: Store<AppState>
+    var packStateManager = PackStateManager()
     
     var body: some View {
-//        ReduxSample()
-        LoginView()
+        let packState = packStateManager.map(state: store.state.packAuthState)
+        VStack {
+            LoginView()
+//            EventListView()
+//            MainView()
+        }
+        .onAppear(perform: {
+            if !packState.loggedIn {
+                packState.attemptLogin(store, "don@isyet.com", "remot5control")
+            }
+        })
     }
 }
 

@@ -159,8 +159,6 @@
 		A53B3EF72793394E00799BBE /* iw2Pack */ = {
 			isa = PBXGroup;
 			children = (
-				A5E102BA27C7E583001EB433 /* AppViews */,
-				A51A739227B2BA1A00700BF1 /* Deprecated */,
 				A53B3EF82793394E00799BBE /* iw2PackApp.swift */,
 				A53B3EFA2793394E00799BBE /* ContentView.swift */,
 				A595AADC27A0D1370008B372 /* Store */,
@@ -168,10 +166,12 @@
 				A5AEC8DC2797C5C40072E649 /* ItemLists */,
 				A58D9DA527C4354700E74401 /* AllPackItems */,
 				A577FC53279F65E200F721BD /* EventLists */,
+				A5E102BA27C7E583001EB433 /* AppViews */,
 				A53B3F202793693600799BBE /* Login */,
 				A53B3EFC2793394F00799BBE /* Assets.xcassets */,
 				A5AEC8D92797BCD70072E649 /* Extensions */,
 				A51144BB27B86390006980F1 /* Utils */,
+				A51A739227B2BA1A00700BF1 /* Deprecated */,
 				A53B3EFE2793394F00799BBE /* Preview Content */,
 			);
 			path = iw2Pack;

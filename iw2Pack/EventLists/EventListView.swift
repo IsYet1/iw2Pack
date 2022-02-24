@@ -9,19 +9,10 @@ import SwiftUI
 
 struct EventListView: View {
     @EnvironmentObject var store: Store<AppState>
-    struct Props {
-        var allEvents: [ Event ]
-        var loggedIn: Bool
-    }
-    private func map(state: PackState) -> Props {
-        return Props(
-            allEvents: state.allEvents,
-            loggedIn: state.loggedIn
-        )
-    }
-  
+    var packStateManager = PackStateManager()
+ 
     var body: some View {
-        let props = map(state: store.state.packAuthState)
+        let props = packStateManager.map(state: store.state.packAuthState)
         VStack {
             if (props.allEvents.count > 0) {
                 Text("There are \(String(props.allEvents.count)) events")
