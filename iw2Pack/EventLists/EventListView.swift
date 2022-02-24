@@ -17,8 +17,10 @@ struct EventListView: View {
             if (props.allEvents.count > 0) {
                 Text("There are \(String(props.allEvents.count)) events")
                 
-                List (props.allEvents, id: \.id) {event in
-                    EventCell(event: event)
+                NavigationView {
+                    List (props.allEvents, id: \.id) {event in
+                        EventCell(event: event)
+                    }
                 }
             } else if props.allEvents.count == 0 {
                 Text("There are NO items YET")

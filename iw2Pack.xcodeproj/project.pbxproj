@@ -51,6 +51,7 @@
 		A5E102B727C7DA7F001EB433 /* AllItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102B627C7DA7F001EB433 /* AllItemsView.swift */; };
 		A5E102B927C7E0CE001EB433 /* AllItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */; };
 		A5E102BC27C7E5A5001EB433 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102BB27C7E5A5001EB433 /* MainView.swift */; };
+		A5E102BE27C84612001EB433 /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E102BD27C84612001EB433 /* TempView.swift */; };
 		A5F2226D2793A0510098D460 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F2226C2793A0510098D460 /* GoogleService-Info.plist */; };
 		A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFC27AF195D00491466 /* LogMiddleware.swift */; };
 		A5F66DFF27AF1AF000491466 /* IncrementMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */; };
@@ -98,6 +99,7 @@
 		A5E102B627C7DA7F001EB433 /* AllItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsView.swift; sourceTree = "<group>"; };
 		A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsCell.swift; sourceTree = "<group>"; };
 		A5E102BB27C7E5A5001EB433 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A5E102BD27C84612001EB433 /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		A5F2226C2793A0510098D460 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F66DFC27AF195D00491466 /* LogMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMiddleware.swift; sourceTree = "<group>"; };
 		A5F66DFE27AF1AF000491466 /* IncrementMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementMiddleware.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				A5BB8710279869870082F903 /* ItemListViewModel.swift */,
 				A5A73CE92798AA70004AE953 /* ItemListView.swift */,
 				A5A73CEB2798BB52004AE953 /* ItemCell.swift */,
+				A5E102BD27C84612001EB433 /* TempView.swift */,
 			);
 			path = ItemLists;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				A5BB8711279869870082F903 /* ItemListViewModel.swift in Sources */,
 				A58D9DA927C444D700E74401 /* AddItemToEventCell.swift in Sources */,
 				A5D9A47127B01F1A00E62772 /* FBService.swift in Sources */,
+				A5E102BE27C84612001EB433 /* TempView.swift in Sources */,
 				A577FC57279F66B900F721BD /* EventViewModel.swift in Sources */,
 				A53B3F1727933FBD00799BBE /* TasksContentView.swift in Sources */,
 				A58D9DA727C4357200E74401 /* AddItemsToEventList.swift in Sources */,

@@ -14,9 +14,10 @@ struct ContentView: View {
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         VStack {
-            LoginView()
+//            LoginView()
 //            EventListView()
-//            MainView()
+            MainView()
+//            AllItemsView()
         }
         .onAppear(perform: {
             if !packState.loggedIn {
