@@ -46,7 +46,7 @@ struct AddItemsToEventList: View {
                 ForEach(itemsByCategory, id:\.key) {sections in
                     Section(header: Text(sections.key)) {
                         ForEach(sections.value, id: \.id) {item in
-                            AllItemCell(item: item)
+                            AddItemToEventCell(item: item)
                         }
                     }
                 }

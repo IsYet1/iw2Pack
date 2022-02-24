@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AllItemCell: View {
+struct AddItemToEventCell: View {
     
     @State private var curItem: Item
     
@@ -41,7 +41,7 @@ struct AllItemCell: View {
 
 struct AllItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllItemCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
+        AddItemToEventCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
 //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

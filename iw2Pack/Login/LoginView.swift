@@ -62,8 +62,8 @@ struct LoginView: View {
             Spacer()
            
             NavigationLink(
-//                destination: ItemListView(),
-                destination: EventListView(),
+                destination: AllItemsView(),
+//                destination: EventListView(),
                 isActive: $isActive,
 //                isActive: $store.state.packAuthState.loggedIn, // $isActive,
                 label: {
