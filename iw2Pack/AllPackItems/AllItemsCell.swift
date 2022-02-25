@@ -17,16 +17,20 @@ struct AllItemsCell: View {
     
     var body: some View {
         HStack {
-            Text(
-                curItem.name!
+            NavigationLink(
+                destination: EditItemDetails(packItem: curItem),
+                label: {
+                    Text(curItem.name!)
+                }
             )
+            .navigationTitle("All Items List")
         }
-   }
+    }
 }
 
 struct AllItemsCell_Previews: PreviewProvider {
     static var previews: some View {
         AllItemsCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
-//        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
+        //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }

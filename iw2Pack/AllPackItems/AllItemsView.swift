@@ -28,11 +28,13 @@ struct AllItemsView: View {
         let itemsByCategory = sortedByCategory(items: allItems)
         VStack {
             Divider()
-            List {
-                ForEach(itemsByCategory, id:\.key) {sections in
-                    Section(header: Text(sections.key)) {
-                        ForEach(sections.value, id: \.id) {item in
-                            AllItemsCell(item: item)
+            NavigationView {
+                List {
+                    ForEach(itemsByCategory, id:\.key) {sections in
+                        Section(header: Text(sections.key)) {
+                            ForEach(sections.value, id: \.id) {item in
+                                AllItemsCell(item: item)
+                            }
                         }
                     }
                 }
