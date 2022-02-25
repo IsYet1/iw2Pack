@@ -33,6 +33,7 @@ func packMiddleware() -> Middleware<AppState> {
                     let allItemsHash = state.packAuthState.allItemsDict
                     let eventItemForDispatch = getItemDetailsForEventItem(eventItem: itemsAddedToEvent, allItemsHash: allItemsHash)
                     dispatch(PackAddEventItemToLocalEventList(eventItem: eventItemForDispatch ))
+                    dispatch(PackSetItemSelected(itemId: itemsAddedToEvent.itemId!, selected: false))
                 case .failure(let error):
                     print ("Added NOT items to the event \(error.localizedDescription)")
                 }

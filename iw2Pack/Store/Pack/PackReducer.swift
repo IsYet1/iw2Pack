@@ -13,6 +13,7 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
     
     switch action {
     case let action as PackSetItemSelected:
+        // TODO: Change this to not mutate state. Should be setting state to the result, not updating it.
         state.allItemsDict[action.itemId]?.selected = action.selected
     case let action as PackSetAuthStatus:
         state.loggedIn = action.authStatus

@@ -13,6 +13,7 @@ class PackStateManager {
         let allItemsDict: [String: Item]
         let eventItems: [ Item ]
         let loggedIn: Bool
+        let selectedAllItemIds: () -> [String]
         
         let addItemsToEvent: (Store<AppState>, String, [String]) -> Void
         let attemptLogin: (Store<AppState>, String, String) -> Void
@@ -27,6 +28,16 @@ class PackStateManager {
             allItemsDict: state.allItemsDict,
             eventItems: state.eventItems,
             loggedIn: state.loggedIn,
+            selectedAllItemIds: {
+                let selectedItems = state.allItemsDict.filter({key, value in
+                    if let selected = value.selected {
+                        return selected
+                    } else {
+                        return false
+                    }
+                })
+                return Array(selectedItems.keys)
+            },
             
             addItemsToEvent: {
                 let store = $0

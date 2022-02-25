@@ -15,7 +15,7 @@ struct AddItemsToEventList: View {
     
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
-   
+    
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
             let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
@@ -26,7 +26,7 @@ struct AddItemsToEventList: View {
         }
         return orderList
     }
- 
+    
     private func getItemsNotInEvent(allItemsDict: [String : Item]) -> [ Item ] {
         let itemsInEventList = Set(itemsForEvent.map { $0.itemId })
         let filteredItems  = allItemsDict.filter { key, value in
@@ -34,7 +34,7 @@ struct AddItemsToEventList: View {
         }
         return Array(filteredItems.values)
     }
- 
+    
     var body: some View {
         let props = packStateManager.map(state: store.state.packAuthState)
         let filteredItems = getItemsNotInEvent(allItemsDict: props.allItemsDict)
@@ -52,19 +52,27 @@ struct AddItemsToEventList: View {
                 }
             }
             Divider()
-            Button("Add These") {
-                let itemsToAdd = filteredItems
-                    .filter() {$0.selected != nil && $0.selected! }
-                    .map() { $0.id! }
-                print("*** Selected Items")
-                print(itemsToAdd )
-                if itemsToAdd.count > 0 {
-                    props.addItemsToEvent(store, eventId, itemsToAdd)
+            if props.selectedAllItemIds().count > 0 {
+                // TODO: Clean this up some. Put the if check inside the button.
+                Button("Add \(props.selectedAllItemIds().count) item(s)") {
+                    let itemsToAdd = filteredItems
+                        .filter() {$0.selected != nil && $0.selected! }
+                        .map() { $0.id! }
+                    print("*** Selected Items")
+                    print(itemsToAdd )
+                    if itemsToAdd.count > 0 {
+                        props.addItemsToEvent(store, eventId, props.selectedAllItemIds())
+                    }
+                    self.presentation.wrappedValue.dismiss()
                 }
-                self.presentation.wrappedValue.dismiss()
+                .buttonStyle(.bordered)
+            } else {
+                Button("Cancel") {
+                    self.presentation.wrappedValue.dismiss()
+                }
+                .buttonStyle(.bordered)
+                
             }
-            .buttonStyle(.bordered)
- 
             Spacer()
         }
     }
