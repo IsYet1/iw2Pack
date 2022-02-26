@@ -11,6 +11,7 @@ class PackStateManager {
     struct Props {
         let allEvents: [ Event ]
         let allItemsDict: [String: Item]
+        let categories: [String]
         let eventItems: [ Item ]
         let loggedIn: Bool
         let selectedAllItemIds: () -> [String]
@@ -26,6 +27,7 @@ class PackStateManager {
         return Props(
             allEvents: state.allEvents,
             allItemsDict: state.allItemsDict,
+            categories: state.categories,
             eventItems: state.eventItems,
             loggedIn: state.loggedIn,
             selectedAllItemIds: {
