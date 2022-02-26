@@ -17,7 +17,7 @@ func packMiddleware() -> Middleware<AppState> {
                 switch result {
                 case .success(let updatedItem):
                     print ("Item Updated")
-//                    dispatch(PackRemoveItemFromLocalEventList(eventItemId: removedEventItemId ))
+                    dispatch(PackUpdateGlobalItem_Local(item: action.item))
                 case .failure(let error):
                     print ("DID NOT UPDATE item \(error.localizedDescription)")
                 }
