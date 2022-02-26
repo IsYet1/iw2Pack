@@ -41,6 +41,9 @@ struct PackState: ReduxState {
             "pants", "shirts", "shoes", "socks",
             "toilitries", "toilitriesBackup", "toilitriesLiquid", "underwear"
         ]
+    var locations: [String] = [
+        "backroom", "bathroom", "closet", "dresser", "garage", "pantry"
+    ]
 }
 
 protocol Action { }

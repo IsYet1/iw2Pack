@@ -13,6 +13,7 @@ class PackStateManager {
         let allItemsDict: [String: Item]
         let categories: [String]
         let eventItems: [ Item ]
+        let locations: [String]
         let loggedIn: Bool
         let selectedAllItemIds: () -> [String]
         
@@ -29,6 +30,7 @@ class PackStateManager {
             allItemsDict: state.allItemsDict,
             categories: state.categories,
             eventItems: state.eventItems,
+            locations: state.locations,
             loggedIn: state.loggedIn,
             selectedAllItemIds: {
                 let selectedItems = state.allItemsDict.filter({key, value in

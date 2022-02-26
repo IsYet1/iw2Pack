@@ -17,6 +17,7 @@ struct Item: Codable {
     var name: String?
     var category: String?
     var itemId: String?
+    var location: String?
     var packed: Bool?
     var staged: Bool?
     var selected: Bool?

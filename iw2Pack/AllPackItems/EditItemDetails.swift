@@ -13,37 +13,47 @@ struct EditItemDetails: View {
     
     @State private var formItemName: String = ""
     @State private var formItemCategory: String = ""
+    @State private var formItemLocation: String = ""
     var curItem: Item
-  
+    
     init(packItem: Item) {
         formItemName = packItem.name!
         formItemCategory = packItem.category!
+        if let location = packItem.location {
+            formItemLocation = location
+        } else {
+            formItemLocation = "closet"
+        }
         curItem = packItem
     }
     
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         let packCategories = packState.categories
+        let packLocations = packState.locations
         
         VStack {
             Text(curItem.name!).font(.title)
             Spacer()
             TextField("Name", text: $formItemName)
                 .padding(30)
-            HStack {
-                Picker("Category", selection: $formItemCategory) {
-                    ForEach(packCategories, id:\.self) {category in
-                        Text(category)
-                    }
+            Picker("Category", selection: $formItemCategory) {
+                ForEach(packCategories, id:\.self) {category in
+                    Text(category)
                 }
             }
-//            .frame(width: .infinity, height: 30, alignment: .leading)
+            Picker("Location", selection: $formItemLocation) {
+                ForEach(packLocations, id:\.self) {location in
+                    Text(location)
+                }
+            }
+            
             Spacer()
             Button("Save") {
-//                    self.presentation.wrappedValue.dismiss()
-                }
-                .buttonStyle(.bordered)
- 
+                //                    self.presentation.wrappedValue.dismiss()
+            }
+            .buttonStyle(.bordered)
+            
         }
     }
 }
