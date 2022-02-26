@@ -50,7 +50,8 @@ struct EditItemDetails: View {
             
             Spacer()
             Button("Save") {
-                //                    self.presentation.wrappedValue.dismiss()
+                let itemToUpdate = ItemUpdate(id: curItem.id!, name: formItemName, category: formItemCategory, location: formItemLocation)
+                packState.updateGlobalItem(store, itemToUpdate)
             }
             .buttonStyle(.bordered)
             

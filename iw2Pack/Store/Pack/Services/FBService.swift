@@ -48,6 +48,19 @@ class FBService {
     }
     
     /* */
+    func updateGlobalItem(item: ItemUpdate, completion: @escaping (Result<Bool?, Error>) -> Void) {
+        let ref = db.collection("pack").document("data").collection("items").document(item.id)
+
+        ref.updateData(["name": item.name as String, "category": item.category as String, "location": item.location as String]) {error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+
+    }
+
     func updateEventItemPackedState(eventItem: EventItem, packed: Bool, completion: @escaping (Result<Bool?, Error>) -> Void) {
         let ref = db.collection("pack").document("data").collection("lists").document(eventItem.eventId).collection("items")
             .document(eventItem.itemId)

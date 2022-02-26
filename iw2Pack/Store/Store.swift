@@ -48,6 +48,14 @@ struct PackState: ReduxState {
 
 protocol Action { }
 
+struct PackUpdateGlobalItem: Action {
+    let item: ItemUpdate
+}
+
+struct PackUpdateGlobalItem_Local: Action {
+    let item: ItemUpdate
+}
+
 struct PackSetItemSelected: Action {
     let itemId: String
     let selected: Bool

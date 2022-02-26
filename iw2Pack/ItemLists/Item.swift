@@ -30,3 +30,10 @@ struct ItemToAddToEventList: Codable {
     var packed: Bool
     var staged: Bool
 }
+
+struct ItemUpdate: Codable {
+    var id: String
+    var name: String
+    var category: String
+    var location: String
+}

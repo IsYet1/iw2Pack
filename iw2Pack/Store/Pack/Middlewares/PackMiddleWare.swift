@@ -12,6 +12,17 @@ func packMiddleware() -> Middleware<AppState> {
     return {state, action, dispatch in
         switch action {
             
+        case let action as PackUpdateGlobalItem:
+            FBService().updateGlobalItem(item: action.item) { result in
+                switch result {
+                case .success(let updatedItem):
+                    print ("Item Updated")
+//                    dispatch(PackRemoveItemFromLocalEventList(eventItemId: removedEventItemId ))
+                case .failure(let error):
+                    print ("DID NOT UPDATE item \(error.localizedDescription)")
+                }
+            }
+            
         case let action as PackDeleteItemsFromEvent:
             FBService().deleteItemsFromEvent(eventId: action.eventId, eventItemIds: action.itemIds) {result in
                 switch result {
@@ -62,13 +73,13 @@ func packMiddleware() -> Middleware<AppState> {
             
             FBService().login(email: action.email, password: action.password) {result in
                 switch result {
-                    case .success(let loggedin):
-                        dispatch(PackSetAuthStatus(authStatus: loggedin))
-                        dispatch(PackAllItemsDict_Get())
-                        dispatch(PackAllEvents_Get())
-                    case .failure(let error):
-                        print("Login Error: \(error.localizedDescription)")
-                        dispatch(PackSetAuthStatus(authStatus: false))
+                case .success(let loggedin):
+                    dispatch(PackSetAuthStatus(authStatus: loggedin))
+                    dispatch(PackAllItemsDict_Get())
+                    dispatch(PackAllEvents_Get())
+                case .failure(let error):
+                    print("Login Error: \(error.localizedDescription)")
+                    dispatch(PackSetAuthStatus(authStatus: false))
                 }
                 
             }
@@ -78,11 +89,11 @@ func packMiddleware() -> Middleware<AppState> {
             
             FBService().getAllItemsDict() {result in
                 switch result {
-                    case .success(let allItems):
-                        dispatch(PackAllItemsDict_Store(allItems: allItems))
-                    case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackAllItemsDict_Store(allItems: [ : ]))
+                case .success(let allItems):
+                    dispatch(PackAllItemsDict_Store(allItems: allItems))
+                case .failure(let error):
+                    print("Get all items Error: \(error.localizedDescription)")
+                    dispatch(PackAllItemsDict_Store(allItems: [ : ]))
                 }
                 
             }
@@ -92,31 +103,31 @@ func packMiddleware() -> Middleware<AppState> {
             
             FBService().getAllItems() {result in
                 switch result {
-                    case .success(let allItems):
-                        dispatch(PackAllItems_Store(allItems: allItems))
-                    case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackAllItems_Store(allItems: [ ]))
+                case .success(let allItems):
+                    dispatch(PackAllItems_Store(allItems: allItems))
+                case .failure(let error):
+                    print("Get all items Error: \(error.localizedDescription)")
+                    dispatch(PackAllItems_Store(allItems: [ ]))
                 }
                 
             }
-        
+            
         case let action as PackAllEvents_Get:
             print("Get All Events \(action)")
             
             FBService().getAllEvents() {result in
                 switch result {
-                    case .success(let allEvents):
-                        dispatch(PackAllEvents_Store(allEvents: allEvents))
-                    case .failure(let error):
-                        print("Get all items Error: \(error.localizedDescription)")
-                        dispatch(PackAllEvents_Store(allEvents: [ ]))
+                case .success(let allEvents):
+                    dispatch(PackAllEvents_Store(allEvents: allEvents))
+                case .failure(let error):
+                    print("Get all items Error: \(error.localizedDescription)")
+                    dispatch(PackAllEvents_Store(allEvents: [ ]))
                 }
                 
             }
- 
+            
         case let action as PackEventItems_Get:
-//            print("Get Event Items \(action)")
+            //            print("Get Event Items \(action)")
             
             FBService().getEventItems(eventId: action.eventId) {result in
                 switch result {
@@ -134,7 +145,7 @@ func packMiddleware() -> Middleware<AppState> {
                 
             }
             
- 
+            
         default:
             break
         }
