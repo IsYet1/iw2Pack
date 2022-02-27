@@ -14,8 +14,29 @@ struct AllItemsView: View {
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
             let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
-            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { book in
-                return book.category!
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
+                if let sortFieldValue = packItem.category {
+                    return sortFieldValue
+                } else {
+                    return "___ No Category Set"
+                }
+//                return packItem.category!
+            })
+            return listGroup.sorted(by: {$0.key < $1.key})
+        }
+        return orderList
+    }
+ 
+     private func sortedByLocation(items: [Item]) -> [(key: String, value: [Item] ) ]  {
+        var orderList: [(key: String, value: [Item] ) ] {
+            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
+                if let sortFieldValue = packItem.location {
+                    return sortFieldValue
+                } else {
+                    return "___ No Location Set"
+                }
+//                return packItem.category!
             })
             return listGroup.sorted(by: {$0.key < $1.key})
         }
@@ -23,9 +44,10 @@ struct AllItemsView: View {
     }
  
     var body: some View {
-        let props = packStateManager.map(state: store.state.packAuthState)
-        let allItems = Array(props.allItemsDict.values)
+        let packState = packStateManager.map(state: store.state.packAuthState)
+        let allItems = Array(packState.allItemsDict.values)
         let itemsByCategory = sortedByCategory(items: allItems)
+        let itemsByLocation = sortedByLocation(items: allItems)
         VStack {
             Divider()
             NavigationView {
@@ -38,6 +60,10 @@ struct AllItemsView: View {
                         }
                     }
                 }
+                .refreshable(action: {
+                    print("Refreshing. *****")
+                    packState.loadAllItems(store)
+                })
             }
             Spacer()
         }

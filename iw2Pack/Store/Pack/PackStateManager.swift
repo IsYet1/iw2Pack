@@ -21,6 +21,7 @@ class PackStateManager {
         let attemptLogin: (Store<AppState>, String, String) -> Void
         let deleteItemsFromEvent: (Store<AppState>, String, [String]) -> Void
         let getItemsForEvent: (Store<AppState>, String) -> Void
+        let loadAllItems: (Store<AppState>) -> Void
         let setPackedState: (Bool, Item, String, Store<AppState>) -> Void
         let setSelected: ( Bool, String, Store<AppState> ) -> Void
         let updateGlobalItem: (Store<AppState>, ItemUpdate) -> Void
@@ -61,6 +62,10 @@ class PackStateManager {
                 let store = $0
                 let eventId = $1
                 store.dispatch(action: PackEventItems_Get(eventId: eventId))
+            },
+            loadAllItems: {
+                let store = $0
+                store.dispatch(action: PackAllItemsDict_Get())
             },
             setPackedState: {
                 let packed = $0
