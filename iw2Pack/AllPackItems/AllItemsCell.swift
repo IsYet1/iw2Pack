@@ -27,11 +27,17 @@ struct AllItemsCell: View {
                 destination: EditItemDetails(packItem: curItem),
                 label: {
                     VStack {
-                        Text(itemName).font(.body)
+                        HStack {
+                            Text(itemName).font(.callout)
+                            Spacer()
+                        }
+                        .padding([.leading, .trailing],  10)
                         HStack {
                             Text(itemCategory).font(.caption2)
+                            Spacer()
                             Text(itemLocation).font(.caption2)
                         }
+                        .padding([.leading, .trailing],  10)
                     }
                 }
             )

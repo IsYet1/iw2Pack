@@ -17,10 +17,19 @@ struct EditItemDetails: View {
     var curItem: Item
     
     init(packItem: Item) {
-        formItemName = packItem.name!
-        formItemCategory = packItem.category!
-        if let location = packItem.location {
-            formItemLocation = location
+       if let value = packItem.name {
+            formItemName = value
+        } else {
+            formItemName = "No Name"
+        }
+ 
+        if let value = packItem.category {
+            formItemCategory = value
+        } else {
+            formItemCategory = "closet"
+        }
+        if let value = packItem.location {
+            formItemLocation = value
         } else {
             formItemLocation = "closet"
         }
@@ -35,17 +44,31 @@ struct EditItemDetails: View {
         VStack {
             Text(curItem.name!).font(.title)
             Spacer()
-            TextField("Name", text: $formItemName)
-                .padding(30)
-            Picker("Category", selection: $formItemCategory) {
-                ForEach(packCategories, id:\.self) {category in
-                    Text(category)
-                }
+            HStack {
+                TextField("Name", text: $formItemName)
+                    .border(Color.gray)
+                    .padding(5)
+                Spacer()
             }
-            Picker("Location", selection: $formItemLocation) {
-                ForEach(packLocations, id:\.self) {location in
-                    Text(location)
+            HStack {
+                Text("Category:").frame(width: 100)
+                Picker("Category", selection: $formItemCategory) {
+                    ForEach(packCategories, id:\.self) {category in
+                        Text(category)
+                    }
                 }
+                Spacer()
+            }
+            HStack {
+                Text("Location:").frame(width: 100)
+                Picker("Location", selection: $formItemLocation) {
+                    ForEach(packLocations, id:\.self) {location in
+                        Text(location)
+                    }
+                    .border(Color.blue)
+                    .frame(width: 200)
+                }
+                Spacer()
             }
             
             Spacer()
@@ -56,6 +79,7 @@ struct EditItemDetails: View {
             .buttonStyle(.bordered)
             
         }
+        .padding()
     }
 }
 

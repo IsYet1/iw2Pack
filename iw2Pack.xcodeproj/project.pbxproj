@@ -99,7 +99,7 @@
 		A5DA221827A89B6C0036A96E /* AppReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		A5DA221A27A89B770036A96E /* TaskReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskReducer.swift; sourceTree = "<group>"; };
 		A5E102B627C7DA7F001EB433 /* AllItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsView.swift; sourceTree = "<group>"; };
-		A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsCell.swift; sourceTree = "<group>"; };
+		A5E102B827C7E0CE001EB433 /* AllItemsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsCell.swift; sourceTree = "<group>"; tabWidth = 9; };
 		A5E102BB27C7E5A5001EB433 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A5E102BD27C84612001EB433 /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		A5F2226C2793A0510098D460 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
