@@ -97,6 +97,24 @@ class FBService {
             }
     }
  
+    func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
+        db.collection("pack").document("meta").collection("locations")
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                } else {
+                    // TODO: Add a locations model and get the remaining location data
+                    if let snapshot = snapshot {
+                        let locations: [String] = snapshot.documents.compactMap {doc in
+                            return doc.documentID
+                        }
+                       completion(.success(locations))
+                    }
+                }
+            }
+    }
+    
     func getAllEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
         db.collection("pack").document("data").collection("lists")
             .getDocuments { snapshot, error in
@@ -117,7 +135,6 @@ class FBService {
                     }
                 }
             }
- 
     }
  
     func getAllItemsDict(completion: @escaping (Result<[String: Item], Error>) -> Void) {
@@ -168,7 +185,7 @@ class FBService {
         let itemsToAdd = eventItemIds.map({ ItemToAddToEventList(itemId: $0, packed: false, staged: false) })
         let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
         itemsToAdd.forEach() {
-            var curItemToAdd = $0
+            let curItemToAdd = $0
             do {
                 var ref: DocumentReference? = nil
                 ref = try eventItemListRef.addDocument(from: curItemToAdd) { err in
