@@ -97,7 +97,25 @@ class FBService {
             }
     }
  
-    func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
+    func getCategories(completion: @escaping (Result<[String], Error>) -> Void) {
+        db.collection("pack").document("meta").collection("categories")
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                } else {
+                    // TODO: Add a category model and get the remaining location data
+                    if let snapshot = snapshot {
+                        let categories: [String] = snapshot.documents.compactMap {doc in
+                            return doc.documentID
+                        }
+                       completion(.success(categories))
+                    }
+                }
+            }
+    }
+    
+     func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
         db.collection("pack").document("meta").collection("locations")
             .getDocuments { snapshot, error in
                 if let error = error {

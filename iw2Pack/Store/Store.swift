@@ -33,18 +33,17 @@ struct PackState: ReduxState {
     var allItemsDict: [String: Item] = [ : ]
     var allEvents: [ Event ] = []
     var eventItems: [ Item ] = []
-    var categories: [String] =
-        [
-            "active", "chargers", "computing", "electronics",
-            "food", "house", "meds",
-            "misc", "officebag", "onetime", "outerwear", "packlast",
-            "pants", "shirts", "shoes", "socks",
-            "toilitries", "toilitriesBackup", "toilitriesLiquid", "underwear"
-        ]
+    var categories: [String] = [ ]
     var locations: [String] = []
 }
 
 protocol Action { }
+
+struct PackCategories_Get: Action {
+}
+struct PackCategories_Store: Action {
+    let categories: [String]
+}
 
 struct PackLocations_Get: Action {
 }

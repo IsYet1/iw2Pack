@@ -78,6 +78,7 @@ func packMiddleware() -> Middleware<AppState> {
                     dispatch(PackAllItemsDict_Get())
                     dispatch(PackAllEvents_Get())
                     dispatch(PackLocations_Get())
+                    dispatch(PackCategories_Get())
                 case .failure(let error):
                     print("Login Error: \(error.localizedDescription)")
                     dispatch(PackSetAuthStatus(authStatus: false))
@@ -113,7 +114,20 @@ func packMiddleware() -> Middleware<AppState> {
                 
             }
             
-        case let action as PackLocations_Get:
+        case let action as PackCategories_Get:
+            print("Get All Categories \(action)")
+            
+            FBService().getCategories() {result in
+                switch result {
+                case .success(let categories):
+                    dispatch(PackCategories_Store(categories: categories))
+                case .failure(let error):
+                    print("Get Locations Error: \(error.localizedDescription)")
+                    dispatch(PackCategories_Store(categories: [ ]))
+                }
+            }
+            
+         case let action as PackLocations_Get:
             print("Get All Locations \(action)")
             
             FBService().getLocations() {result in

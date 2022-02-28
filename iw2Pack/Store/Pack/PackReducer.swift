@@ -35,6 +35,8 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         state.eventItems = state.eventItems + [action.eventItem]
     case let action as PackLocations_Store:
         state.locations = action.locations
+    case let action as PackCategories_Store:
+        state.categories = action.categories
     default:
         break
    }
