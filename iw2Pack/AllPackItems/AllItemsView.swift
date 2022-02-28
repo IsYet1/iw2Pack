@@ -12,28 +12,13 @@ struct AllItemsView: View {
     var packStateManager = PackStateManager()
     @State private var byLocation: Bool = false
     
-    private enum groupBy {
-        case category
-        case location
-        case none
-    }
-    
-    private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
+    private func groupItems(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
-            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
+            let itemsSorted = items.sorted(by: { $0.name ?? "___ no name" < $1.name ?? "___ no name" })
             let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
-                return packItem.category ?? "___ CATEGORY not set"
-            })
-            return listGroup.sorted(by: {$0.key < $1.key})
-        }
-        return orderList
-    }
-    
-    private func sortedByLocation(items: [Item]) -> [(key: String, value: [Item] ) ]  {
-        var orderList: [(key: String, value: [Item] ) ] {
-            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
-            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
-                return packItem.location ?? "___ LOCATION set"
+                return byLocation
+                ? packItem.location ?? "___ LOCATION not set"
+                : packItem.category ?? "___ CATEGORY not set"
             })
             return listGroup.sorted(by: {$0.key < $1.key})
         }
@@ -43,35 +28,25 @@ struct AllItemsView: View {
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         let allItems = Array(packState.allItemsDict.values)
-        let sortItemsBy = byLocation ? groupBy.location : groupBy.category
         
-        let itemsByCategory = sortedByCategory(items: allItems)
-        let itemsByLocation = sortedByLocation(items: allItems)
+        let groupedItems = groupItems(items: allItems)
         
         VStack {
             NavigationView {
                 List {
-                    switch sortItemsBy {
-                    case .category:
-                        GroupedView(groupedItems: itemsByCategory)
-                    case .location:
-                        GroupedView(groupedItems: itemsByLocation)
-                    case .none:
-                        ForEach(allItems.sorted(by: {$0.name! < $1.name!}), id: \.id) {item in
-                            AllItemsCell(item: item)
-                        }
-                    }
+                    GroupedView(groupedItems: groupedItems)
+//                    NonGroupedView(allItems: allItems)
                 }
                 .refreshable(action: {
                     print("Refreshing. *****")
                     packState.loadAllItems(store)
                 })
-            .toolbar(content: {
-                ToolbarItem(placement: .bottomBar) {
-                    Toggle("By Location", isOn: $byLocation).toggleStyle(.switch)
-                }
-            })
-        }
+                .toolbar(content: {
+                    ToolbarItem(placement: .bottomBar) {
+                        Toggle("By Location", isOn: $byLocation).toggleStyle(.switch)
+                    }
+                })
+            }
         }
     }
 }
@@ -91,6 +66,15 @@ struct GroupedView: View {
                     AllItemsCell(item: item)
                 }
             }
+        }
+    }
+}
+
+struct NonGroupedView: View {
+    let allItems: [Item]
+    var body: some View {
+        ForEach(allItems.sorted(by: {$0.name! < $1.name!}), id: \.id) {item in
+            AllItemsCell(item: item)
         }
     }
 }

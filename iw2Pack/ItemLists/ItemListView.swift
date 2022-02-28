@@ -24,18 +24,13 @@ struct ItemListView: View {
     }
     
     // TODO: Normalize this. It's returning a 2 dimensional array. Would prefer a dictionary.
-    private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
-        let groupBy: GroupBy = byLocation ? .location : .category
+    private func groupItems(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
-            let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
+            let itemsSorted = items.sorted(by: { $0.name ?? "___ no name" < $1.name ?? "___ no name" })
             let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
-                switch groupBy {
-                case .category:
-                    return packItem.category ?? "___ CATEGORY not set"
-                case .location:
-                    return packItem.location ?? "___ LOCATION not set"
-                }
-
+                return byLocation
+                ? packItem.location ?? "___ LOCATION not set"
+                : packItem.category ?? "___ CATEGORY not set"
             })
             return listGroup.sorted(by: {$0.key < $1.key})
         }
@@ -59,18 +54,17 @@ struct ItemListView: View {
         let props = packStateManager.map(state: store.state.packAuthState)
         let itemsForList = props.eventItems
         let itemsCount = itemsForList.count
-        let itemsByCategory = sortedByCategory(items: itemsForList)
+        let groupedItems = groupItems(items: itemsForList)
         VStack {
             if (itemsCount > 0) {
                 Text(eventName).font(.title)
                 Text("\(itemsCount) items").font(.footnote)
                 List {
-                    ForEach(itemsByCategory, id:\.key) {sections in
+                    ForEach(groupedItems, id:\.key) {sections in
                         Section(header: Text(sections.key)) {
                             ForEach(sections.value, id: \.id) {item in
                                 ItemCell(item: item, eventId: eventId)
                             }
-//                            .onDelete(perform: {offsets in self.removeItemFromEvent(at: offsets) })
                             .onDelete {self.removeItemFromEvent(at: $0, items: sections.value )}
                         }
                     }
