@@ -12,17 +12,30 @@ struct ItemListView: View {
     var eventName: String
     
     @State private var showAddItemsToEventSheet: Bool = false
-//    @State private var itemsByCategory1: [(key: String, value: [Item] ) ] = nil
     
     @EnvironmentObject var store: Store<AppState> // = Store(reducer: appReducer, state: AppState())
     var packStateManager = PackStateManager()
     
+    
+    @State private var byLocation: Bool = false
+    private enum GroupBy {
+        case category
+        case location
+    }
+    
     // TODO: Normalize this. It's returning a 2 dimensional array. Would prefer a dictionary.
     private func sortedByCategory(items: [Item]) -> [(key: String, value: [Item] ) ]  {
+        let groupBy: GroupBy = byLocation ? .location : .category
         var orderList: [(key: String, value: [Item] ) ] {
             let itemsSorted = items.sorted(by: { $0.name! < $1.name! })
-            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { book in
-                return book.category!
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
+                switch groupBy {
+                case .category:
+                    return packItem.category ?? "___ CATEGORY not set"
+                case .location:
+                    return packItem.location ?? "___ LOCATION not set"
+                }
+
             })
             return listGroup.sorted(by: {$0.key < $1.key})
         }
@@ -73,6 +86,9 @@ struct ItemListView: View {
         .toolbar {
            ToolbarItem(placement: .primaryAction) {
                Button("Add Items") {self.showAddItemsToEventSheet = true }
+            }
+            ToolbarItem(placement: .bottomBar) {
+                Toggle("By Location", isOn: $byLocation).toggleStyle(.switch)
             }
            
         }

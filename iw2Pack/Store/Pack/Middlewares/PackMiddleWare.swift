@@ -157,6 +157,7 @@ func getItemDetailsForEventItem(eventItem: Item, allItemsHash: [String: Item]) -
     if let itemId = item.itemId, let allItemData = allItemsHash[itemId] {
         item.name = allItemData.name
         item.category = allItemData.category
+        item.location = allItemData.location
     } else {
         item.name = "No Item: \(item.id!)" //"itemId!)"
         item.category = "Item Not Found"
