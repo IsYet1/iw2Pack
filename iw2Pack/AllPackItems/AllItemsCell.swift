@@ -36,9 +36,9 @@ struct AllItemsCell: View {
                         .padding([.leading, .trailing],  10)
                         HStack {
                             
-                            Text(itemCategory).font(.caption2)
+                            Text(byLocation ? itemCategory : itemLocation).font(.caption2)
                             Spacer()
-                            Text(itemLocation).font(.caption2)
+//                            Text(itemLocation).font(.caption2)
                         }
                         .padding([.leading, .trailing],  10)
                     }

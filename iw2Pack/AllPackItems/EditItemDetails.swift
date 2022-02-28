@@ -31,13 +31,19 @@ struct EditItemDetails: View {
         let packLocations = packState.locations
         
         VStack {
-            Text(curItem.name!).font(.title)
+            HStack {
+                Text(curItem.name!).font(.title)
+                Spacer()
+            }
+            HStack {
+                Text(showLocationField ? formItemCategory : formItemLocation).font(.body)
+                Spacer()
+            }
             Spacer()
             HStack {
                 TextField("Name", text: $formItemName)
                     .border(Color.gray)
                     .padding(5)
-                Spacer()
             }
             // TODO: Fix this code. Messy.
             HStack {
