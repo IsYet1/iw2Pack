@@ -10,6 +10,7 @@ import SwiftUI
 struct AllItemsView: View {
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
+    @State private var byLocation: Bool = false
     
     private enum groupBy {
         case category
@@ -42,7 +43,8 @@ struct AllItemsView: View {
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         let allItems = Array(packState.allItemsDict.values)
-        let sortItemsBy = groupBy.none
+        let sortItemsBy = byLocation ? groupBy.location : groupBy.category
+        
         let itemsByCategory = sortedByCategory(items: allItems)
         let itemsByLocation = sortedByLocation(items: allItems)
         
@@ -64,7 +66,12 @@ struct AllItemsView: View {
                     print("Refreshing. *****")
                     packState.loadAllItems(store)
                 })
-            }
+            .toolbar(content: {
+                ToolbarItem(placement: .bottomBar) {
+                    Toggle("By Location", isOn: $byLocation).toggleStyle(.switch)
+                }
+            })
+        }
         }
     }
 }
