@@ -34,7 +34,7 @@ struct AllItemsView: View {
         VStack {
             NavigationView {
                 List {
-                    GroupedView(groupedItems: groupedItems)
+                    GroupedView(groupedItems: groupedItems, byLocation: byLocation)
 //                    NonGroupedView(allItems: allItems)
                 }
                 .refreshable(action: {
@@ -59,11 +59,12 @@ struct AllItemsView_Previews: PreviewProvider {
 
 struct GroupedView: View {
     let groupedItems: [(key: String, value: [Item] ) ]
+    let byLocation: Bool
     var body: some View {
         ForEach(groupedItems, id:\.key) {sections in
             Section(header: Text(sections.key)) {
                 ForEach(sections.value, id: \.id) {item in
-                    AllItemsCell(item: item)
+                    AllItemsCell(item: item, groupBy: byLocation ? GroupItemsBy.location : GroupItemsBy.category)
                 }
             }
         }
@@ -74,7 +75,7 @@ struct NonGroupedView: View {
     let allItems: [Item]
     var body: some View {
         ForEach(allItems.sorted(by: {$0.name! < $1.name!}), id: \.id) {item in
-            AllItemsCell(item: item)
+            AllItemsCell(item: item, groupBy: GroupItemsBy.none)
         }
     }
 }

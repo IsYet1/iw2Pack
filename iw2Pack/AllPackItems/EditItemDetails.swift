@@ -14,26 +14,15 @@ struct EditItemDetails: View {
     @State private var formItemName: String = ""
     @State private var formItemCategory: String = ""
     @State private var formItemLocation: String = ""
+    @State private var showLocationField: Bool
     var curItem: Item
     
-    init(packItem: Item) {
-       if let value = packItem.name {
-            formItemName = value
-        } else {
-            formItemName = "No Name"
-        }
- 
-        if let value = packItem.category {
-            formItemCategory = value
-        } else {
-            formItemCategory = "closet"
-        }
-        if let value = packItem.location {
-            formItemLocation = value
-        } else {
-            formItemLocation = "closet"
-        }
+    init(packItem: Item, byLocation: Bool) {
+        formItemName = packItem.name ?? "No Name"
+        formItemCategory = packItem.category ?? "active"
+        formItemLocation = packItem.location ?? "closet"
         curItem = packItem
+        showLocationField = byLocation
     }
     
     var body: some View {
@@ -50,27 +39,16 @@ struct EditItemDetails: View {
                     .padding(5)
                 Spacer()
             }
+            // TODO: Fix this code. Messy.
             HStack {
-                Text("Category:").frame(width: 100)
-                Picker("Category", selection: $formItemCategory) {
-                    ForEach(packCategories, id:\.self) {category in
-                        Text(category)
+                Text(showLocationField ? "Location:" : "Category").frame(width: 100)
+                Picker("", selection: showLocationField ? $formItemLocation : $formItemCategory) {
+                    ForEach(showLocationField ? packLocations : packCategories, id:\.self) {value in
+                        Text(value)
                     }
                 }
                 Spacer()
             }
-            HStack {
-                Text("Location:").frame(width: 100)
-                Picker("Location", selection: $formItemLocation) {
-                    ForEach(packLocations, id:\.self) {location in
-                        Text(location)
-                    }
-                    .border(Color.blue)
-                    .frame(width: 200)
-                }
-                Spacer()
-            }
-            
             Spacer()
             Button("Save") {
                 let itemToUpdate = ItemUpdate(id: curItem.id!, name: formItemName, category: formItemCategory, location: formItemLocation)
@@ -85,6 +63,6 @@ struct EditItemDetails: View {
 
 struct EditItemDetails_Previews: PreviewProvider {
     static var previews: some View {
-        EditItemDetails(packItem: Item(id: "Preview Item", name: "Preview Item", category: "Cat" ))
+        EditItemDetails(packItem: Item(id: "Preview Item", name: "Preview Item", category: "Cat" ), byLocation: false)
     }
 }

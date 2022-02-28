@@ -13,18 +13,20 @@ struct AllItemsCell: View {
     @State private var itemName: String
     @State private var itemCategory: String
     @State private var itemLocation: String
+    @State private var byLocation: Bool
     
-    init(item: Item) {
+    init(item: Item, groupBy: GroupItemsBy) {
         curItem = item
-        if let value = item.name { itemName = value } else {itemName = "Name Not Set"}
-        if let value = item.category { itemCategory = value } else {itemCategory = "Category Not Set"}
-        if let value = item.location { itemLocation = value } else {itemLocation = "Location Not Set"}
+        itemName = item.name ?? "Name Not Set"
+        itemCategory = item.category ?? "Category Not Set"
+        itemLocation = item.location ?? "Location Not Set"
+        byLocation = groupBy == .location
     }
     
     var body: some View {
         HStack {
             NavigationLink(
-                destination: EditItemDetails(packItem: curItem),
+                destination: EditItemDetails(packItem: curItem, byLocation: byLocation),
                 label: {
                     VStack {
                         HStack {
@@ -33,6 +35,7 @@ struct AllItemsCell: View {
                         }
                         .padding([.leading, .trailing],  10)
                         HStack {
+                            
                             Text(itemCategory).font(.caption2)
                             Spacer()
                             Text(itemLocation).font(.caption2)
@@ -48,7 +51,7 @@ struct AllItemsCell: View {
 
 struct AllItemsCell_Previews: PreviewProvider {
     static var previews: some View {
-        AllItemsCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true))
+        AllItemsCell(item: Item(id: "Id", name: "Preview Item",  itemId: "item id here", packed: true), groupBy: GroupItemsBy.none)
         //        ItemCell(item: ItemViewModel(item: Item(id: "Id", name: "Preview Item")))
     }
 }
