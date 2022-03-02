@@ -10,6 +10,8 @@ import Foundation
 class PackStateManager {
     struct Props {
         let allEvents: [ Event ]
+        let allItemsByLocation: [(key: String, value: [Item] ) ]
+        let allItemsByCategory: [(key: String, value: [Item] ) ]
         let allItemsDict: [String: Item]
         let categories: [String]
         let eventItems: [ Item ]
@@ -30,6 +32,8 @@ class PackStateManager {
     func map(state: PackState) -> Props {
         return Props(
             allEvents: state.allEvents,
+            allItemsByLocation: groupItems(itemsDictionary: state.allItemsDict, byLocation: true),
+            allItemsByCategory: groupItems(itemsDictionary: state.allItemsDict, byLocation: false),
             allItemsDict: state.allItemsDict,
             categories: state.categories,
             eventItems: state.eventItems,
@@ -97,6 +101,20 @@ class PackStateManager {
                 store.dispatch(action: PackUpdateGlobalItem(item: item))
             }
         )
+    }
+    
+    private func groupItems(itemsDictionary: [String : Item], byLocation: Bool) -> [(key: String, value: [Item] ) ]  {
+        let items = itemsDictionary.values
+        var orderList: [(key: String, value: [Item] ) ] {
+            let itemsSorted = items.sorted(by: { $0.name ?? "___ no name" < $1.name ?? "___ no name" })
+            let listGroup: [String: [Item]] = Dictionary(grouping: itemsSorted, by: { packItem in
+                return byLocation
+                ? packItem.location ?? "___ LOCATION not set"
+                : packItem.category ?? "___ CATEGORY not set"
+            })
+            return listGroup.sorted(by: {$0.key < $1.key})
+        }
+        return orderList
     }
     
 }

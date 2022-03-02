@@ -15,16 +15,6 @@ protocol ReduxState { }
 
 struct AppState: ReduxState {
     var packAuthState = PackState()
-    var counterState = CounterState()
-    var taskState = TaskState()
-}
-
-struct TaskState: ReduxState {
-    var tasks: [Task] = [Task]()
-}
-
-struct CounterState: ReduxState {
-    var counter = 0
 }
 
 struct PackState: ReduxState {
