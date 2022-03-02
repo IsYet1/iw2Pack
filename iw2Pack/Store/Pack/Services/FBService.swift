@@ -11,6 +11,15 @@ import FirebaseFirestoreSwift
 
 class FBService {
     let db = Firestore.firestore()
+    var globalItemsCollectionRef: CollectionReference
+    var eventsCollectionRef: CollectionReference
+    var metaDocumentRef: DocumentReference
+    
+    init() {
+        globalItemsCollectionRef = db.collection("pack").document("data").collection("items")
+        eventsCollectionRef = db.collection("pack").document("data").collection("lists")
+        metaDocumentRef = db.collection("pack").document("meta")
+    }
     
     func login( email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         print(email, password)
@@ -25,7 +34,7 @@ class FBService {
     
     // Deprecated. Using dictionary instead as of 6-Feb. Leaving in in case it's useful logic.
     func getAllItems(completion: @escaping (Result<[Item], Error>) -> Void) {
-        db.collection("pack").document("data").collection("items")
+        globalItemsCollectionRef
             .getDocuments { snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -49,7 +58,7 @@ class FBService {
     
     /* */
     func updateGlobalItem(item: ItemUpdate, completion: @escaping (Result<Bool?, Error>) -> Void) {
-        let ref = db.collection("pack").document("data").collection("items").document(item.id)
+        let ref = globalItemsCollectionRef.document(item.id)
 
         ref.updateData(["name": item.name as String, "category": item.category as String, "location": item.location as String]) {error in
             if let error = error {
@@ -62,7 +71,7 @@ class FBService {
     }
 
     func updateEventItemPackedState(eventItem: EventItem, packed: Bool, completion: @escaping (Result<Bool?, Error>) -> Void) {
-        let ref = db.collection("pack").document("data").collection("lists").document(eventItem.eventId).collection("items")
+        let ref = eventsCollectionRef.document(eventItem.eventId).collection("items")
             .document(eventItem.itemId)
 
         ref.updateData(["packed": packed as Bool]) {error in
@@ -76,7 +85,7 @@ class FBService {
     }
 
     func getEventItems(eventId: String, completion: @escaping (Result<[Item], Error>) -> Void) {
-        db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
+        eventsCollectionRef.document(eventId).collection("items")
             .getDocuments { snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -98,7 +107,7 @@ class FBService {
     }
  
     func getCategories(completion: @escaping (Result<[String], Error>) -> Void) {
-        db.collection("pack").document("meta").collection("categories")
+        metaDocumentRef.collection("categories")
             .getDocuments { snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -116,7 +125,7 @@ class FBService {
     }
     
      func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
-        db.collection("pack").document("meta").collection("locations")
+        metaDocumentRef.collection("locations")
             .getDocuments { snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -134,7 +143,7 @@ class FBService {
     }
     
     func getAllEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
-        db.collection("pack").document("data").collection("lists")
+        eventsCollectionRef
             .getDocuments { snapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -156,7 +165,7 @@ class FBService {
     }
  
     func getAllItemsDict(completion: @escaping (Result<[String: Item], Error>) -> Void) {
-        db.collection("pack").document("data").collection("items")
+        globalItemsCollectionRef
             .getDocuments { snapshot, error in
                 if let error = error {
 //                    print(error.localizedDescription)
@@ -185,7 +194,7 @@ class FBService {
     }
  
     func deleteItemsFromEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<String, Error>) -> Void) {
-        let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
+        let eventItemListRef = eventsCollectionRef.document(eventId).collection("items")
         eventItemIds.forEach() {
             let curEventItemIdToDelete = $0
             eventItemListRef.document(curEventItemIdToDelete).delete() { err in
@@ -201,7 +210,7 @@ class FBService {
     
     func addItemsToEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<Item, Error>) -> Void) {
         let itemsToAdd = eventItemIds.map({ ItemToAddToEventList(itemId: $0, packed: false, staged: false) })
-        let eventItemListRef = db.collection("pack").document("data").collection("lists").document(eventId).collection("items")
+        let eventItemListRef = eventsCollectionRef.document(eventId).collection("items")
         itemsToAdd.forEach() {
             let curItemToAdd = $0
             do {
