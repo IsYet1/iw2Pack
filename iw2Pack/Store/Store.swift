@@ -119,18 +119,6 @@ struct PackSetAuthStatus: Action {
     let authStatus: Bool
 }
 
-struct IncrementAction: Action { }
-struct DecrementAction: Action { }
-struct IncrementActionAsync: Action { }
-
-struct AddTaskAction: Action {
-    let task: Task
-}
-
-struct AddAction: Action {
-    let value: Int
-}
-
 class Store<StoreState: ReduxState>: ObservableObject {
     
     var reducer: Reducer<StoreState>

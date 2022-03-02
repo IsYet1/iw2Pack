@@ -11,6 +11,7 @@ struct AllItemsView: View {
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
     @State private var byLocation: Bool = false
+    @State private var globalItems: [Item] = []
     
     private func groupItems(items: [Item]) -> [(key: String, value: [Item] ) ]  {
         var orderList: [(key: String, value: [Item] ) ] {
@@ -27,6 +28,7 @@ struct AllItemsView: View {
     
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
+//        globalItems = Array(packState.allItemsDict.values)
         let allItems = Array(packState.allItemsDict.values)
         
         let groupedItems = groupItems(items: allItems)
