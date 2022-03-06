@@ -16,7 +16,7 @@ class FBService {
     var dbRef_MetaDocument: DocumentReference
     
     init() {
-        let rootCollection = "pack1"
+        let rootCollection = "pack"
         dbRef_GlobalItemsCollection = db.collection(rootCollection).document("data").collection("items")
         dbRef_EventsCollection = db.collection(rootCollection).document("data").collection("lists")
         dbRef_MetaDocument = db.collection(rootCollection).document("meta")
