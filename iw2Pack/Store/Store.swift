@@ -29,6 +29,13 @@ struct PackState: ReduxState {
 
 protocol Action { }
 
+struct PackAddGlobalItem: Action{
+    let item: ItemToAdd
+}
+struct PackAddGlobalItem_Local: Action{
+    let item: ItemToAdd
+}
+
 struct PackCategories_Get: Action {
 }
 struct PackCategories_Store: Action {

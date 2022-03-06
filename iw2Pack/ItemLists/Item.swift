@@ -37,3 +37,14 @@ struct ItemUpdate: Codable {
     var category: String
     var location: String
 }
+
+struct ItemToAdd: Codable {
+    var id: String?
+    var name: String
+    var category: String
+    var location: String
+}
+
+func toItem(itemIn: ItemToAdd) -> Item {
+    return Item(id: itemIn.id, name: itemIn.name, category: itemIn.category, location: itemIn.location)
+}

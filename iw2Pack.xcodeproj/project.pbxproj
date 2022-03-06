@@ -32,6 +32,7 @@
 		A577FC59279F679500F721BD /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC58279F679500F721BD /* EventListViewModel.swift */; };
 		A577FC5B279F6B6B00F721BD /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC5A279F6B6B00F721BD /* EventListView.swift */; };
 		A577FC5D279F6E8100F721BD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577FC5C279F6E8100F721BD /* EventCell.swift */; };
+		A57AC33A27D4291400952479 /* AddGlobalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57AC33927D4291400952479 /* AddGlobalItem.swift */; };
 		A58D9DA727C4357200E74401 /* AddItemsToEventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DA627C4357200E74401 /* AddItemsToEventList.swift */; };
 		A58D9DA927C444D700E74401 /* AddItemToEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DA827C444D700E74401 /* AddItemToEventCell.swift */; };
 		A58D9DAB27C54C4700E74401 /* PackStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D9DAA27C54C4700E74401 /* PackStateManager.swift */; };
@@ -78,6 +79,7 @@
 		A577FC58279F679500F721BD /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		A577FC5A279F6B6B00F721BD /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		A577FC5C279F6E8100F721BD /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		A57AC33927D4291400952479 /* AddGlobalItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGlobalItem.swift; sourceTree = "<group>"; };
 		A58D9DA627C4357200E74401 /* AddItemsToEventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsToEventList.swift; sourceTree = "<group>"; };
 		A58D9DA827C444D700E74401 /* AddItemToEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddItemToEventCell.swift; path = iw2Pack/AllPackItems/AddItemToEventCell.swift; sourceTree = SOURCE_ROOT; };
 		A58D9DAA27C54C4700E74401 /* PackStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStateManager.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				A58D9DA627C4357200E74401 /* AddItemsToEventList.swift */,
 				A58D9DA827C444D700E74401 /* AddItemToEventCell.swift */,
 				A59F8B9627C98E610082F9DE /* EditItemDetails.swift */,
+				A57AC33927D4291400952479 /* AddGlobalItem.swift */,
 			);
 			path = AllPackItems;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				A577FC59279F679500F721BD /* EventListViewModel.swift in Sources */,
 				A5F66E0227AF25B200491466 /* PackReducer.swift in Sources */,
 				A5F66DFD27AF195D00491466 /* LogMiddleware.swift in Sources */,
+				A57AC33A27D4291400952479 /* AddGlobalItem.swift in Sources */,
 				A566AF9127CD7EAB003B9AB8 /* Constants.swift in Sources */,
 				A595AADE27A0D1370008B372 /* Store.swift in Sources */,
 				A53B3EFB2793394E00799BBE /* ContentView.swift in Sources */,

@@ -12,6 +12,7 @@ struct AllItemsView: View {
     var packStateManager = PackStateManager()
     @State private var byLocation: Bool = false
     @State private var globalItems: [Item] = []
+    @State private var showAddGlobalItemSheet: Bool = false
     
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
@@ -20,7 +21,7 @@ struct AllItemsView: View {
             NavigationView {
                 List {
                     GroupedView(byLocation: byLocation)
-//                    NonGroupedView(allItems: allItems)
+                    //                    NonGroupedView(allItems: allItems)
                 }
                 .refreshable(action: {
                     print("Refreshing. *****")
@@ -30,9 +31,16 @@ struct AllItemsView: View {
                     ToolbarItem(placement: .bottomBar) {
                         Toggle("By Location", isOn: $byLocation).toggleStyle(.switch)
                     }
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Add Items") {self.showAddGlobalItemSheet = true }
+                    }
+                    
                 })
             }
         }
+        .sheet(isPresented: $showAddGlobalItemSheet, content: {
+            AddGlobalItem()
+        })
     }
 }
 

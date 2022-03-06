@@ -16,7 +16,7 @@ class FBService {
     var dbRef_MetaDocument: DocumentReference
     
     init() {
-        let rootCollection = "pack1"
+        let rootCollection = "pack"
         dbRef_GlobalItemsCollection = db.collection(rootCollection).document("data").collection("items")
         dbRef_EventsCollection = db.collection(rootCollection).document("data").collection("lists")
         dbRef_MetaDocument = db.collection(rootCollection).document("meta")
@@ -33,12 +33,33 @@ class FBService {
         }
     }
     
-
+    
     
     /* */
+    func addGlobalItem(itemToAdd: ItemToAdd, completion: @escaping (Result<ItemToAdd, Error>) -> Void) {
+        let globalItemListRef = dbRef_GlobalItemsCollection
+        do {
+            var ref: DocumentReference? = nil
+            ref = try globalItemListRef.addDocument(from: itemToAdd) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(.failure(err))
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    var addedItem = itemToAdd
+                    addedItem.id = ref!.documentID
+                    completion(.success(itemToAdd))
+                }
+            }
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    
     func updateGlobalItem(item: ItemUpdate, completion: @escaping (Result<Bool?, Error>) -> Void) {
         let ref = dbRef_GlobalItemsCollection.document(item.id)
-
+        
         ref.updateData(["name": item.name as String, "category": item.category as String, "location": item.location as String]) {error in
             if let error = error {
                 completion(.failure(error))
@@ -46,13 +67,13 @@ class FBService {
                 completion(.success(true))
             }
         }
-
+        
     }
-
+    
     func updateEventItemPackedState(eventItem: EventItem, packed: Bool, completion: @escaping (Result<Bool?, Error>) -> Void) {
         let ref = dbRef_EventsCollection.document(eventItem.eventId).collection("items")
             .document(eventItem.itemId)
-
+        
         ref.updateData(["packed": packed as Bool]) {error in
             if let error = error {
                 completion(.failure(error))
@@ -60,9 +81,9 @@ class FBService {
                 completion(.success(true))
             }
         }
-
+        
     }
-
+    
     func getEventItems(eventId: String, completion: @escaping (Result<[Item], Error>) -> Void) {
         dbRef_EventsCollection.document(eventId).collection("items")
             .getDocuments { snapshot, error in
@@ -79,12 +100,12 @@ class FBService {
                             }
                             return nil
                         }
-                       completion(.success(items))
+                        completion(.success(items))
                     }
                 }
             }
     }
- 
+    
     func getCategories(completion: @escaping (Result<[String], Error>) -> Void) {
         dbRef_MetaDocument.collection("categories")
             .getDocuments { snapshot, error in
@@ -97,13 +118,13 @@ class FBService {
                         let categories: [String] = snapshot.documents.compactMap {doc in
                             return doc.documentID
                         }
-                       completion(.success(categories))
+                        completion(.success(categories))
                     }
                 }
             }
     }
     
-     func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
+    func getLocations(completion: @escaping (Result<[String], Error>) -> Void) {
         dbRef_MetaDocument.collection("locations")
             .getDocuments { snapshot, error in
                 if let error = error {
@@ -115,7 +136,7 @@ class FBService {
                         let locations: [String] = snapshot.documents.compactMap {doc in
                             return doc.documentID
                         }
-                       completion(.success(locations))
+                        completion(.success(locations))
                     }
                 }
             }
@@ -137,17 +158,17 @@ class FBService {
                             }
                             return nil
                         }
-                       completion(.success(events))
+                        completion(.success(events))
                     }
                 }
             }
     }
- 
+    
     func getAllItemsDict(completion: @escaping (Result<[String: Item], Error>) -> Void) {
         dbRef_GlobalItemsCollection
             .getDocuments { snapshot, error in
                 if let error = error {
-//                    print(error.localizedDescription)
+                    //                    print(error.localizedDescription)
                     completion(.failure(error))
                 } else {
                     if let snapshot = snapshot {
@@ -161,17 +182,17 @@ class FBService {
                         }
                         var itemsDict: [String: Item] = [ : ]
                         items.forEach {item in itemsDict[item.id!] = item }
-//                        let itemsDict = items.map { item in
-//                          return item.id: item
-//                        }
-//                        print("Items Dictionary: \(itemsDict)")
+                        //                        let itemsDict = items.map { item in
+                        //                          return item.id: item
+                        //                        }
+                        //                        print("Items Dictionary: \(itemsDict)")
                         completion(.success(itemsDict))
                     }
                 }
             }
- 
+        
     }
- 
+    
     func deleteItemsFromEvent(eventId: String, eventItemIds: [String], completion: @escaping (Result<String, Error>) -> Void) {
         let eventItemListRef = dbRef_EventsCollection.document(eventId).collection("items")
         eventItemIds.forEach() {
@@ -200,7 +221,7 @@ class FBService {
                         completion(.failure(err))
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-//                        curItemToAdd.id = ref!.documentID
+                        //                        curItemToAdd.id = ref!.documentID
                         completion(.success(Item(id: ref!.documentID, itemId: curItemToAdd.itemId, packed: false, staged: false)))
                     }
                 }
@@ -209,7 +230,7 @@ class FBService {
             }
         }
     }
-
+    
     // Deprecated. Using dictionary instead as of 6-Feb. Leaving in in case it's useful logic.
     func getAllItems(completion: @escaping (Result<[Item], Error>) -> Void) {
         dbRef_GlobalItemsCollection
@@ -227,7 +248,7 @@ class FBService {
                             }
                             return nil
                         }
-                       completion(.success(items))
+                        completion(.success(items))
                     }
                 }
             }
