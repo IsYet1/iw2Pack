@@ -15,9 +15,9 @@ func packMiddleware() -> Middleware<AppState> {
         case let action as PackAddGlobalItem:
             FBService().addGlobalItem(itemToAdd: action.item) { result in
                 switch result {
-                case .success(_):
+                case .success(let addedItem):
                     print ("Item Added")
-                    dispatch(PackAddGlobalItem_Local(item: action.item))
+                    dispatch(PackAddGlobalItem_Local(item: addedItem))
                 case .failure(let error):
                     print ("DID NOT ADD item \(error.localizedDescription)")
                 }

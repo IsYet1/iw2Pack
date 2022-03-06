@@ -48,7 +48,7 @@ class FBService {
                     print("Document added with ID: \(ref!.documentID)")
                     var addedItem = itemToAdd
                     addedItem.id = ref!.documentID
-                    completion(.success(itemToAdd))
+                    completion(.success(addedItem))
                 }
             }
         } catch let error {

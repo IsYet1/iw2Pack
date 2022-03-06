@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddGlobalItem: View {
+    @Environment(\.presentationMode) var presentation
+    
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
     
@@ -17,14 +19,14 @@ struct AddGlobalItem: View {
     
     init() {
         formItemName = ""
-        formItemCategory = "active"
-        formItemLocation = "closet"
+        formItemCategory = ""
+        formItemLocation = ""
     }
     
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
-        let packCategories = packState.categories
-        let packLocations = packState.locations
+        let packCategories = [""] + packState.categories
+        let packLocations = [""] + packState.locations
         
         VStack {
             HStack {
@@ -60,6 +62,7 @@ struct AddGlobalItem: View {
             Button("Save") {
                 let itemToAdd = ItemToAdd(name: formItemName, category: formItemCategory, location: formItemLocation)
                 packState.addGlobalItem(store, itemToAdd)
+                self.presentation.wrappedValue.dismiss()
             }
             .buttonStyle(.bordered)
             

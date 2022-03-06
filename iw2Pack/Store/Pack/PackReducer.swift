@@ -20,7 +20,7 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         // TODO: Convert this directly instead of setting the indivdual properties. Cast it, etc.
         state.allItemsDict[action.item.id] = Item(id: action.item.id, name: action.item.name, category: action.item.category, location: action.item.location)
         print("Updated state")
-        state.allItemsDict.forEach(){print($0.value.name)}
+//        state.allItemsDict.forEach(){print($0.value.name)}
         
     case let action as PackSetAuthStatus:
         state.loggedIn = action.authStatus
