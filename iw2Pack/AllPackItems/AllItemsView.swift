@@ -14,6 +14,8 @@ struct AllItemsView: View {
     @State private var globalItems: [Item] = []
     @State private var showAddGlobalItemSheet: Bool = false
     
+
+    
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         
@@ -56,6 +58,18 @@ struct GroupedView: View {
     @EnvironmentObject var store: Store<AppState>
     var packStateManager = PackStateManager()
     
+    private func removeGlobalItem( at indexSet: IndexSet, items: [Item] ){
+        print("*** Removing an item")
+        if let itemIndex: Int = indexSet.first {
+            print(itemIndex)
+            if let globalItemId = items[itemIndex].id {
+                print(globalItemId)
+                print(items[itemIndex].name!)
+                store.dispatch(action: PackDeleteGlobalItem(id: globalItemId))
+            }
+        }
+    }
+    
     var body: some View {
         let packState = packStateManager.map(state: store.state.packAuthState)
         let groupedItems = !byLocation ? packState.allItemsByCategory : packState.allItemsByLocation
@@ -65,6 +79,7 @@ struct GroupedView: View {
                 ForEach(sections.value, id: \.id) {item in
                     AllItemsCell(item: item, groupBy: byLocation ? GroupItemsBy.location : GroupItemsBy.category)
                 }
+                .onDelete {self.removeGlobalItem(at: $0, items: sections.value )}
             }
         }
     }

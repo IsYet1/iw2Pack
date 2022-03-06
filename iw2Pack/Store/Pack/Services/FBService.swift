@@ -16,7 +16,7 @@ class FBService {
     var dbRef_MetaDocument: DocumentReference
     
     init() {
-        let rootCollection = "pack"
+        let rootCollection = "pack1"
         dbRef_GlobalItemsCollection = db.collection(rootCollection).document("data").collection("items")
         dbRef_EventsCollection = db.collection(rootCollection).document("data").collection("lists")
         dbRef_MetaDocument = db.collection(rootCollection).document("meta")
@@ -33,9 +33,18 @@ class FBService {
         }
     }
     
+    func deleteGlobalItem(id: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let globalItemListRef = dbRef_GlobalItemsCollection
+            globalItemListRef.document(id).delete() { err in
+                if let err = err {
+                    print("Error deleting the item from the event: \(err)")
+                    completion(.failure(err))
+                } else {
+                    completion(.success("Item /(id) deleted"))
+                }
+            }
+    }
     
-    
-    /* */
     func addGlobalItem(itemToAdd: ItemToAdd, completion: @escaping (Result<ItemToAdd, Error>) -> Void) {
         let globalItemListRef = dbRef_GlobalItemsCollection
         do {

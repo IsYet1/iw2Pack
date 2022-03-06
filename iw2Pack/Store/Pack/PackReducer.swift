@@ -30,6 +30,8 @@ func packReducer(_ state: PackState, _ action: Action) -> PackState {
         state.allItemsDict = action.allItems
     case let action as PackAddGlobalItem_Local:
         state.allItemsDict[action.item.id!] = toItem(itemIn: action.item)
+    case let action as PackDeleteGlobalItem_Local:
+        state.allItemsDict.removeValue(forKey: action.id)
         
     case let action as PackAllEvents_Store:
         state.allEvents = action.allEvents
